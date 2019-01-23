@@ -3,9 +3,6 @@ install: true
 
 jdk:
   - oraclejdk11
-  - oraclejdk8
-  - openjdk11
-  - openjdk8
 
 script:
   - gradle check --info
