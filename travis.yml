@@ -5,4 +5,4 @@ jdk:
   - oraclejdk11
 
 script:
-  - ./gradlew clean check --rerun-tasks
+  - gradle check --info
