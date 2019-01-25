@@ -1,13 +1,3 @@
-# FDM Timesheets Project
-
-## CI status
-
-| Branch    | CI Status                                                                                                                                                             |
-| --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `master`  | [![Build Status](https://travis-ci.com/UOL-CS/co2015-1819-group-17.svg?token=g3URpAP48DaXad1Duz45&branch=master)](https://travis-ci.com/UOL-CS/co2015-1819-group-17)  |
-| `develop` | [![Build Status](https://travis-ci.com/UOL-CS/co2015-1819-group-17.svg?token=g3URpAP48DaXad1Duz45&branch=develop)](https://travis-ci.com/UOL-CS/co2015-1819-group-17) |
-
-## Group's Definition of Done
 
 | Title                           | Description                                                                                                                                                                                                                                                              | Contribution to grade | How to provide evidence                                                                                                                         | Notes                                                                                                                                                                                                                                                                                                       |
 | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -19,18 +9,5 @@
 | Integration Tests running on CI | The Integration tests pass on Travis CI                                                                                                                                                                                                                                  | 3% bonus if done      | Click on the “Build #??” for the passing build and paste the URL into a Pivotal comment                                                       | This is a challenge because you must get Gradle/Travis to create a database for the tests to run against. There will be guidance on this.                                                                                                                                                                   |
 | Coding Standards Checked        | Auomatic checking of coding standards is done via gradle and checkstyle. All code added for the story must adhere to the coding standards you choose.                                                                                                                    | 3% bonus if done      | Click on the “Build #??” for the passing build and paste the URL into a Pivotal comment. This must show the style being checked.              | [This must be set up in gradle - instructions are here - https://medium.com/@raveensr/how-to-add-checkstyle-and-findbugs-plugins-in-a-gradle-based-project-51759aa843be](https://medium.com/@raveensr/how-to-add-checkstyle-and-findbugs-plugins-in-a-gradle-based-project-51759aa843be)                    |
 |                                 |                                                                                                                                                                                                                                                                          |                       |                                                                                                                                                 |                                                                                                                                                                                                                                                                                                             |
+|                                 |                                                                                                                                                                                                                                                                          |                       |                                                                                                                                                 |                                                                                                                                                                                                                                                                                                             |
 
-## Group's Roles and Responsibilities
-
-| Roles                  | Vinny | Joe | Dan King | Dan Low | Mohammed |
-| ---------------------- | ----- | --- | -------- | ------- | -------- |
-| Software Developer     | x     | x   | x        | x       |          |
-| Automated Test Writer  |       |     |          | x       | x        |
-| Build Engineer         | x     |     |          |         |          |
-| Manual Tester          |       | x   | x        |         | x        |
-| Coding Standards Fixer |       |     |          |         | x        |
-| Scrum Master           | x     |     |          |         |          |
-| Product Owner          |       | x   |          |         |          |
-| Assessment Lead        |       | x   | x        |         |          |
-| Tech Lead              |       |     | x        | x       |          |
-| Configuration Manager  | x     |     |          |         |          |
