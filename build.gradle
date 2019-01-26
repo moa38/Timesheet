@@ -20,6 +20,7 @@ apply plugin: 'io.spring.dependency-management'
 apply plugin: 'jacoco'
 apply plugin: 'groovy'
 apply plugin: 'checkstyle'
+apply plugin: 'eclipse'
 
 group = 'CO2015-Group-17'
 version = 'INITIAL-PROJECT'
@@ -40,6 +41,9 @@ dependencies {
 	compile "org.codehaus.groovy:groovy-all:2.5.5"
 	testCompile "org.spockframework:spock-core:1.2-groovy-2.5"
 	implementation 'com.puppycrawl.tools:checkstyle:8.16'
+
+	compile("org.springframework.boot:spring-boot-starter-web")
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
 }
 
 jacoco {
@@ -65,4 +69,9 @@ checkstyleMain {
 
 checkstyleTest {
     source ='src/test/java'
+}
+
+bootJar {
+    baseName = 'gs-accessing-data-mysql'
+    version = '0.1.0'
 }
