@@ -75,3 +75,10 @@ bootJar {
     baseName = 'gs-accessing-data-mysql'
     version = '0.1.0'
 }
+
+tasks.withType(com.github.spotbugs.SpotBugsTask) {
+    reports {
+      xml.enabled = false
+      html.enabled = true
+	}
+}
