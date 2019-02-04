@@ -59,13 +59,13 @@ jacocoTestReport {
     }
 }
 
-checkstyle {
-    configFile file("config/checkstyle/checkstyle.xml")
-}
+// checkstyle {
+//     configFile file("config/checkstyle/checkstyle.xml")
+// }
 
-checkstyleMain {
-    source ='src/main/java'
-}
+// checkstyleMain {
+//     source ='src/main/java'
+// }
 
 checkstyleTest {
     source ='src/test/java'
