@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 @Entity(name = "shifts")
-public class UserAcc {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     int userid;
