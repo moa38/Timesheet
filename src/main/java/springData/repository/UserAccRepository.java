@@ -6,8 +6,8 @@ import org.springframework.data.repository.CrudRepository;
 
 import springData.domain.UserAcc;
 
-public interface UserAccRespoitory extends CrudRepository <UserAcc, Integer>{
-   
+public interface UserAccRepository extends CrudRepository<UserAcc, Integer> {
+
     UserAcc findById(int id);
 
     List<UserAcc> findByName(String name);
