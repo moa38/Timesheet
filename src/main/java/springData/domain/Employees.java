@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
-@Entity(name = "Employees")
+@Entity(name = "employees")
 public class Employees {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
