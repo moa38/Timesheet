@@ -23,3 +23,19 @@ public class Position {
     @Column(unique = true, nullable = false)
     String positionname;
 }
+public Position(){}
+public Position(String positionname){
+    this.setPositionName(positionname)
+}
+public int getPositionid(){
+        return positionid;
+    }
+    public void setPositionid(){
+        this.positionid=positionid;
+    }
+    public String getPositionName(){
+        return positionname;
+    }
+    public void setPositionName(String positionname){
+        this.positionname=positionname;
+    }
