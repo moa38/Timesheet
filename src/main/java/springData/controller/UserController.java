@@ -5,7 +5,7 @@ public class UserController {
    @Autowired UserRepository userRepo;
 
    @RequestMapping(value="/")
-   public String {
+   public String () {
 
    }
 

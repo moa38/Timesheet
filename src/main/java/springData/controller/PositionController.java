@@ -6,7 +6,7 @@ public class PositionController {
    @Autowired PositionRepository positionRepo;
 
    @RequestMapping(value="/")
-   public String {
+   public String() {
 
    }
 

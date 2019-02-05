@@ -6,7 +6,7 @@ public class ShiftsController {
    @Autowired ShiftRepository shiftRepo;
 
    @RequestMapping(value="/")
-   public String {
+   public String (){
 
    }
 

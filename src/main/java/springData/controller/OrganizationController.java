@@ -6,7 +6,7 @@ public class OrganizationController {
    @Autowired OrganizationRepository organizationRepo;
 
    @RequestMapping(value="/")
-   public String {
+   public String() {
 
    }
 
