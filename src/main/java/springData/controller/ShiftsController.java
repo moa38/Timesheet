@@ -1,4 +1,4 @@
-package springData.Controller;
+package springData.controller;
 
 import java.util.List;
 
@@ -22,21 +22,22 @@ import springData.repository.ShiftsRepository;
 @RequestMapping("/shifts")
 
 public class ShiftsController {
-   
-   @Autowired ShiftsRepository shiftRepo;
 
-   @RequestMapping(value="/")
-   public String (){
+   @Autowired
+   ShiftsRepository shiftRepo;
 
+   @RequestMapping(value = "/")
+   public String shiftsHome() {
+      return "";
    }
 
    @RequestMapping(value = "/add", method = RequestMethod.GET)
-   public String () {
-
+   public String shiftsAdd() {
+      return "";
    }
 
-   @RequestMapping(value="/delete", method=RequestMapping.GET)
-   public String () {
-
-      
+   @RequestMapping(value = "/delete", method = RequestMethod.GET)
+   public String shiftsDelete() {
+      return "";
    }
+}

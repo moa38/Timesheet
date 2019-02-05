@@ -1,4 +1,4 @@
-package springData.Controller;
+package springData.controller;
 
 import java.util.List;
 
@@ -18,27 +18,25 @@ import org.springframework.web.bind.annotation.RequestParam;
 import springData.domain.User;
 import springData.repository.UserRepository;
 
-
 @Controller
 @RequestMapping("/User")
 public class UserController {
-   
-   @Autowired UserRepository userRepo;
 
-   @RequestMapping(value="/")
-   public String () {
+   @Autowired
+   UserRepository userRepo;
 
+   @RequestMapping(value = "/")
+   public String userHome() {
+      return "";
    }
 
    @RequestMapping(value = "/add", method = RequestMethod.GET)
-   public String () {
-
+   public String userAdd() {
+      return "";
    }
 
-   @RequestMapping(value="/delete", method=RequestMapping.GET)
-   public String () {
-
-      
+   @RequestMapping(value = "/delete", method = RequestMethod.GET)
+   public String userDelete() {
+      return "";
    }
-
-
+}

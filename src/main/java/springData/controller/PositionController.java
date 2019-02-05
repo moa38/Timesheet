@@ -1,4 +1,4 @@
-package springData.Controller;
+package springData.controller;
 
 import java.util.List;
 
@@ -19,24 +19,25 @@ import springData.domain.Position;
 import springData.repository.PositionRepository;
 
 @Controller
-@RequestMapping ("/Position")
+@RequestMapping("/Position")
 
 public class PositionController {
-   
-   @Autowired PositionRepository positionRepo;
 
-   @RequestMapping(value="/")
-   public String() {
+   @Autowired
+   PositionRepository positionRepo;
 
+   @RequestMapping(value = "/")
+   public String positionHome() {
+      return "";
    }
 
    @RequestMapping(value = "/add", method = RequestMethod.GET)
-   public String () {
-
+   public String positionAdd() {
+      return "";
    }
 
-   @RequestMapping(value="/delete", method=RequestMapping.GET)
-   public String () {
-
-      
+   @RequestMapping(value = "/delete", method = RequestMethod.GET)
+   public String positionDelete() {
+      return "";
    }
+}

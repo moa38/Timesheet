@@ -1,4 +1,4 @@
-package springData.Controller;
+package springData.controller;
 
 import java.util.List;
 
@@ -19,28 +19,25 @@ import springData.domain.Organization;
 import springData.repository.OrganizationRepository;
 
 @Controller
-@RequestMapping ("/Organization")
+@RequestMapping("/Organization")
 
 public class OrganizationController {
-   
-   @Autowired OrganizationRepository organizationRepo;
 
-   @RequestMapping(value="/")
-   public String() {
+   @Autowired
+   OrganizationRepository organizationRepo;
 
+   @RequestMapping(value = "/")
+   public String organizationHome() {
+      return "";
    }
 
    @RequestMapping(value = "/add", method = RequestMethod.GET)
-   public String () {
-
+   public String organizationAdd() {
+      return "";
    }
 
-   @RequestMapping(value="/delete", method=RequestMapping.GET)
-   public String () {
-
-      
+   @RequestMapping(value = "/delete", method = RequestMethod.GET)
+   public String organizationDelete() {
+      return "";
    }
-
-
-    
 }
