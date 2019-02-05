@@ -35,22 +35,22 @@ public class WebApp implements CommandLineRunner {
         // WEBAPP FILE WITH MAIN
         // TODO
         User user = new User();
-        user.setUsername("admin");
-        springData.domain.Position position = new Position();
-        position.setId(0);
-        position.save(user);
+        user.setUserId(0);
+        Position position = new Position();
+        position.setPositionId(0);
+        // position.save(user);
 
-        user.setRole(role);
-        userRepo.save(user);
+        // user.setRole(role);
+        // userRepo.save(user);
 
-        role = new Role();
-        role.setRole("MANAGER");
-        role.setId(1);
-        roleRepo.save(role);
+        // role = new Role();
+        // role.setRole("MANAGER");
+        // role.setId(1);
+        // roleRepo.save(role);
 
-        role = new Role();
-        role.setRole("ASSISTANT");
-        role.setId(2);
-        roleRepo.save(role);
+        // role = new Role();
+        // role.setRole("ASSISTANT");
+        // role.setId(2);
+        // roleRepo.save(role);
     }
 }
