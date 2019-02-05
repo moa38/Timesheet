@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
@@ -18,27 +19,33 @@ import javax.persistence.Transient;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
+    @Column(name="User ID", nullable = false)
     int userid;
 
-    @Column(unique = true, nullable = false)
-    String username;
-
-    @Column(unique = true, nullable = false)
+    @Column(name="Password", unique = true, nullable = false)
     String password;
 
-    @Column(unique = true, nullable = false)
+    @Column(name="First Name", unique = true, nullable = false)
     String fname;
 
-    @Column(unique = true, nullable = false)
+    @Column(name="Last Name", unique = true, nullable = false)
     String lname;
 
-    @Column(unique = true, nullable = false)
-    int shiftid;
-
+    @OneToMany(mappedBy = "organizationid", cascade = CascadeType.ALL)
+    @JoinColumn(name="Organization ID", referencedColumnName="Organization ID")
+    Organization organizationid;
+    
+    @OneToMany(mappedBy = "positonid", cascade = CascadeType.ALL)
+    @JoinColumn(name="Position ID", referencedColumnName="Position ID")
+    Position positionid;
+    
+    @OneToMany(mappedBy = "shiftid", cascade = CascadeType.ALL)
+    @JoinColumn(name="Shifts", referencedColumnName="Shift ID")
+    Shifts shiftid;
 
     public User(){}
     public User(String username, String password, String fname, String lname){
-        this.setUserName(username);
+//        this.setUserName(username);
         this.setPassword(password);
         this.setFname(fname);
         this.setLname(lname);
@@ -49,12 +56,12 @@ public class User {
     public void setUserId(int userid){
          this.userid=userid;
     }  
-    public String getUserName(){
-        return username;
-    }
-    public void setUserName(String username){
-        this.username=username;
-    }
+//    public String getUserName(){
+//        return username;
+//    }
+//    public void setUserName(String username){
+//        this.username=username;
+//    }
     public String getPassword(){
         return password;
     }
@@ -70,13 +77,13 @@ public class User {
     public String getLname(){
         return lname;
     }
-    public void setlname(String lname){
+    public void setLname(String lname){
         this.lname=lname;
     }
-    public int getShiftId(){
+    public Shifts getShiftId(){
         return shiftid;
     }
-    public void setShiftId(int shiftid){
+    public void setShiftId(Shifts shiftid){
          this.shiftid=shiftid;
     }  
 

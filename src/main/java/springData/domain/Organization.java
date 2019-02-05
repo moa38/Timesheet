@@ -18,15 +18,16 @@ import javax.persistence.Transient;
 public class Organization {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
-    int organisationid;
+    @Column(name="Organization ID", nullable = false)
+    int organizationid;
 
-    @Column(unique = true, nullable = false)
+    @Column(name="Name", unique = true, nullable = false)
     String name;
 
-    @Column(unique = true, nullable = false)
+    @Column(name="Address", unique = true, nullable = false)
     String address;
 
-    @Column(unique = true, nullable = false)
+    @Column(name="Contact Number", unique = true, nullable = false)
     String contactnumber;
 
 
