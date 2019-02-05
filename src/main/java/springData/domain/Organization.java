@@ -18,56 +18,57 @@ import javax.persistence.Transient;
 public class Organization {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
-    @Column(name="Organization ID", nullable = false)
+    @Column(name = "Organization ID", nullable = false)
     int organizationid;
 
-    @Column(name="Name", unique = true, nullable = false)
+    @Column(name = "Name", unique = true, nullable = false)
     String name;
 
-    @Column(name="Address", unique = true, nullable = false)
+    @Column(name = "Address", unique = true, nullable = false)
     String address;
 
-    @Column(name="Contact Number", unique = true, nullable = false)
+    @Column(name = "Contact Number", unique = true, nullable = false)
     String contactnumber;
 
+    public Organization() {
+    }
 
-
-    public Organization(){}
-    public Organization(String name, String address, String contactnumber){
+    public Organization(String name, String address, String contactnumber) {
         this.setName(name);
         this.setAddress(address);
         this.setContactNumber(contactnumber);
     }
-    
-    public int getOrganizationid(){
-        return organisationid;
+
+    public int getOrganizationid() {
+        return organizationid;
     }
-    public void setOrganizationid(){
-        this.organisationid=organisationid;
+
+    public void setOrganizationid() {
+        this.organizationid = organizationid;
     }
-    public String getName(){
+
+    public String getName() {
         return name;
     }
-    public void setName(String name){
-        this.name=name;
+
+    public void setName(String name) {
+        this.name = name;
     }
-     public String getAddress(){
+
+    public String getAddress() {
         return address;
     }
-    public void setAddress(String address){
-        this.address=address;
+
+    public void setAddress(String address) {
+        this.address = address;
     }
-     public String getContactNumber(){
+
+    public String getContactNumber() {
         return contactnumber;
     }
-    public void setContactNumber(String contactnumber){
-        this.contactnumber=contactnumber;
+
+    public void setContactNumber(String contactnumber) {
+        this.contactnumber = contactnumber;
     }
-            
-
-
-
-
-
 
 }
