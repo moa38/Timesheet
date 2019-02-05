@@ -1,11 +1,23 @@
 @Controller
-
-public class OrganizationController {
+@RequestMapping("/user")
+public class UserController {
    
-   @Autowired
+   @Autowired UserRepository userRepo;
 
-   @RequestMapping(value="", method=RequestMethod.GET)
+   @RequestMapping(value="/")
+   public String {
 
-   @RequestMapping(value="", method=RequestMethod.GET)
+   }
 
-   @RequestMapping(value="", method=RequestMapping.)
+   @RequestMapping(value = "/add", method = RequestMethod.GET)
+   public String () {
+
+   }
+
+   @RequestMapping(value="/delete", method=RequestMapping.GET)
+   public String () {
+
+      
+   }
+
+
