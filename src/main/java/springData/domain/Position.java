@@ -18,14 +18,16 @@ import javax.persistence.Transient;
 public class Position {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
+    @Column(name="Position ID", nullable = false)
     int positionid;
 
-    @Column(unique = true, nullable = false)
+    @Column(name="Position Name", unique = true, nullable = false)
     String positionname;
-}
+
+
 public Position(){}
 public Position(String positionname){
-    this.setPositionName(positionname)
+    this.setPositionName(positionname);
 }
 public int getPositionid(){
         return positionid;
@@ -39,3 +41,4 @@ public int getPositionid(){
     public void setPositionName(String positionname){
         this.positionname=positionname;
     }
+}

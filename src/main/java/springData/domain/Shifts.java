@@ -18,20 +18,21 @@ import javax.persistence.Transient;
 public class Shifts {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
+    @Column(name="Shift ID", nullable = false)
     int shiftid;
 
-    @Column(unique = true, nullable = false)
+    @Column(name="Start Time", unique = true, nullable = false)
     String starttime;
 
-    @Column(unique = true, nullable = false)
+    @Column(name="End Time", unique = true, nullable = false)
     String endtime;
 
-    @Column(unique = true, nullable = false)
+    @Column(name="Overtime Hours", unique = true, nullable = false)
     int overtimehours;
 
-    @Column(unique = true, nullable = false)
+    @Column(name="Bank Holiday?", unique = true, nullable = false)
     boolean bankholiday;
 
-    @Column(unique = true, nullable = false)
+    @Column(name="Holiday", unique = true, nullable = false)
     boolean holiday;
 }
