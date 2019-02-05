@@ -28,4 +28,45 @@ public class Organization {
 
     @Column(unique = true, nullable = false)
     String contactnumber;
+
+
+
+    public Organization(){}
+    public Organization(String name, String address, String contactnumber){
+        this.setName(name);
+        this.setAddress(address);
+        this.setContactNumber(contactnumber);
+    }
+    
+    public int getOrganizationid(){
+        return organisationid;
+    }
+    public void setOrganizationid(){
+        this.organisationid=organisationid;
+    }
+    public String getName(){
+        return name;
+    }
+    public void setName(String name){
+        this.name=name;
+    }
+     public String getAddress(){
+        return address;
+    }
+    public void setAddress(String address){
+        this.address=address;
+    }
+     public String getContactNumber(){
+        return contactnumber;
+    }
+    public void setContactNumber(String contactnumber){
+        this.contactnumber=contactnumber;
+    }
+            
+
+
+
+
+
+
 }
