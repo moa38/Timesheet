@@ -24,7 +24,7 @@ apply plugin: 'eclipse'
 
 group = 'CO2015-Group-17'
 version = 'INITIAL-PROJECT'
-//sourceCompatibility = '1.11'
+sourceCompatibility = '1.11'
 
 repositories {
 	mavenCentral()
