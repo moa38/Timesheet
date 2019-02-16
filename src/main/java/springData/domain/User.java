@@ -12,10 +12,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
-@Entity(name = "shifts")
+@Entity(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
@@ -31,63 +32,83 @@ public class User {
     @Column(name="Last Name", unique = true, nullable = false)
     String lname;
 
-    @OneToMany(mappedBy = "organizationid", cascade = CascadeType.ALL)
-    @JoinColumn(name="Organization ID", referencedColumnName="Organization ID")
+    @ManyToOne
+    @JoinColumn(name="Organization ID",nullable = true)
     Organization organizationid;
     
-    @OneToMany(mappedBy = "positonid", cascade = CascadeType.ALL)
-    @JoinColumn(name="Position ID", referencedColumnName="Position ID")
-    Position positionid;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="Position ID")
+    Position position;
     
-    @OneToMany(mappedBy = "shiftid", cascade = CascadeType.ALL)
-    @JoinColumn(name="Shifts", referencedColumnName="Shift ID")
-    Shifts shiftid;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    List<Shifts> shifts;
 
     public User(){}
-    public User(String username, String password, String fname, String lname){
+    
+    public User(String password, String fname, String lname){
 //        this.setUserName(username);
         this.setPassword(password);
         this.setFname(fname);
         this.setLname(lname);
     }
-    public int getUserId(){
-        return userid;
-    }
-    public void setUserId(int userid){
-         this.userid=userid;
-    }  
-//    public String getUserName(){
-//        return username;
-//    }
-//    public void setUserName(String username){
-//        this.username=username;
-//    }
-    public String getPassword(){
-        return password;
-    }
-    public void setPassword(String password){
-        this.password=password;
-    }
-    public String getFname(){
-        return fname;
-    }
-    public void setFname(String fname){
-        this.fname=fname;
-    }
-    public String getLname(){
-        return lname;
-    }
-    public void setLname(String lname){
-        this.lname=lname;
-    }
-    public Shifts getShiftId(){
-        return shiftid;
-    }
-    public void setShiftId(Shifts shiftid){
-         this.shiftid=shiftid;
-    }  
+
+	public int getUserid() {
+		return userid;
+	}
+
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getFname() {
+		return fname;
+	}
+
+	public void setFname(String fname) {
+		this.fname = fname;
+	}
+
+	public String getLname() {
+		return lname;
+	}
+
+	public void setLname(String lname) {
+		this.lname = lname;
+	}
+
+	public Organization getOrganizationid() {
+		return organizationid;
+	}
+
+	public void setOrganizationid(Organization organizationid) {
+		this.organizationid = organizationid;
+	}
+
+	public Position getPosition() {
+		return position;
+	}
+
+	public void setPosition(Position position) {
+		this.position = position;
+	}
+
+	public List<Shifts> getShifts() {
+		return shifts;
+	}
+
+	public void setShifts(List<Shifts> shifts) {
+		this.shifts = shifts;
+	}
 
 
-
+    
 
 }

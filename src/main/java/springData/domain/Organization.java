@@ -29,6 +29,9 @@ public class Organization {
 
     @Column(name = "Contact Number", unique = true, nullable = false)
     String contactnumber;
+    
+    @OneToMany(mappedBy="organizationid")
+    private List<User> users;
 
     public Organization() {
     }
@@ -36,39 +39,49 @@ public class Organization {
     public Organization(String name, String address, String contactnumber) {
         this.setName(name);
         this.setAddress(address);
-        this.setContactNumber(contactnumber);
-    }
-
-    public int getOrganizationid() {
-        return organizationid;
-    }
-
-    public void setOrganizationid() {
-        this.organizationid = organizationid;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getContactNumber() {
-        return contactnumber;
-    }
-
-    public void setContactNumber(String contactnumber) {
         this.contactnumber = contactnumber;
     }
+
+	public int getOrganizationid() {
+		return organizationid;
+	}
+
+	public void setOrganizationid(int organizationid) {
+		this.organizationid = organizationid;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getContactnumber() {
+		return contactnumber;
+	}
+
+	public void setContactnumber(String contactnumber) {
+		this.contactnumber = contactnumber;
+	}
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+
+    
 
 }

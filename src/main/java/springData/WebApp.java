@@ -34,10 +34,10 @@ public class WebApp implements CommandLineRunner {
 
         // WEBAPP FILE WITH MAIN
         // TODO
-        User user = new User();
-        user.setUserId(0);
-        Position position = new Position();
-        position.setPositionId(0);
+//        User user = new User();
+//        user.setUserId(0);
+//        Position position = new Position();
+//        position.setPositionId(0);
         // position.save(user);
 
         // user.setRole(role);

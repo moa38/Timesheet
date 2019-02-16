@@ -13,10 +13,12 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+import javax.persistence.*;
 
 @Entity(name = "shifts")
 public class Shifts {
-    @Id
+    
+	@Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name="Shift ID", nullable = false)
     int shiftid;
@@ -35,4 +37,66 @@ public class Shifts {
 
     @Column(name="Holiday", unique = true, nullable = false)
     boolean holiday;
+    
+    @ManyToOne
+    @JoinColumn(name="user_id",nullable=true)
+    private User user;
+
+	public int getShiftid() {
+		return shiftid;
+	}
+
+	public void setShiftid(int shiftid) {
+		this.shiftid = shiftid;
+	}
+
+	public String getStarttime() {
+		return starttime;
+	}
+
+	public void setStarttime(String starttime) {
+		this.starttime = starttime;
+	}
+
+	public String getEndtime() {
+		return endtime;
+	}
+
+	public void setEndtime(String endtime) {
+		this.endtime = endtime;
+	}
+
+	public int getOvertimehours() {
+		return overtimehours;
+	}
+
+	public void setOvertimehours(int overtimehours) {
+		this.overtimehours = overtimehours;
+	}
+
+	public boolean isBankholiday() {
+		return bankholiday;
+	}
+
+	public void setBankholiday(boolean bankholiday) {
+		this.bankholiday = bankholiday;
+	}
+
+	public boolean isHoliday() {
+		return holiday;
+	}
+
+	public void setHoliday(boolean holiday) {
+		this.holiday = holiday;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+    
+    
 }

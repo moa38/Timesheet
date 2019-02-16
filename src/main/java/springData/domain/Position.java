@@ -12,10 +12,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 @Entity(name = "position")
 public class Position {
+	
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "Position ID", nullable = false)
@@ -23,7 +25,11 @@ public class Position {
 
     @Column(name = "Position Name", unique = true, nullable = false)
     String positionname;
+    
+    @OneToOne(mappedBy="position")
+    private User user;
 
+    
     public Position() {
     }
 
@@ -46,4 +52,29 @@ public class Position {
     public void setPositionName(String positionname) {
         this.positionname = positionname;
     }
+
+	public int getPositionid() {
+		return positionid;
+	}
+
+	public void setPositionid(int positionid) {
+		this.positionid = positionid;
+	}
+
+	public String getPositionname() {
+		return positionname;
+	}
+
+	public void setPositionname(String positionname) {
+		this.positionname = positionname;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+    
 }
