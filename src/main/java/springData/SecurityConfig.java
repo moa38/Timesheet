@@ -17,13 +17,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     	http
         // SECURE COMMUNICATION
     	// TODO Task
-	    	.requiresChannel ()
+	    	.requiresChannel()
 	    	.anyRequest()
 	    	.requiresSecure().and()
     	// AUTHENTICATION
 		    .formLogin()
-				.loginPage("/user-login") 
-				.loginProcessingUrl("/login")
+				.loginPage("/login-redirection-works") 
+				.loginProcessingUrl("/login-redirection-works")
 				.defaultSuccessUrl("/success-login",true)
 				.failureUrl("/error-login")
 				.permitAll()
