@@ -22,8 +22,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	    	.requiresSecure().and()
     	// AUTHENTICATION
 		    .formLogin()
-				.loginPage("/login-redirection-works") 
-				.loginProcessingUrl("/login-redirection-works")
+				.loginPage("/user-login") 
+				.loginProcessingUrl("/login")
 				.defaultSuccessUrl("/success-login",true)
 				.failureUrl("/error-login")
 				.permitAll()
