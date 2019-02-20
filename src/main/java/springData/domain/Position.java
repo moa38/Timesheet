@@ -20,11 +20,11 @@ public class Position {
 	
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
-    @Column(name = "Position ID", nullable = false)
-    int positionid;
+    @Column(name = "Position_ID", nullable = false)
+    int positionId;
 
-    @Column(name = "Position Name", unique = true, nullable = false)
-    String positionname;
+    @Column(name = "Position_Name", unique = true, nullable = false)
+    String positionName;
     
     @OneToOne(mappedBy="position")
     private User user;
@@ -33,40 +33,40 @@ public class Position {
     public Position() {
     }
 
-    public Position(String positionname) {
-        this.setPositionName(positionname);
+    public Position(String positionName) {
+        this.setPositionName(positionName);
     }
 
     public int getPositionId() {
-        return positionid;
+        return positionId;
     }
 
     public void setPositionId(int id) {
-        this.positionid = id;
+        this.positionId = id;
     }
 
     public String getPositionName() {
-        return positionname;
+        return positionName;
     }
 
-    public void setPositionName(String positionname) {
-        this.positionname = positionname;
+    public void setPositionName(String positionName) {
+        this.positionName = positionName;
     }
 
-	public int getPositionid() {
-		return positionid;
+	public int getPositionId() {
+		return positionId;
 	}
 
-	public void setPositionid(int positionid) {
-		this.positionid = positionid;
+	public void setPositionId(int positionId) {
+		this.positionId = positionId;
 	}
 
-	public String getPositionname() {
-		return positionname;
+	public String getPositionName() {
+		return positionName;
 	}
 
-	public void setPositionname(String positionname) {
-		this.positionname = positionname;
+	public void setPositionName(String positionName) {
+		this.positionName = positionName;
 	}
 
 	public User getUser() {

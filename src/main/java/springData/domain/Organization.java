@@ -18,8 +18,8 @@ import javax.persistence.Transient;
 public class Organization {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
-    @Column(name = "Organization ID", nullable = false)
-    int organizationid;
+    @Column(name = "Organization_ID", nullable = false)
+    int organizationId;
 
     @Column(name = "Name", unique = true, nullable = false)
     String name;
@@ -28,26 +28,26 @@ public class Organization {
     String address;
 
     @Column(name = "Contact Number", unique = true, nullable = false)
-    String contactnumber;
+    String contactNumber;
     
-    @OneToMany(mappedBy="organizationid")
+    @OneToMany(mappedBy="organizationId")
     private List<User> users;
 
     public Organization() {
     }
 
-    public Organization(String name, String address, String contactnumber) {
+    public Organization(String name, String address, String contactNumber) {
         this.setName(name);
         this.setAddress(address);
-        this.contactnumber = contactnumber;
+        this.contactNumber = contactNumber;
     }
 
-	public int getOrganizationid() {
-		return organizationid;
+	public int getOrganizationId() {
+		return organizationId;
 	}
 
-	public void setOrganizationid(int organizationid) {
-		this.organizationid = organizationid;
+	public void setOrganizationId(int organizationId) {
+		this.organizationId = organizationId;
 	}
 
 	public String getName() {
@@ -66,12 +66,12 @@ public class Organization {
 		this.address = address;
 	}
 
-	public String getContactnumber() {
-		return contactnumber;
+	public String getContactNumber() {
+		return contactNumber;
 	}
 
-	public void setContactnumber(String contactnumber) {
-		this.contactnumber = contactnumber;
+	public void setContactNumber(String contactNumber) {
+		this.contactNumber = contactNumber;
 	}
 
 	public List<User> getUsers() {

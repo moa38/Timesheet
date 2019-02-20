@@ -20,66 +20,66 @@ public class Shifts {
     
 	@Id
     @GeneratedValue(strategy = GenerationType.TABLE)
-    @Column(name="Shift ID", nullable = false)
-    int shiftid;
+    @Column(name="Shift_ID", nullable = false)
+    int shiftId;
 
-    @Column(name="Start Time", unique = true, nullable = false)
-    String starttime;
+    @Column(name="Start_Time", unique = true, nullable = false)
+    String startTime;
 
-    @Column(name="End Time", unique = true, nullable = false)
-    String endtime;
+    @Column(name="End_Time", unique = true, nullable = false)
+    String endTime;
 
-    @Column(name="Overtime Hours", unique = true, nullable = false)
-    int overtimehours;
+    @Column(name="Overtime_Hours", unique = true, nullable = false)
+    int overtimeHours;
 
-    @Column(name="Bank Holiday?", unique = true, nullable = false)
-    boolean bankholiday;
+    @Column(name="Bank_Holiday?", unique = true, nullable = false)
+    boolean bankHoliday;
 
     @Column(name="Holiday", unique = true, nullable = false)
     boolean holiday;
     
     @ManyToOne
-    @JoinColumn(name="user_id",nullable=true)
+    @JoinColumn(name="user_Id",nullable=true)
     private User user;
 
-	public int getShiftid() {
+	public int getShiftId() {
 		return shiftid;
 	}
 
-	public void setShiftid(int shiftid) {
-		this.shiftid = shiftid;
+	public void setShiftId(int shiftId) {
+		this.shiftid = shiftId;
 	}
 
-	public String getStarttime() {
-		return starttime;
+	public String getStartTime() {
+		return startTime;
 	}
 
-	public void setStarttime(String starttime) {
-		this.starttime = starttime;
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
 	}
 
-	public String getEndtime() {
-		return endtime;
+	public String getEndTime() {
+		return endTime;
 	}
 
-	public void setEndtime(String endtime) {
-		this.endtime = endtime;
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
 	}
 
-	public int getOvertimehours() {
-		return overtimehours;
+	public int getOvertimeHours() {
+		return overtimeHours;
 	}
 
-	public void setOvertimehours(int overtimehours) {
-		this.overtimehours = overtimehours;
+	public void setOvertimeHours(int overtimeHours) {
+		this.overtimeHours = overtimeHours;
 	}
 
-	public boolean isBankholiday() {
-		return bankholiday;
+	public boolean isBankHoliday() {
+		return bankHoliday;
 	}
 
-	public void setBankholiday(boolean bankholiday) {
-		this.bankholiday = bankholiday;
+	public void setBankHoliday(boolean bankHoliday) {
+		this.bankHoliday = bankHoliday;
 	}
 
 	public boolean isHoliday() {
