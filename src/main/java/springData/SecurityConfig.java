@@ -17,7 +17,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     	http
         // SECURE COMMUNICATION
     	// TODO Task
-	    	.requiresChannel ()
+	    	.requiresChannel()
 	    	.anyRequest()
 	    	.requiresSecure().and()
     	// AUTHENTICATION
