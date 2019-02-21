@@ -49,7 +49,7 @@ public class User {
 //        this.setUserName(username);
         this.setPassword(password);
         this.setFName(fName);
-        this.setLName(lName);
+		this.setLName(lName);
     }
 
 	public int getUserId() {
@@ -72,15 +72,15 @@ public class User {
 		return fName;
 	}
 
-	public void setFname(String fName) {
-		this.fname = fName;
+	public void setFName(String fName) {
+		this.fName = fName;
 	}
 
 	public String getLName() {
 		return lName;
 	}
 
-	public void setLname(String lName) {
+	public void setLName(String lName) {
 		this.lName = lName;
 	}
 
@@ -107,8 +107,4 @@ public class User {
 	public void setShifts(List<Shifts> shifts) {
 		this.shifts = shifts;
 	}
-
-
-    
-
 }
