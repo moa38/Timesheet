@@ -8,7 +8,7 @@ import springData.domain.User;
 
 public interface UserRepository extends CrudRepository<User, Integer> {
 
-    User findById(int id);
+    User findByUserId(int UserId);
 
     //List<User> findByName(String name);
 }
