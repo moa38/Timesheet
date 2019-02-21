@@ -49,23 +49,7 @@ public class Position {
         return positionName;
     }
 
-    public void setPositionName(String positionName) {
-        this.positionName = positionName;
-    }
-
-	public int getPositionId() {
-		return positionId;
-	}
-
-	public void setPositionId(int positionId) {
-		this.positionId = positionId;
-	}
-
-	public String getPositionName() {
-		return positionName;
-	}
-
-	public void setPositionName(String positionName) {
+    	public void setPositionName(String positionName) {
 		this.positionName = positionName;
 	}
 

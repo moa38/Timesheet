@@ -27,7 +27,7 @@ public class Organization {
     @Column(name = "Address", unique = true, nullable = false)
     String address;
 
-    @Column(name = "Contact Number", unique = true, nullable = false)
+    @Column(name = "Contact_Number", unique = true, nullable = false)
     String contactNumber;
     
     @OneToMany(mappedBy="organizationId")
