@@ -5,13 +5,14 @@ before_install:
 
 matrix:
   include:
-    - env: JDK='Oracle JDK 8'
-      install: . ./install-jdk.sh -F 8 -L BCL
-    - env: JDK='OpenJDK 8'
-      install: . ./install-jdk.sh -F 8 -L GPL
+    - env: JDK='Oracle JDK 11'
+      install: . ./install-jdk.sh -F 11 -L BCL
+    - env: JDK='OpenJDK 11'
+      install: . ./install-jdk.sh -F 11 -L GPL
 
-script:
-  - ./gradlew --version
+jdk:
+  - oraclejdk8
+  - openjdk8
 
 script:
   - ./gradlew check --info

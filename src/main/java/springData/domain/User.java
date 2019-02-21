@@ -20,24 +20,24 @@ import javax.persistence.Transient;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
-    @Column(name="User ID", nullable = false)
-    int userid;
+    @Column(name="User_ID", nullable = false)
+    int userId;
 
     @Column(name="Password", unique = true, nullable = false)
     String password;
 
-    @Column(name="First Name", unique = true, nullable = false)
-    String fname;
+    @Column(name="First_Name", unique = true, nullable = false)
+    String fName;
 
-    @Column(name="Last Name", unique = true, nullable = false)
-    String lname;
+    @Column(name="Last_Name", unique = true, nullable = false)
+    String lName;
 
     @ManyToOne
-    @JoinColumn(name="Organization ID",nullable = true)
-    Organization organizationid;
+    @JoinColumn(name="Organization_ID",nullable = true)
+    Organization organizationId;
     
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="Position ID")
+    @JoinColumn(name="Position_ID")
     Position position;
     
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
@@ -45,19 +45,19 @@ public class User {
 
     public User(){}
     
-    public User(String password, String fname, String lname){
+    public User(String password, String fName, String lName){
 //        this.setUserName(username);
         this.setPassword(password);
-        this.setFname(fname);
-        this.setLname(lname);
+        this.setFName(fName);
+		this.setLName(lName);
     }
 
-	public int getUserid() {
-		return userid;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setUserid(int userid) {
-		this.userid = userid;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	public String getPassword() {
@@ -68,28 +68,28 @@ public class User {
 		this.password = password;
 	}
 
-	public String getFname() {
-		return fname;
+	public String getFName() {
+		return fName;
 	}
 
-	public void setFname(String fname) {
-		this.fname = fname;
+	public void setFName(String fName) {
+		this.fName = fName;
 	}
 
-	public String getLname() {
-		return lname;
+	public String getLName() {
+		return lName;
 	}
 
-	public void setLname(String lname) {
-		this.lname = lname;
+	public void setLName(String lName) {
+		this.lName = lName;
 	}
 
-	public Organization getOrganizationid() {
-		return organizationid;
+	public Organization getOrganizationId() {
+		return organizationId;
 	}
 
-	public void setOrganizationid(Organization organizationid) {
-		this.organizationid = organizationid;
+	public void setOrganizationId(Organization organizationId) {
+		this.organizationId = organizationId;
 	}
 
 	public Position getPosition() {
@@ -107,8 +107,4 @@ public class User {
 	public void setShifts(List<Shifts> shifts) {
 		this.shifts = shifts;
 	}
-
-
-    
-
 }

@@ -43,11 +43,11 @@ public class Shifts {
     private User user;
 
 	public int getShiftId() {
-		return shiftid;
+		return shiftId;
 	}
 
 	public void setShiftId(int shiftId) {
-		this.shiftid = shiftId;
+		this.shiftId = shiftId;
 	}
 
 	public String getStartTime() {
