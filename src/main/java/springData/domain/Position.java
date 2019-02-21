@@ -37,22 +37,6 @@ public class Position {
         this.setPositionName(positionName);
     }
 
-    public int getPositionId() {
-        return positionId;
-    }
-
-    public void setPositionId(int id) {
-        this.positionId = id;
-    }
-
-    public String getPositionName() {
-        return positionName;
-    }
-
-    public void setPositionName(String positionName) {
-        this.positionName = positionName;
-    }
-
 	public int getPositionId() {
 		return positionId;
 	}
