@@ -36,8 +36,9 @@ public class Organization {
     public Organization() {
     }
 
-    public Organization(String name, String address, String contactNumber) {
-        this.setName(name);
+    public Organization(int organizationId, String name, String address, String contactNumber) {
+        this.setOrganizationId(organizationId);
+    	this.setName(name);
         this.setAddress(address);
         this.contactNumber = contactNumber;
     }
