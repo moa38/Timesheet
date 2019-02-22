@@ -46,7 +46,7 @@ public class AdminController {
 		} else {
 			BCryptPasswordEncoder pe = new  BCryptPasswordEncoder();			
 			u.setPassword(pe.encode(u.getPassword()));
-			u.setPosition(posRepo.findByPosition(posName));
+			u.setPosition(posRepo.findByPositionName(posName));
 			userRepo.save(u);
 			return "admin/done";
 		}
