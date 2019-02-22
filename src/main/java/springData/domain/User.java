@@ -38,7 +38,7 @@ public class User {
     
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="Position_ID")
-    Position position;
+    Position positionId;
     
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     List<Shifts> shifts;
@@ -93,11 +93,11 @@ public class User {
 	}
 
 	public Position getPosition() {
-		return position;
+		return positionId;
 	}
 
 	public void setPosition(Position position) {
-		this.position = position;
+		this.positionId = position;
 	}
 
 	public List<Shifts> getShifts() {
