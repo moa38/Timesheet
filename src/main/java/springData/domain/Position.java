@@ -26,8 +26,8 @@ public class Position {
     @Column(name = "Position_Name", unique = true, nullable = false)
     String positionName;
     
-    @OneToOne(mappedBy="position")
-    private User user;
+//    @Column(mappedBy="positionId")
+//    User userId;
 
     
     public Position() {
@@ -53,12 +53,12 @@ public class Position {
 		this.positionName = positionName;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
+//	public User getUser() {
+//		return user;
+//	}
+//
+//	public void setUser(User user) {
+//		this.user = user;
+//	}
     
 }
