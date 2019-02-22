@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import springData.domain.Position;
 
-public interface PositionRepository extends CrudRepository<Position, Integer> {
+public interface PositionRepository extends CrudRepository<Position, String> {
 
-    Position findByPosition(String posName);
+    Position findByPositionName(String posName);
 }
