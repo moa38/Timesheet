@@ -12,9 +12,25 @@ language: java
 #     - env: JDK='OpenJDK 11'
 #       install: . ./install-jdk.sh -F 11 -L GPL
 
+# Download the latest OracleJDK 8
+addons:
+  apt:
+    packages:
+      - oracle-java8-installer
+
+# Use JVM 8 and 11
 jdk:
   - oraclejdk8
   - openjdk8
+  - oraclejdk11
+  - openjdk11
 
+# Cache the downloaded JDKs to speed up builds
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+
+# Execute build.grade || gradlew
 script:
   - ./gradlew check --info
