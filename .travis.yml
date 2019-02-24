@@ -1,31 +1,24 @@
 language: java
+dist: trusty
 
-# Use script below to add JDK11 & OJDK11 
-#
-# before_install:
-#   - wget https://github.com/sormuras/bach/raw/master/install-jdk.sh
+# Matrix of JDKs
+matrix:
+  include:
+    # JDK 8
+    - env: Oracle JDK 8
+    jdk: oraclejdk8
+    - env: Open JDK 8
+    jdk: openjdk8
+    # JDK 9
+    - env: Oracle JDK 9
+    jdk: oraclejdk9
+    # JDK 11
+    - env: Oracle JDK 11
+    jdk: oraclejdk11
+    - env: Open JDK 11
+    jdk: openjdk11
 
-# matrix:
-#   include:
-#     - env: JDK='Oracle JDK 11'
-#       install: . ./install-jdk.sh -F 11 -L BCL
-#     - env: JDK='OpenJDK 11'
-#       install: . ./install-jdk.sh -F 11 -L GPL
-
-# Download the latest OracleJDK 8
-addons:
-  apt:
-    packages:
-      - oracle-java8-installer
-
-# Use JVM 8 and 11
-jdk:
-  - oraclejdk8
-  - openjdk8
-  - oraclejdk11
-  - openjdk11
-
-# Cache the downloaded JDKs to speed up builds
+# Cache gradle
 cache:
   directories:
     - $HOME/.gradle/caches/
@@ -34,3 +27,4 @@ cache:
 # Execute build.grade || gradlew
 script:
   - ./gradlew check --info
+  # - gradle check --info
