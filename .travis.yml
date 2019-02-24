@@ -1,5 +1,4 @@
 language: java
-dist: trusty
 
 # Matrix of JDKs
 matrix:
@@ -18,8 +17,8 @@ matrix:
 # Cache gradle
 cache:
   directories:
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/
+    - $HOME/.gradle/caches/   # gradle bin
+    - $HOME/.m2               # maven repository
 
 # Execute ./gradlew
 script:
