@@ -4,19 +4,16 @@ dist: trusty
 # Matrix of JDKs
 matrix:
   include:
-    # JDK 8
-    - env: Oracle JDK 8
-    jdk: oraclejdk8
-    - env: Open JDK 8
-    jdk: openjdk8
-    # JDK 9
-    - env: Oracle JDK 9
-    jdk: oraclejdk9
-    # JDK 11
-    - env: Oracle JDK 11
-    jdk: oraclejdk11
-    - env: Open JDK 11
-    jdk: openjdk11
+    - env: JDK='Oracle JDK 8'
+       jdk: oraclejdk8
+    - env: JDK='Open JDK 8'
+       jdk: openjdk8
+    - env: JDK='Oracle JDK 9'
+       jdk: oraclejdk9
+    - env: JDK='Oracle JDK 11'
+       jdk: oraclejdk11
+    - env: JDK='Open JDK 11'
+       jdk: openjdk11
 
 # Cache gradle
 cache:
@@ -24,7 +21,6 @@ cache:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
 
-# Execute build.grade || gradlew
+# Execute ./gradlew
 script:
   - ./gradlew check --info
-  # - gradle check --info
