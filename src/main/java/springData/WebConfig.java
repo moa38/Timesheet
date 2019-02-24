@@ -1,7 +1,11 @@
 package springData;
 
+import java.util.Locale;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.View;
+import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -38,5 +42,15 @@ public class WebConfig implements WebMvcConfigurer {
 		viewResolver.setOrder(2);
 		return viewResolver;
 	}
+
+	// Alternative using ViewResolver
+	//
+	// public ViewResolver internalResourceViewResolver() {
+	// InternalResourceViewResolver bean = new InternalResourceViewResolver();
+	// bean.setViewClass(JstlView.class);
+	// bean.setPrefix("/WEB-INF/views/");
+	// bean.setSuffix(".jsp");
+	// return bean;
+	// }
 
 }

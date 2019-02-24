@@ -2,7 +2,7 @@ package springData.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,55 +10,67 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Transient;
 
-@Entity(name = "position")
+/**
+ * @author mohde
+ */
+@Entity
 public class Position {
-	
+
+    @Column(unique = true, updatable = false, nullable = false)
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
-    @Column(name = "Position_ID", nullable = false)
-    int positionId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int positionId;
 
-    @Column(name = "Position_Name", unique = true, nullable = false)
-    String positionName;
-    
-//    @Column(mappedBy="positionId")
-//    User userId;
+    @Basic
+    private String positionName;
 
-    
+    @OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
+    private List<User> users;
+
+    public Position(int positionId, String positionName, List<User> users) {
+        this.positionId = positionId;
+        this.positionName = positionName;
+        this.users = users;
+    }
+
     public Position() {
     }
 
-    public Position(String positionName) {
-        this.setPositionName(positionName);
-    }
-    
     public int getPositionId() {
-        return positionId;
+        return this.positionId;
     }
 
-    public void setPositionId(int id) {
-        this.positionId = id;
+    public void setPositionId(int positionId) {
+        this.positionId = positionId;
     }
 
     public String getPositionName() {
-        return positionName;
+        return this.positionName;
     }
 
-	public void setPositionName(String positionName) {
-		this.positionName = positionName;
-	}
+    public void setPositionName(String positionName) {
+        this.positionName = positionName;
+    }
 
-//	public User getUser() {
-//		return user;
-//	}
-//
-//	public void setUser(User user) {
-//		this.user = user;
-//	}
-    
+    public List<User> getUsers() {
+        if (users == null) {
+            users = new ArrayList<>();
+        }
+        return this.users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    public void addUser(User user) {
+        getUsers().add(user);
+    }
+
+    public void removeUser(User user) {
+        getUsers().remove(user);
+    }
+
 }

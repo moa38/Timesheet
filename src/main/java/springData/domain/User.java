@@ -2,7 +2,7 @@ package springData.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,101 +10,91 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
 
-@Entity(name = "users")
+@Entity
 public class User {
+
+    @Column(unique = true, updatable = false, nullable = false)
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
-    @Column(name="User_ID", nullable = false)
-    int userId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int userId;
 
-    @Column(name="Password", unique = true, nullable = false)
-    String password;
+    @Basic
+    private String firstName;
 
-    @Column(name="First_Name", unique = true, nullable = false)
-    String fName;
+    @Basic
+    private String lastName;
 
-    @Column(name="Last_Name", unique = true, nullable = false)
-    String lName;
+    @Column(nullable = false)
+    @Basic(optional = false)
+    @NotNull(message = "Password can not be empty")
+    private String password;
 
-    @ManyToOne
-    @JoinColumn(name="Organization_ID",nullable = true)
-    Organization organizationId;
-    
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="Position_ID")
-    Position positionId;
-    
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    List<Shifts> shifts;
+    @OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
+    private List<Shift> shifts;
 
-    public User(){}
-    
-    public User(String password, String fName, String lName){
-//        this.setUserName(username);
-        this.setPassword(password);
-        this.setFName(fName);
-		this.setLName(lName);
+    public User() {
     }
 
-	public int getUserId() {
-		return userId;
-	}
+    public User(int userId, String firstName, String lastName, String password, List<Shift> shifts) {
+        this.userId = userId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.shifts = shifts;
+    }
 
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
+    public int getUserId() {
+        return this.userId;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public String getFirstName() {
+        return this.firstName;
+    }
 
-	public String getFName() {
-		return fName;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public void setFName(String fName) {
-		this.fName = fName;
-	}
+    public String getLastName() {
+        return this.lastName;
+    }
 
-	public String getLName() {
-		return lName;
-	}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-	public void setLName(String lName) {
-		this.lName = lName;
-	}
+    public String getPassword() {
+        return this.password;
+    }
 
-	public Organization getOrganizationId() {
-		return organizationId;
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public void setOrganizationId(Organization organizationId) {
-		this.organizationId = organizationId;
-	}
+    public List<Shift> getShifts() {
+        if (shifts == null) {
+            shifts = new ArrayList<>();
+        }
+        return this.shifts;
+    }
 
-	public Position getPosition() {
-		return positionId;
-	}
+    public void setShifts(List<Shift> shifts) {
+        this.shifts = shifts;
+    }
 
-	public void setPosition(Position position) {
-		this.positionId = position;
-	}
+    public void addShift(Shift shift) {
+        getShifts().add(shift);
+    }
 
-	public List<Shifts> getShifts() {
-		return shifts;
-	}
+    public void removeShift(Shift shift) {
+        getShifts().remove(shift);
+    }
 
-	public void setShifts(List<Shifts> shifts) {
-		this.shifts = shifts;
-	}
 }

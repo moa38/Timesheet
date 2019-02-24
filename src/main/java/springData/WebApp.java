@@ -4,13 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import springData.repository.UserRepository;
 import springData.repository.OrganizationRepository;
-import springData.repository.ShiftsRepository;
+import springData.repository.ShiftRepository;
 import springData.repository.PositionRepository;
 import springData.domain.*;
+
+import java.time.*;
 
 @SpringBootApplication
 public class WebApp implements CommandLineRunner {
@@ -20,7 +21,7 @@ public class WebApp implements CommandLineRunner {
     @Autowired
     private OrganizationRepository orgRepo;
     @Autowired
-    private ShiftsRepository shiftsRepo;
+    private ShiftRepository shiftRepo;
     @Autowired
     private PositionRepository positionRepo;
 
@@ -32,25 +33,39 @@ public class WebApp implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        // WEBAPP FILE WITH MAIN
-        // TODO
-//        User user = new User();
-//        user.setUserId(0);
-//        Position position = new Position();
-//        position.setPositionId(0);
-        // position.save(user);
+        User vinny = new User();
+        vinny.setFirstName("Vinny");
+        vinny.setLastName("Barden");
+        vinny.setPassword("password");
+        vinny.setUserId(001);
+        userRepo.save(vinny);
 
-        // user.setRole(role);
-        // userRepo.save(user);
+        User bob = new User();
+        bob.setFirstName("Bob");
+        bob.setLastName("Ross");
+        bob.setPassword("password");
+        bob.setUserId(002);
+        userRepo.save(bob);
 
-        // role = new Role();
-        // role.setRole("MANAGER");
-        // role.setId(1);
-        // roleRepo.save(role);
+        Position examplePosition = new Position();
+        examplePosition.setPositionId(001);
+        examplePosition.setPositionName("student");
+        examplePosition.addUser(vinny);
+        examplePosition.addUser(bob);
+        positionRepo.save(examplePosition);
 
-        // role = new Role();
-        // role.setRole("ASSISTANT");
-        // role.setId(2);
-        // roleRepo.save(role);
+        Shift exampleShift = new Shift();
+        exampleShift.setShiftId(001);
+        exampleShift.setStartTime(LocalDateTime.now());
+        shiftRepo.save(exampleShift);
+
+        Organization exampleOrganization = new Organization();
+        exampleOrganization.setOrganizationId(001);
+        exampleOrganization.setName("UoL");
+        exampleOrganization.setContactNumber("01161234567");
+        exampleOrganization.setAddress("University Road, Leicester");
+        exampleOrganization.addUser(vinny);
+        exampleOrganization.addUser(bob);
+        orgRepo.save(exampleOrganization);
     }
 }
