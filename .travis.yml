@@ -5,15 +5,15 @@ dist: trusty
 matrix:
   include:
     - env: JDK='Oracle JDK 8'
-       jdk: oraclejdk8
+       oraclejdk8
     - env: JDK='Open JDK 8'
-       jdk: openjdk8
+       openjdk8
     - env: JDK='Oracle JDK 9'
-       jdk: oraclejdk9
+       oraclejdk9
     - env: JDK='Oracle JDK 11'
-       jdk: oraclejdk11
+       oraclejdk11
     - env: JDK='Open JDK 11'
-       jdk: openjdk11
+       openjdk11
 
 # Cache gradle
 cache:
