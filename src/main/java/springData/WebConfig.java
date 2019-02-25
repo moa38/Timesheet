@@ -23,7 +23,7 @@ public class WebConfig implements WebMvcConfigurer {
 		registry.addViewController("/").setViewName("index");
 		registry.addViewController("/error").setViewName("error");
 		registry.addViewController("/login").setViewName("login");
-
+		registry.addViewController("/success").setViewName("success");
 	}
 
 	// Handles HTTP GET requests for /resources/** by efficiently serving up static
