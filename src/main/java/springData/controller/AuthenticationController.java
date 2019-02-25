@@ -7,13 +7,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class AuthenticationController {
 
-	// @RequestMapping(value = "/")
-	// public String landing() {
-	// return "security/login";
-	// }
-
-	@RequestMapping(value = "/sec-login", method = RequestMethod.GET)
-	public String loginForm() {
-		return "/security/login";
+	@RequestMapping(path = "/", method = RequestMethod.GET)
+	public String landing() {
+		return "login";
 	}
 }
