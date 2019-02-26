@@ -33,17 +33,16 @@ public class User {
     private String password;
 
     @OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
-    private List<Shift> shifts;
+    public List<Shift> shifts;
 
     public User() {
     }
 
-    public User(int userId, String firstName, String lastName, String password, List<Shift> shifts) {
+    public User(int userId, String firstName, String lastName, String password) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
-        this.shifts = shifts;
     }
 
     public int getUserId() {
