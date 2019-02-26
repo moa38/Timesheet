@@ -1,10 +1,12 @@
 package springData;
 
-import static org.junit.Assert.*;
-
 import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -13,14 +15,14 @@ import springData.domain.Shift;
 
 public class ShiftTest {
    Shift shift;
-   
+
    @Before
    public void setUpShift() {
       LocalDateTime startTime = LocalDateTime.now();
       LocalDateTime endTime = LocalDateTime.now();
       shift = new Shift(5465, startTime, endTime, 5, true, false);
    }
-   
+
    @Test
    public void shiftHasId() {
       //Checks that shift has shiftId property
@@ -34,7 +36,7 @@ public class ShiftTest {
       shift.setStartTime(specificTime);
       assertThat(shift, Matchers.hasProperty("startTime", Matchers.equalTo(specificTime)));
    }
-   
+
    @Test
    public void shiftHasEndTime() {
       //Checks that shift has endTime property and it is correct
@@ -42,7 +44,7 @@ public class ShiftTest {
       shift.setStartTime(specificTime);
       assertThat(shift, Matchers.hasProperty("startTime", Matchers.equalTo(specificTime)));
    }
-   
+
    @Test
    public void shiftHasOvertime() {
       //Checks that shift has overtime property
@@ -50,7 +52,7 @@ public class ShiftTest {
       assertThat(shift, Matchers.hasProperty("overtimeHours", Matchers.equalTo(5)));
       assertThat(shift, Matchers.hasProperty("overtimeHours", Matchers.not(Matchers.equalTo(8))));
    }
-   
+
    @Test
    public void shiftHasBankHoliday() {
       //Checks that shift bank holiday is correct
@@ -58,10 +60,10 @@ public class ShiftTest {
       shift.setBankHoliday(false);
       assertFalse(shift.isBankHoliday());
    }
-   
+
    @Test
    public void shiftHasHoliday() {
-      //Checks that shift Holiday is correct 
+      //Checks that shift Holiday is correct
       assertFalse(shift.isHoliday());
       shift.setHoliday(true);
       assertTrue(shift.isHoliday());
