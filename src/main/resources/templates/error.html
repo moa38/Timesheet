@@ -2,19 +2,120 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Spring Error Page</title>
+    <title>FDM | Oops.</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" />
 </head>
 
+<!-- HEADER -->
+
 <body>
+    <section class="hero  is-danger">
+        <div class="hero-head">
+            <nav class="navbar">
+                <div class="container">
+                    <div class="navbar-brand">
+                        <a class="navbar-item">
+                            <img src="https://www.fdmgroup.com/wp-content/uploads/fdm-logo-anim-h180px.gif" />
+                        </a>
+                        <span class="navbar-burger burger" data-target="navbarMenuHeroB">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </div>
+                    <div id="navbarMenuHeroB" class="navbar-menu">
+                        <div class="navbar-end">
+                            <a class="navbar-item is-active">
+                                <span class="icon"><i class="fas fa-home"></i></span>
+                                <span>Home</span>
+                            </a>
+                            <a class="navbar-item">
+                                <span class="icon"><i class="fas fa-user-circle"></i></span>
+                                <span>Account</span>
+                            </a>
+                            <a class="navbar-item">
+                                <span class="icon"><i class="fas fa-question-circle"></i></span>
+                                <span>Help</span>
+                            </a>
+                            <span class="navbar-item">
+                                <a class="button is-info is-inverted">
+                                    <span class="icon">
+                                        <i class="fas fa-sign-out-alt"></i>
+                                    </span>
+                                    <span>Sign out</span>
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
 
-    <h1>An error occurred</h1>
-    <br>
-    <h2>1. Check view mappings.</h2>
-    <br>
-    <h2>2. Check resources mapping.</h2>
-    <br>
-    <h2>3. Check security permissions.</h2>
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <p class="title">
+                    Timesheet App
+                </p>
+                <p class="subtitle">
+                    View. Edit. Submit.
+                </p>
+            </div>
+        </div>
+    </section>
 
+    <!-- END OF HEADER -->
+
+    <!-- BODY -->
+
+    <section class="section">
+        <div class="container">
+            <h1 class="title">ERROR</h1>
+            <h2 class="subtitle">
+                Oops. The hamsters stopped running.
+            </h2>
+            <div class="content">
+                <ol type="1">
+                    <li><strong>Check View Resolvers / Mappings</strong>: <p class="is-family-code">
+                            src/main/java/springData/WebConfig.java</p>
+                    </li>
+                    <li><strong>Check Auth Permissions</strong>: <p class="is-family-code">
+                            src/main/java/springData/SecurityConfig.java</p>
+                    </li>
+                    <li><strong>Check Controllers</strong>: <p class="is-family-code">
+                            src/main/java/springData/controllers/*.java</p>
+                    </li>
+                    <li>
+                        <strong>Check view filenames</strong>: <p class="is-family-code">
+                            login.html<strong>NOT</strong> logn.html</p>
+                    </li>
+                    <li><strong>Ensure all views have Thymeleaf html tag</strong>: <p class="is-family-code">
+                            "html xmlns:th="http://www.thymeleaf.org""
+                        </p>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+
+    <section class=section>
+        <footer class="footer">
+            <div class="content has-text-centered">
+                <p>
+                    Built with <i class="fas fa-heart"></i> by <strong>CO2015 Group 17</strong>.
+                </p>
+                <br>
+                <p><i class="far fa-copyright"></i> 2019 Vinny Barden (<a href="https://github.com/vjba">vjba</a>),
+                    Mohammed Ahmed (<a href="https://github.com/moa38">moa38</a>), Joe Hopkinson (<a
+                        href="https://github.com/Magnum3">Magnum3</a>), Dan King (<a
+                        href="https://github.com/dk969">dk969</a>), Dan Low (<a
+                        href="https://github.com/dl255">dl255</a>).</p>
+                <p>All product names, logos, and brands are property of their respective owners.</p>
+            </div>
+        </footer>
+    </section>
 </body>
 
 </html>

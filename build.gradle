@@ -22,7 +22,7 @@ apply plugin: "groovy"
 
 // KEEP DISABLED
 // CHECKSTYLE TESTER ONLY:
-// apply plugin: "checkstyle"
+apply plugin: "checkstyle"
 apply plugin: "eclipse"
 apply plugin: "idea"
 
@@ -71,18 +71,18 @@ jacocoTestReport {
     }
 }
 
-// checkstyle {
-//      toolVersion "7.8.1"
-//      configFile file("config/checkstyle/checkstyle.xml")
-//  }
+checkstyle {
+     toolVersion "7.8.1"
+     configFile file("config/checkstyle/checkstyle.xml")
+ }
 
-// checkstyleMain {
-//      source ="src/main/java"
-//  }
+checkstyleMain {
+     source ="src/main/java"
+ }
 
-// checkstyleTest {
-//     source ="src/test/java"
-// }
+checkstyleTest {
+    source ="src/test/java"
+}
 
 bootJar {
     baseName = "CW1"

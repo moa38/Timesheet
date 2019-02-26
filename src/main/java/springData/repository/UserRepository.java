@@ -5,7 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 import springData.domain.User;
 
 public interface UserRepository extends CrudRepository<User, Integer> {
-
-    User findByUserId(int UserId);
-
+   User findByUserId(int userId);
 }
