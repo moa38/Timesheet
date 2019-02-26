@@ -7,41 +7,53 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+@EnableWebMvc
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
+
+	public void addViewControllers(ViewControllerRegistry registry) {
+		registry.addViewController("/").setViewName("/success");
+		registry.addViewController("/error").setViewName("error");
+		registry.addViewController("/login").setViewName("login");
+		registry.addViewController("/success").setViewName("user/shifts");
+	}
 
 	// Handles HTTP GET requests for /resources/** by efficiently serving up static
 	// resources in the ${webappRoot}/resources/ directory
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+		registry.addResourceHandler("/static/**").addResourceLocations("/src/main/resources/static");
 	}
 
 	// Java configuration equivalent to
 	// <mvc:default-servlet-handler/> in spring-servlet.xml
 	// used to use bootstrap when security is enabled
-	@Override
-	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-		configurer.enable();
-	}
+	// @Override
+	// public void configureDefaultServletHandling(DefaultServletHandlerConfigurer
+	// configurer) {
+	// configurer.enable();
+	// }
 
 	// Resolves views selected for rendering by @Controllers to .jsp resources in
 	// the
 	// /WEB-INF/views directory
-	@Bean
-	public InternalResourceViewResolver viewResolver() {
-		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-		viewResolver.setViewClass(JstlView.class);
-		viewResolver.setPrefix("/WEB-INF/views/");
-		viewResolver.setSuffix(".jsp");
-		viewResolver.setOrder(2);
-		return viewResolver;
-	}
+	// @Bean
+	// public InternalResourceViewResolver viewResolver() {
+	// InternalResourceViewResolver viewResolver = new
+	// InternalResourceViewResolver();
+	// viewResolver.setViewClass(JstlView.class);
+	// viewResolver.setPrefix("/WEB-INF/views/");
+	// viewResolver.setSuffix(".jsp");
+	// viewResolver.setOrder(2);
+	// return viewResolver;
+	// }
 
 	// Alternative using ViewResolver
 	//
