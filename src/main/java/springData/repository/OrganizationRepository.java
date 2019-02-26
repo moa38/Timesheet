@@ -7,7 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 import springData.domain.Organization;
 
 public interface OrganizationRepository extends CrudRepository<Organization, Integer> {
-    Organization findById(int id);
+   Organization findById(int id);
 
-    List<Organization> findByName(String name);
+   List<Organization> findByName(String organizationName);
 }
