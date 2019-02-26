@@ -1,3 +1,4 @@
+
 # FDM Timesheets Project
 
 ## CI status
@@ -34,3 +35,10 @@
 | Assessment Lead        |       | x   | x        |         |          |
 | Tech Lead              |       |     | x        | x       |          |
 | Configuration Manager  | x     |     |          |         |          |
+
+## Resources
+
+ - [Commit Message Guidelines](https://gist.github.com/robertpainsi/b632364184e70900af4ab688decf6f53#a-properly-formed-git-commit-subject-line-should-always-be-able-to-complete-the-following-sentence)
+ - [Git/GitHub branching standards & conventions ](https://gist.github.com/digitaljhelms/4287848)
+ - [StackEdit – In-browser Markdown editor](https://stackedit.io/)
+
