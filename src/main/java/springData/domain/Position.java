@@ -29,10 +29,9 @@ public class Position {
     @OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
     private List<User> users;
 
-    public Position(int positionId, String positionName, List<User> users) {
+    public Position(int positionId, String positionName) {
         this.positionId = positionId;
         this.positionName = positionName;
-        this.users = users;
     }
 
     public Position() {
