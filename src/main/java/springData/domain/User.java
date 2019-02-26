@@ -33,7 +33,7 @@ public class User {
     private String password;
 
     @OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
-    private List<Shift> shifts;
+    public List<Shift> shifts;
 
     public User() {
     }
