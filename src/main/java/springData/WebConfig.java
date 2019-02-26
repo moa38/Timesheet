@@ -19,11 +19,10 @@ import org.springframework.web.servlet.view.JstlView;
 public class WebConfig implements WebMvcConfigurer {
 
 	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/index").setViewName("index");
-		registry.addViewController("/").setViewName("index");
+		registry.addViewController("/").setViewName("/success");
 		registry.addViewController("/error").setViewName("error");
 		registry.addViewController("/login").setViewName("login");
-		registry.addViewController("/success").setViewName("success");
+		registry.addViewController("/success").setViewName("user/shifts");
 	}
 
 	// Handles HTTP GET requests for /resources/** by efficiently serving up static

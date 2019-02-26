@@ -1,0 +1,192 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>FDM | Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <section class="hero  is-dark">
+        <div class="hero-head">
+            <nav class="navbar">
+                <div class="container">
+                    <div class="navbar-brand">
+                        <a class="navbar-item">
+                            <img src="https://www.fdmgroup.com/wp-content/uploads/fdm-logo-anim-h180px.gif" />
+                        </a>
+                        <span class="navbar-burger burger" data-target="navbarMenuHeroB">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </div>
+                    <div id="navbarMenuHeroB" class="navbar-menu">
+                        <div class="navbar-end">
+                            <a class="navbar-item is-active">
+                                <span class="icon"><i class="fas fa-home"></i></span>
+                                <span>Home</span>
+                            </a>
+                            <a class="navbar-item">
+                                <span class="icon"><i class="fas fa-user-circle"></i></span>
+                                <span>Account</span>
+                            </a>
+                            <a class="navbar-item">
+                                <span class="icon"><i class="fas fa-question-circle"></i></span>
+                                <span>Help</span>
+                            </a>
+                            <span class="navbar-item">
+                                <a class="button is-info is-inverted">
+                                    <span class="icon">
+                                        <i class="fas fa-sign-out-alt"></i>
+                                    </span>
+                                    <span>Sign out</span>
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <p class="title">
+                    Timesheet App
+                </p>
+                <p class="subtitle">
+                    View. Edit. Submit.
+                </p>
+            </div>
+        </div>
+
+        <!-- <div class="hero-foot">
+            <nav class="tabs is-boxed is-fullwidth">
+                <div class="container">
+                    <ul>
+                        <li class="is-active">
+                            <a>Tab 1</a>
+                        </li>
+                        <li>
+                            <a>Tab 2</a>
+                        </li>
+                        <li>
+                            <a>Tab 3</a>
+                        </li>
+                        <li>
+                            <a>Tab 4</a>
+                        </li>
+                        <li>
+                            <a>Tab 5</a>
+                        </li>
+                        <li>
+                            <a>Tab 6</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div> -->
+    </section>
+
+    <!-- BODY-CONTENT -->
+    <section class="section">
+        <div class="container">
+            <h1 class="title">Hi, ${user.first_name}</h1>
+            <h2 class="subtitle">
+                This is your dashboard.
+            </h2>
+            <div class="tile is-ancestor has-text-centered ">
+                <div class="tile is-parent">
+                    <article class="tile is-child box">
+                        <p class="title">Add Shift</p>
+                        <p class="subtitle">Get a new shift started</p>
+                        <div class="content">
+                            <figure>
+                                <a href="#" class="image has-text-info">
+                                    <i class="far fa-plus-square fa-10x"></i>
+                                </a>
+                            </figure>
+                        </div>
+                    </article>
+                </div>
+                <div class="tile is-parent">
+                    <article class="tile is-child box">
+                        <p class="title">Edit Shift</p>
+                        <p class="subtitle">Pick up where you left off</p>
+                        <div class="content">
+                            <figure>
+                                <a href="#" class="image has-text-warning">
+                                    <i class="far fa-edit fa-10x"></i>
+                                </a>
+                            </figure>
+                        </div>
+                    </article>
+                </div>
+                <div class="tile is-parent">
+                    <article class="tile is-child box">
+                        <p class="title">Submit</p>
+                        <p class="subtitle">Send us your timesheet</p>
+                        <div class="content">
+                            <figure>
+                                <a href="#" class="image has-text-success">
+                                    <i class="far fa-check-square fa-10x"></i>
+                                </a>
+                            </figure>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <h1 class="title">Shifts this week</h1>
+            <h2 class="subtitle">
+                A handy graph to visualise your work patterns.
+            </h2>
+            <canvas id="bar-chart" width="800" height="450"></canvas>
+            <script>
+                // Bar chart
+                new Chart(document.getElementById("bar-chart"), {
+                    type: 'bar',
+                    data: {
+                        labels: ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"],
+                        datasets: [
+                            {
+                                label: "Hours",
+                                backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#f49542", "#c45850", "#ffdb2b", "#dfe72b"],
+                                data: [8, 7, 6, 10, 8, 9, 10]
+                            }
+                        ]
+                    },
+                    options: {
+                        legend: { display: false },
+                        title: {
+                            display: false
+                        }
+                    }
+                });
+            </script>
+    </section>
+
+    <!-- FOOTER -->
+    <section class=section>
+        <footer class="footer">
+            <div class="content has-text-centered">
+                <p>
+                    Built with <i class="fas fa-heart"></i> by <strong>CO2015 Group 17</strong>.
+                </p>
+                <br>
+                <p><i class="far fa-copyright"></i> 2019 Vinny Barden (<a href="https://github.com/vjba">vjba</a>),
+                    Mohammed Ahmed (<a href="https://github.com/moa38">moa38</a>), Joe Hopkinson (<a
+                        href="https://github.com/Magnum3">Magnum3</a>), Dan King (<a
+                        href="https://github.com/dk969">dk969</a>), Dan Low (<a
+                        href="https://github.com/dl255">dl255</a>).</p>
+            </div>
+        </footer>
+    </section>
+</body>
+
+</html>
