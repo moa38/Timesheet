@@ -54,9 +54,13 @@ public class WebApp implements CommandLineRunner {
         examplePosition.addUser(bob);
         positionRepo.save(examplePosition);
 
+        LocalDateTime now;
+        now = LocalDateTime.now();
+
         Shift exampleShift = new Shift();
+        exampleShift.setStartTime(now);
+        exampleShift.setEndTime(now.plusHours(9));
         exampleShift.setShiftId(001);
-        exampleShift.setStartTime(LocalDateTime.now());
         shiftRepo.save(exampleShift);
 
         Organization exampleOrganization = new Organization();
