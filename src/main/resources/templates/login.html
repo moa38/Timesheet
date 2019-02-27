@@ -76,8 +76,16 @@
             <div class="columns">
                 <div class="column is-half is-offset-one-quarter">
                     <div class="box">
+                        <div class="field">
+                            <br>
+                            <div class="notification is-danger" th:if="${param.error}">
+                                Error! Wrong incorrect login details.
+                            </div>
 
-
+                            <div class="notification is-warning" th:if="${param.logout}">
+                                You are now logged out. Goodbye!
+                            </div>
+                        </div>
                         <form th:action="@{/login}" method="post">
                             <div class="field">
                                 <span>
@@ -107,8 +115,6 @@
                             <input class="button is-block is-info is-large is-fullwidth" type="submit"
                                 value="Sign In" />
                         </form>
-
-
                     </div>
                     <div class="columns">
                         <div class="column">
@@ -116,16 +122,6 @@
                         </div>
                         <div class="column">
                             <a href="#">Help</a>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <br>
-                        <div class="notification is-danger" th:if="${param.error}">
-                            Error! Wrong incorrect login details.
-                        </div>
-
-                        <div class="notification is-warning" th:if="${param.logout}">
-                            You are now logged out. Goodbye!
                         </div>
                     </div>
                 </div>
