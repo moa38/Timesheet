@@ -8,14 +8,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
 </head>
 
+<!-- HEADER -->
+
 <body>
-    <!-- NAVBAR -->
-    <section class="hero  is-dark">
+    <section class="hero is-dark">
         <div class="hero-head">
             <nav class="navbar">
                 <div class="container">
                     <div class="navbar-brand">
-                        <a class="navbar-item">
+                        <a class="navbar-item" href="https://fdmgroup.com   ">
                             <img src="https://www.fdmgroup.com/wp-content/uploads/fdm-logo-anim-h180px.gif" />
                         </a>
                         <span class="navbar-burger burger" data-target="navbarMenuHeroB">
@@ -26,20 +27,20 @@
                     </div>
                     <div id="navbarMenuHeroB" class="navbar-menu">
                         <div class="navbar-end">
-                            <a class="navbar-item is-active">
+                            <a class="navbar-item is-active" href="/dashboard">
                                 <span class="icon"><i class="fas fa-home"></i></span>
-                                <span>Home</span>
+                                <span>Dashboard</span>
                             </a>
-                            <a class="navbar-item">
+                            <a class="navbar-item" href="/account">
                                 <span class="icon"><i class="fas fa-user-circle"></i></span>
                                 <span>Account</span>
                             </a>
-                            <a class="navbar-item">
+                            <a class="navbar-item" href="/help">
                                 <span class="icon"><i class="fas fa-question-circle"></i></span>
                                 <span>Help</span>
                             </a>
                             <span class="navbar-item">
-                                <a class="button is-info is-inverted">
+                                <a class="button is-info is-inverted" href="/login?logout">
                                     <span class="icon">
                                         <i class="fas fa-sign-out-alt"></i>
                                     </span>
@@ -63,10 +64,13 @@
         </div>
     </section>
 
-    <!-- BODY-CONTENT -->
+    <!-- END OF HEADER -->
+
+    <!-- BODY -->
+
     <section class="section">
         <div class="container">
-            <h1 class="title">Hi, ${user.first_name}</h1>
+            <h1 class="title">Hi, Carl.</h1>
             <h2 class="subtitle">
                 This is your dashboard.
             </h2>
@@ -77,7 +81,7 @@
                         <p class="subtitle">Get a new shift started</p>
                         <div class="content">
                             <figure>
-                                <a href="#" class="image has-text-info">
+                                <a href="/add-shift" class="image has-text-info">
                                     <i class="far fa-plus-square fa-10x"></i>
                                 </a>
                             </figure>
@@ -144,7 +148,10 @@
             </script>
     </section>
 
+    <!-- END OF BODY -->
+
     <!-- FOOTER -->
+
     <section class=section>
         <footer class="footer">
             <div class="content has-text-centered">
