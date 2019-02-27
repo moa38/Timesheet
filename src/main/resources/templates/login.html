@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" />
 </head>
 
-<!-- BODY -->
+<!-- HEADER -->
 
 <body>
     <section class="hero is-dark">
@@ -15,7 +15,7 @@
             <nav class="navbar">
                 <div class="container">
                     <div class="navbar-brand">
-                        <a class="navbar-item">
+                        <a class="navbar-item" href="https://fdmgroup.com   ">
                             <img src="https://www.fdmgroup.com/wp-content/uploads/fdm-logo-anim-h180px.gif" />
                         </a>
                         <span class="navbar-burger burger" data-target="navbarMenuHeroB">
@@ -26,24 +26,24 @@
                     </div>
                     <div id="navbarMenuHeroB" class="navbar-menu">
                         <div class="navbar-end">
-                            <a class="navbar-item is-active">
+                            <a class="navbar-item" href="#">
                                 <span class="icon"><i class="fas fa-home"></i></span>
-                                <span>Home</span>
+                                <span>Dashboard</span>
                             </a>
-                            <a class="navbar-item">
+                            <a class="navbar-item" href="#">
                                 <span class="icon"><i class="fas fa-user-circle"></i></span>
                                 <span>Account</span>
                             </a>
-                            <a class="navbar-item">
+                            <a class="navbar-item" href="#">
                                 <span class="icon"><i class="fas fa-question-circle"></i></span>
                                 <span>Help</span>
                             </a>
                             <span class="navbar-item">
-                                <a class="button is-info is-inverted">
+                                <a class="button is-info is-inverted" href="./login">
                                     <span class="icon">
-                                        <i class="fas fa-sign-out-alt"></i>
+                                        <i class="fas fa-sign-in-alt"></i>
                                     </span>
-                                    <span>Sign out</span>
+                                    <span>Sign in</span>
                                 </a>
                             </span>
                         </div>
@@ -76,8 +76,16 @@
             <div class="columns">
                 <div class="column is-half is-offset-one-quarter">
                     <div class="box">
+                        <div class="field">
+                            <br>
+                            <div class="notification is-danger" th:if="${param.error}">
+                                Error! Wrong incorrect login details.
+                            </div>
 
-
+                            <div class="notification is-warning" th:if="${param.logout}">
+                                You are now logged out. Goodbye!
+                            </div>
+                        </div>
                         <form th:action="@{/login}" method="post">
                             <div class="field">
                                 <span>
@@ -107,8 +115,6 @@
                             <input class="button is-block is-info is-large is-fullwidth" type="submit"
                                 value="Sign In" />
                         </form>
-
-
                     </div>
                     <div class="columns">
                         <div class="column">
@@ -116,16 +122,6 @@
                         </div>
                         <div class="column">
                             <a href="#">Help</a>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <br>
-                        <div class="notification is-danger" th:if="${param.error}">
-                            Error! Wrong incorrect login details.
-                        </div>
-
-                        <div class="notification is-warning" th:if="${param.logout}">
-                            You are now logged out. Goodbye!
                         </div>
                     </div>
                 </div>

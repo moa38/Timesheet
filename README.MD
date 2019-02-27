@@ -8,6 +8,20 @@
 | `master`  | [![Build Status](https://travis-ci.com/UOL-CS/co2015-1819-group-17.svg?token=g3URpAP48DaXad1Duz45&branch=master)](https://travis-ci.com/UOL-CS/co2015-1819-group-17)  |
 | `develop` | [![Build Status](https://travis-ci.com/UOL-CS/co2015-1819-group-17.svg?token=g3URpAP48DaXad1Duz45&branch=develop)](https://travis-ci.com/UOL-CS/co2015-1819-group-17) |
 
+## Dependacy Documentation
+
+- Bulma: [https://bulma.io/](https://bulma.io/documentation/)
+- Chart.js: [https://www.chartjs.org/](https://www.chartjs.org/docs/latest/)
+- TOAST UI: [https://ui.toast.com/](https://ui.toast.com/)
+- Thymeleaf: [https://www.thymeleaf.org/](https://www.thymeleaf.org/documentation.html)
+
+## Resources
+
+ - [Commit Message Guidelines](https://gist.github.com/robertpainsi/b632364184e70900af4ab688decf6f53#a-properly-formed-git-commit-subject-line-should-always-be-able-to-complete-the-following-sentence)
+ - [Git/GitHub branching standards & conventions ](https://gist.github.com/digitaljhelms/4287848)
+ - [StackEdit – In-browser Markdown editor](https://stackedit.io/)
+
+
 ## Group's Definition of Done
 
 | Title                           | Description                                                                                                                                                                                                                                                              | Contribution to grade | How to provide evidence                                                                                                                         | Notes                                                                                                                                                                                                                                                                                                       |
@@ -35,10 +49,3 @@
 | Assessment Lead        |       | x   | x        |         |          |
 | Tech Lead              |       |     | x        | x       |          |
 | Configuration Manager  | x     |     |          |         |          |
-
-## Resources
-
- - [Commit Message Guidelines](https://gist.github.com/robertpainsi/b632364184e70900af4ab688decf6f53#a-properly-formed-git-commit-subject-line-should-always-be-able-to-complete-the-following-sentence)
- - [Git/GitHub branching standards & conventions ](https://gist.github.com/digitaljhelms/4287848)
- - [StackEdit – In-browser Markdown editor](https://stackedit.io/)
-
