@@ -39,7 +39,7 @@
 
 | Roles                  | Vinny | Joe | Dan King | Dan Low | Mohammed |
 | ---------------------- | ----- | --- | -------- | ------- | -------- |
-| Software Developer     | x     | x   | x        | x       |          |
+| Software Developer     | x     | x   | x        | x       | X        |
 | Automated Test Writer  |       |     |          | x       | x        |
 | Build Engineer         | x     |     |          |         |          |
 | Manual Tester          |       | x   | x        |         | x        |
