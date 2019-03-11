@@ -97,10 +97,20 @@
 
     <section class="section">
         <div class="container">
-            <h1 class="title">Body heading</h1>
+            <h1 class="title">Edit your Timesheet</h1>
             <h2 class="subtitle">
                 Body subheading
             </h2>
+
+
+
+
+
+
+            <form action="#" data-th-action="@{/action/edit}" data-th-object="${model}" method="post">
+                <button type="submit" name="action" value="save">save</button>
+                <button type="submit" name="action" value="cancel">cancel</button>
+            </form>
         </div>
     </section>
 
