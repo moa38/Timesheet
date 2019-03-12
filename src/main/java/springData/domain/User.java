@@ -3,22 +3,29 @@ package springData.domain;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-@Entity
+/**
+ * @author CO2015 Group-17
+ */
+@Entity(name = "User")
+@Table(name = "User")
+@NamedQuery(name = "User.findAll", query = "Select e from User e")
 public class User {
 
    @Column(unique = true, updatable = false, nullable = false)
    @Id
    @GeneratedValue(strategy = GenerationType.AUTO)
+   @NotNull
    private int userId;
 
    @Basic
@@ -32,14 +39,19 @@ public class User {
    @NotNull(message = "Password can not be empty")
    private String password;
 
-   @OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
-   public List<Shift> shifts;
+   @ManyToOne
+   private Position position;
+
+   @ManyToOne
+   private Organization organization;
+
+   @OneToMany(mappedBy = "user")
+   private List<Timesheet> timesheets;
 
    public User() {
    }
 
-   public User(int userId, String firstName, String lastName, String password) {
-      this.userId = userId;
+   public User(String firstName, String lastName, String password) {
       this.firstName = firstName;
       this.lastName = lastName;
       this.password = password;
@@ -77,23 +89,41 @@ public class User {
       this.password = password;
    }
 
-   public List<Shift> getShifts() {
-      if (shifts == null) {
-         shifts = new ArrayList<>();
+   public Position getPosition() {
+      return this.position;
+   }
+
+   public void setPosition(Position position) {
+      this.position = position;
+   }
+
+   public Organization getOrganization() {
+      return this.organization;
+   }
+
+   public void setOrganization(Organization organization) {
+      this.organization = organization;
+   }
+
+   public List<Timesheet> getTimesheets() {
+      if (timesheets == null) {
+         timesheets = new ArrayList<>();
       }
-      return this.shifts;
+      return this.timesheets;
    }
 
-   public void setShifts(List<Shift> shifts) {
-      this.shifts = shifts;
+   public void setTimesheets(List<Timesheet> timesheets) {
+      this.timesheets = timesheets;
    }
 
-   public void addShift(Shift shift) {
-      getShifts().add(shift);
+   public void addTimesheet(Timesheet timesheet) {
+      getTimesheets().add(timesheet);
+      timesheet.setUser(this);
    }
 
-   public void removeShift(Shift shift) {
-      getShifts().remove(shift);
+   public void removeTimesheet(Timesheet timesheet) {
+      getTimesheets().remove(timesheet);
+      timesheet.setUser(null);
    }
 
 }
