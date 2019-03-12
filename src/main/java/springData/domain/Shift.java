@@ -49,8 +49,8 @@ public class Shift {
    @ManyToOne
    private Timesheet timesheet;
 
-   public Shift(LocalDate shiftDate, LocalTime startTime, LocalTime endTime, int overtimeHours, boolean bankHoliday, 
-         boolean holiday) {
+   public Shift(LocalDate shiftDate, LocalTime startTime, LocalTime endTime, int overtimeHours, boolean bankHoliday,
+           boolean holiday) {
       this.shiftDate = shiftDate;
       this.startTime = startTime;
       this.endTime = endTime;
@@ -134,3 +134,4 @@ public class Shift {
    }
 
 }
+

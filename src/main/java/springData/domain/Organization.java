@@ -103,5 +103,4 @@ public class Organization {
       getUsers().remove(user);
       user.setOrganization(null);
    }
-
 }

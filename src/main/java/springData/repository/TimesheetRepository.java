@@ -12,10 +12,10 @@ import springData.domain.User;
 public interface TimesheetRepository extends JpaRepository<Timesheet, Integer> {
    //List<Timesheet> findById(int id);
    //List<Timesheet> findByUser(User o);
-   
+
    @Query("Select s from Timesheet s where s.timesheetId= :id")
    Timesheet findById(@Param("id") int id);
-   
+
    @Query("Select e from Timesheet e where e.user=: u")
    Timesheet findByUser(@Param("user") User u);
 

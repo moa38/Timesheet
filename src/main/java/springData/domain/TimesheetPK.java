@@ -5,9 +5,6 @@ import java.util.Objects;
 
 public class TimesheetPK implements Serializable {
 
-   /**
-    * 
-    */
    private static final long serialVersionUID = 714077079009152031L;
 
    private int timesheetId;

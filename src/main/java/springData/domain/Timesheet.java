@@ -38,12 +38,12 @@ public class Timesheet {
    @Id
    @ManyToOne(fetch = FetchType.EAGER)
    private User user;
-   
-   @Type(type="yes_no")
+
+   @Type(type = "yes_no")
    @Column(name = "Submitted", nullable = false)
    private boolean submitted;
-   
-   @Type(type="yes_no")
+
+   @Type(type = "yes_no")
    @Column(name = "Approved", nullable = false)
    private boolean approved;
 
@@ -57,7 +57,7 @@ public class Timesheet {
    public void setTimesheetId(int timesheetId) {
       this.timesheetId = timesheetId;
    }
-   
+
    public boolean isSubmitted() {
       return this.submitted;
    }
@@ -65,7 +65,7 @@ public class Timesheet {
    public void setSubmitted(boolean submitted) {
       this.submitted = submitted;
    }
-   
+
    public boolean isApproved() {
       return this.approved;
    }
@@ -105,9 +105,9 @@ public class Timesheet {
 
    @Override
    public String toString() {
-      return "Timesheet [timesheetId=" + timesheetId + ", user=" + user + ", submitted=" + submitted + 
-            ", approved=" + approved + ", shifts=" + shifts + "]";
+      return "Timesheet [timesheetId=" + timesheetId + ", user=" + user + ", submitted=" + submitted
+            + ", approved=" + approved + ", shifts=" + shifts + "]";
    }
 
-   
 }
+

@@ -1,20 +1,10 @@
 package springData.controller;
 
-import java.security.Principal;
-import java.time.LocalTime;
-
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import springData.domain.Shift;
 
@@ -24,7 +14,7 @@ public class UserController {
    //protected void initBinder(WebDataBinder binder) {
     //  binder.addValidators(new UserValidator());
    //}
-   
+
    @GetMapping("/add-shift")
    public String addShift(@Valid Shift shift, Model model) {
       /*
