@@ -17,7 +17,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
    @Override
    protected void configure(HttpSecurity http) throws Exception {
       http.authorizeRequests().antMatchers("/", "/index").permitAll().anyRequest().authenticated().and().formLogin()
-            .loginPage("/login").defaultSuccessUrl("/dashboard", true).permitAll().and().logout().permitAll();
+            .loginPage("/login").defaultSuccessUrl("/add-shift", true).permitAll().and().logout().permitAll();
    }
 
    @Bean
