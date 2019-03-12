@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.validation.constraints.PastOrPresent;
 
 /**
  * Shift class representing a single work day
@@ -50,7 +49,8 @@ public class Shift {
    @ManyToOne
    private Timesheet timesheet;
 
-   public Shift(LocalDate shiftDate, LocalTime startTime, LocalTime endTime, int overtimeHours, boolean bankHoliday, boolean holiday) {
+   public Shift(LocalDate shiftDate, LocalTime startTime, LocalTime endTime, int overtimeHours, boolean bankHoliday, 
+         boolean holiday) {
       this.shiftDate = shiftDate;
       this.startTime = startTime;
       this.endTime = endTime;
