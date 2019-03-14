@@ -80,50 +80,257 @@
             <h2 class="subtitle">
                 Input your new shifts this week.
             </h2>
-
-
-            <div id="calendar" style="height: 800px;">
-                <script>
-                    var calendar = new tui.Calendar(document.getElementById('calendar'), {
-                        defaultView: 'week',
-                        taskView: false,    // can be also ['milestone', 'task']
-                        scheduleView: true,  // can be also ['allday', 'time']
-                        template: {
-                            allday: function (schedule) {
-                                return schedule.title + ' <i class="fa fa-refresh"></i>';
-                            },
-                            alldayTitle: function () {
-                                return 'All Day';
-                            },
-                            time: function (schedule) {
-                                return schedule.title + ' <i class="fa fa-refresh"></i>' + schedule.start;
-                            }
-                        },
-                        month: {
-                            daynames: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-                            startDayOfWeek: 0,
-                            narrowWeekend: true
-                        },
-                        week: {
-                            daynames: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-                            startDayOfWeek: 0,
-                            narrowWeekend: true
-                        }
-                    });
-                </script>
+            <div class="tabs is-centered is-boxed is-medium">
+                <ul>
+                    <li class="is-active">
+                        <a href="/add-shift">
+                            <span class="icon is-small"><i class="fas fa-caret-square-down"></i></span>
+                            <span>Simple</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/add-shift-advanced">
+                            <span class="icon is-small"><i class="far fa-caret-square-down"></i></span>
+                            <span>Advanced</span>
+                        </a>
+                    </li>
+                </ul>
             </div>
-            <div class="tile is-parent">
-                <article class="tile is-child box">
-                    <p class="title">Submit Timesheet</p>
-                    <div class="content">
-                        <figure>
-                            <a href="#" class="image has-text-success">
-                                <i class="far fa-check-square fa-10x"></i>
-                            </a>
-                        </figure>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <table class="table is-striped is-hoverable is-fullwidth">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Day</th>
+                        <th>Day Start Time</th>
+                        <th>Lunch Start Time</th>
+                        <th>Lunch End Time</th>
+                        <th>Day End Time</th>
+                        <th><i class="fas fa-save"></i></th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Date</th>
+                        <th>Day</th>
+                        <th>Day Start Time</th>
+                        <th>Lunch Start Time</th>
+                        <th>Lunch End Time</th>
+                        <th>Day End Time</th>
+                        <th><i class="fas fa-save"></i></th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <tr>
+                        <td>??/03/2019</td>
+                        <th>Monday</th>
+                        <td>
+                            <div class="control">
+                                <input class="input" type="text" placeholder="09:00">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="control">
+                                <input class="input" type="text" placeholder="13:00">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="control">
+                                <input class="input" type="text" placeholder="14:00">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="control">
+                                <input class="input" type="text" placeholder="17:30">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="control">
+                                <button class="button is-primary">Save</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>??/03/2019</td>
+                        <th>Tueday</th>
+                        <td>
+                            <div class="control">
+                                <input class="input" type="text" placeholder="09:00">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="control">
+                                <input class="input" type="text" placeholder="13:00">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="control">
+                                <input class="input" type="text" placeholder="14:00">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="control">
+                                <input class="input" type="text" placeholder="17:30">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="control">
+                                <button class="button is-primary">Save</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>??/03/2019</td>
+                        <th>Wednesday</th>
+                        <td>
+                            <div class="control">
+                                <input class="input" type="text" placeholder="09:00">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="control">
+                                <input class="input" type="text" placeholder="13:00">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="control">
+                                <input class="input" type="text" placeholder="14:00">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="control">
+                                <input class="input" type="text" placeholder="17:30">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="control">
+                                <button class="button is-primary">Save</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>??/03/2019</td>
+                        <th>Thusday</th>
+                        <td>
+                            <div class="control">
+                                <input class="input" type="text" placeholder="09:00">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="control">
+                                <input class="input" type="text" placeholder="13:00">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="control">
+                                <input class="input" type="text" placeholder="14:00">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="control">
+                                <input class="input" type="text" placeholder="17:30">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="control">
+                                <button class="button is-primary">Save</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>??/03/2019</td>
+                        <th>Friday</th>
+                        <td>
+                            <div class="control">
+                                <input class="input" type="text" placeholder="09:00">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="control">
+                                <input class="input" type="text" placeholder="13:00">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="control">
+                                <input class="input" type="text" placeholder="14:00">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="control">
+                                <input class="input" type="text" placeholder="17:30">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="control">
+                                <button class="button is-primary">Save</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <form th:action="@{/process-shift}" method="post">
+                <div class="columns">
+                    <div class="column">
+                        <div class="title">
+                            Monday
+                        </div>
+                        <div class="column">
+                            <div class="field has-addons">
+                                <p class="control">
+                                    <input class="input" type="text" placeholder="09:00">
+                                </p>
+                                <p class="control">
+                                    <a class="button is-static">
+                                        Day Start
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="field has-addons">
+                                <p class="control">
+                                    <input class="input" type="text" placeholder="13:00">
+                                </p>
+                                <p class="control">
+                                    <a class="button is-static">
+                                        Lunch Start
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="field has-addons">
+                                <p class="control">
+                                    <input class="input" type="text" placeholder="14:00">
+                                </p>
+                                <p class="control">
+                                    <a class="button is-static">
+                                        Lunch End
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="field has-addons">
+                                <p class="control">
+                                    <input class="input" type="text" placeholder="17:30">
+                                </p>
+                                <p class="control">
+                                    <a class="button is-static">
+                                        Day End
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                </article>
-            </div>
+            </form>
         </div>
     </section>
 
