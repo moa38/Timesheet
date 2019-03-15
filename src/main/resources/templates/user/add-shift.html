@@ -85,8 +85,11 @@
 
     <section class="section">
         <div class="container">
-            <table class="table is-striped is-hoverable is-fullwidth">
-                <thead>
+            <form action="" method="GET">
+                <table class="table is-striped is-hoverable is-fullwidth">
+                    <form action="" method="GET">
+                 <thead>
+                    
                     <tr>
                         <th>Date</th>
                         <th>Day</th>
@@ -96,20 +99,11 @@
                         <th>Day End Time</th>
                         <th><i class="fas fa-save"></i></th>
                     </tr>
-                </thead>
-                <tfoot>
-                    <tr>
-                        <th>Date</th>
-                        <th>Day</th>
-                        <th>Day Start Time</th>
-                        <th>Lunch Start Time</th>
-                        <th>Lunch End Time</th>
-                        <th>Day End Time</th>
-                        <th><i class="fas fa-save"></i></th>
-                    </tr>
-                </tfoot>
+                 </thead>
+                
                 <tbody>
-                    <tr>
+                    <form action="" method="GET">
+                        <tr>
                         <td>??/03/2019</td>
                         <th>Monday</th>
                         <td>
@@ -137,7 +131,9 @@
                                 <button class="button is-primary">Save</button>
                             </div>
                         </td>
-                    </tr>
+                         </tr>
+                    </form>
+                    <form action="" method="GET">
                     <tr>
                         <td>??/03/2019</td>
                         <th>Tueday</th>
@@ -167,6 +163,8 @@
                             </div>
                         </td>
                     </tr>
+                    </form>
+                    <form action="" method="GET">
                     <tr>
                         <td>??/03/2019</td>
                         <th>Wednesday</th>
@@ -196,6 +194,8 @@
                             </div>
                         </td>
                     </tr>
+                    </form>
+                    <form action="" method="GET">
                     <tr>
                         <td>??/03/2019</td>
                         <th>Thusday</th>
@@ -225,6 +225,8 @@
                             </div>
                         </td>
                     </tr>
+                    </form>
+                    <form action="" method="GET">
                     <tr>
                         <td>??/03/2019</td>
                         <th>Friday</th>
@@ -254,71 +256,19 @@
                             </div>
                         </td>
                     </tr>
+                    </form>
                 </tbody>
+            
             </table>
-    </section>
-
-    <section class="section">
-        <div class="container">
-            <form th:action="@{/process-shift}" method="post">
-                <div class="columns">
-                    <div class="column">
-                        <div class="title">
-                            Monday
-                        </div>
-                        <div class="column">
-                            <div class="field has-addons">
-                                <p class="control">
-                                    <input class="input" type="text" placeholder="09:00">
-                                </p>
-                                <p class="control">
-                                    <a class="button is-static">
-                                        Day Start
-                                    </a>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="column">
-                            <div class="field has-addons">
-                                <p class="control">
-                                    <input class="input" type="text" placeholder="13:00">
-                                </p>
-                                <p class="control">
-                                    <a class="button is-static">
-                                        Lunch Start
-                                    </a>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="column">
-                            <div class="field has-addons">
-                                <p class="control">
-                                    <input class="input" type="text" placeholder="14:00">
-                                </p>
-                                <p class="control">
-                                    <a class="button is-static">
-                                        Lunch End
-                                    </a>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="column">
-                            <div class="field has-addons">
-                                <p class="control">
-                                    <input class="input" type="text" placeholder="17:30">
-                                </p>
-                                <p class="control">
-                                    <a class="button is-static">
-                                        Day End
-                                    </a>
-                                </p>
-                            </div>
-                        </div>
+            <td>
+                    <div class="control">
+                        <button class="button is-primary">Submit</button>
                     </div>
+                </td>
             </form>
-        </div>
     </section>
 
+   
 
     <!-- END OF BODY -->
 
