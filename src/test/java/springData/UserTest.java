@@ -69,3 +69,4 @@ public class UserTest {
       assertThat(user.getTimesheets(), Matchers.instanceOf(ArrayList.class));
    }
 }
+

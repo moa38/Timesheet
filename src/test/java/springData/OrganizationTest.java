@@ -79,3 +79,4 @@ public class OrganizationTest {
       assertThat(organization.getUsers(), Matchers.not(Matchers.hasSize(0)));
    }
 }
+
