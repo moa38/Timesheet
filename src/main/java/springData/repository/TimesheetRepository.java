@@ -1,5 +1,7 @@
 package springData.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -17,7 +19,7 @@ public interface TimesheetRepository extends JpaRepository<Timesheet, Integer> {
    Timesheet findById(@Param("id") int id);
 
    @Query("Select e from Timesheet e where e.user=: u")
-   Timesheet findByUser(@Param("user") User u);
+   List<Timesheet> findByUser(@Param("user") User u);
 
    @SuppressWarnings("unchecked")
    Timesheet save(Timesheet timesheet);
