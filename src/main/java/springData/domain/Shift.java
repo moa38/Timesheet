@@ -38,13 +38,13 @@ public class Shift {
    private LocalTime endTime = LocalTime.of(17, 0);
 
    @Basic
-   private int overtimeHours;
+   private int overtimeHours = 0;
 
    @Basic
-   private boolean bankHoliday;
+   private boolean bankHoliday = false;
 
    @Basic
-   private boolean holiday;
+   private boolean holiday = false;
 
    @ManyToOne
    private Timesheet timesheet;
