@@ -21,6 +21,8 @@ public interface TimesheetRepository extends JpaRepository<Timesheet, Integer> {
    @Query("Select e from Timesheet e where e.user=: u")
    List<Timesheet> findByUser(@Param("user") User u);
 
+   List<Timesheet> findAll();
+   
    @SuppressWarnings("unchecked")
    Timesheet save(Timesheet timesheet);
 }
