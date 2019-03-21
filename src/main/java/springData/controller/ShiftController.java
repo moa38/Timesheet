@@ -119,10 +119,11 @@ public class ShiftController {
    }*/
 
    @PostMapping("/add-shift/saveTimesheet")
-   public String saveTimesheet() {
-      /*timesheetRepo.save(timesheet);
-      model.addAttribute("timesheet", timesheet);*/
-      return "user/dashboard";
+   public String saveTimesheet(@ModelAttribute ("timesheet") Timesheet timesheet, Model model) {
+      List<Timesheet> timesheets = new ArrayList<Timesheet>();
+      model.addAttribute("timesheet", timesheet); 
+      
+      return "user/edit-shift";
    }
 
 }
