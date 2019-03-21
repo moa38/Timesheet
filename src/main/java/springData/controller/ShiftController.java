@@ -83,7 +83,6 @@ public class ShiftController {
    }
 
    /*DO NOT ALTER THESE METHODS, I WILL GET BACK TO THEM AFTER THE VIEWS ARE UPDATED
-
    @PostMapping("/add-shift/saveShift")
    public String saveShift(@ModelAttribute("shift") Shift shift, Model model) {
 
