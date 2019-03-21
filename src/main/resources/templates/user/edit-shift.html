@@ -109,14 +109,16 @@
                                 </tr>
                         </thead>
                         <tbody>
-                                <tr>
-                                        <td>??/03/2019</td>
-                                        <tr th:each="Timesheet: ${timesheets}"></tr> 
-                                        <td>
+                                
+                                    <tr th:each="Timesheet: ${timesheets}">
+                                            <td th:text="${timesheet.timesheetId}" />
+                                        
+                                         <td>
                                                 <div class="control">
                                                     <button class="button is-primary">Submit</button>
                                                 </div>
-                                            </td>
+                                        </td>
+                                    </tr>
 
                         </tbody>
 
