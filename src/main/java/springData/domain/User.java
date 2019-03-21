@@ -2,24 +2,19 @@ package springData.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
  * @author CO2015 Group-17
  */
-@Entity(name = "User")
-@Table(name = "User")
-@NamedQuery(name = "User.findAll", query = "Select e from User e")
+@Entity
 public class User {
 
    @Column(unique = true, updatable = false, nullable = false)
@@ -28,19 +23,20 @@ public class User {
    @NotNull
    private int userId;
 
-   @Basic
+   @Column
    private String firstName;
 
-   @Basic
+   @Column
    private String lastName;
 
    @Column(nullable = false)
-   @Basic(optional = false)
    @NotNull(message = "Password can not be empty")
    private String password;
 
    @ManyToOne
    private Position position;
+   
+   private String login;
 
    @ManyToOne
    private Organization organization;
@@ -126,5 +122,12 @@ public class User {
       timesheet.setUser(null);
    }
 
+   public String getLogin() {
+      return login;
+   }
+
+   public void setLogin(String login) {
+      this.login = login;
+   }
 }
 

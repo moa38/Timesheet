@@ -2,30 +2,27 @@ package springData.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 /**
  * Position class representing a position held by a user. Has List<appUsers>
  *
  * @author CO2015 Group-17
  */
-@Entity(name = "Position")
-@Table(name = "Position")
-@NamedQuery(name = "Position.findByPositionName", query = "Select p from Position p where p.positionName=:positionName")
+@Entity
 public class Position {
 
    @Column(unique = true, updatable = false, nullable = false)
    @Id
-   //@GeneratedValue(strategy = GenerationType.AUTO)
+   @GeneratedValue(strategy = GenerationType.AUTO)
    private int positionId;
 
-   @Basic
+   @Column
    private String positionName;
 
    @OneToMany(mappedBy = "position")

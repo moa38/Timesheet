@@ -2,24 +2,19 @@ package springData.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 /**
  * Organization class representing the Organization appUsers work for. Has List<appUsers>
  *
  * @author CO2015 Group-17
  */
-@Entity(name = "Organization")
-@Table(name = "Organization")
-@NamedQuery(name = "Organization.findByName", query = "Select o from Organization o where o.name=:name")
+@Entity
 public class Organization {
 
    @Column(unique = true, updatable = false, nullable = false)
@@ -28,15 +23,12 @@ public class Organization {
    private int organizationId;
 
    @Column
-   @Basic
    private String name;
 
    @Column
-   @Basic
    private String address;
 
    @Column
-   @Basic
    private String contactNumber;
 
    @OneToMany(mappedBy = "organization")

@@ -2,48 +2,43 @@ package springData.domain;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
 
 /**
  * Shift class representing a single work day
  *
  * @author CO2015 Group-17
  */
-@Entity(name = "Shift")
-@Table(name = "Shift")
-@NamedQuery(name = "Shift.findById", query = "Select s from Shift s where s.shiftId=:shiftId")
+@Entity
 public class Shift {
 
-   @Column(unique = true, updatable = false, nullable = false)
+   //@Column(unique = true, updatable = false, nullable = false)
+   @Column(unique = true, nullable = false)
    @Id
    @GeneratedValue(strategy = GenerationType.AUTO)
    private int shiftId;
 
-   @Column(unique = true, nullable = false)
-   @Basic
+   @Column
    private LocalDate shiftDate;
 
-   @Basic
+   @Column
    private LocalTime startTime = LocalTime.of(9, 0);
 
-   @Basic
+   @Column
    private LocalTime endTime = LocalTime.of(17, 0);
 
-   @Basic
+   @Column
    private int overtimeHours = 0;
 
-   @Basic
+   @Column
    private boolean bankHoliday = false;
 
-   @Basic
+   @Column
    private boolean holiday = false;
 
    @ManyToOne

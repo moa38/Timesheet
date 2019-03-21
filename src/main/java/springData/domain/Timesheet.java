@@ -12,22 +12,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
-import org.hibernate.annotations.Type;
 
 /**
  * Timesheet class contatining 7 shifts representing the days of the week.
  *
  * @author CO2015 Group-17
  */
-@Entity(name = "Timesheet")
-@Table(name = "Timesheet")
+@Entity
 @IdClass(TimesheetPK.class)
-@NamedQuery(name = "Timesheet.findAll", query = "Select e from Timesheet e")
-@NamedQuery(name = "Timesheet.findById", query = "Select e from Timesheet e where e.timesheetId=:timesheetId")
 public class Timesheet {
 
    @Column(name = "Timesheet_ID", unique = true, updatable = false, nullable = false)
@@ -39,11 +32,11 @@ public class Timesheet {
    @ManyToOne(fetch = FetchType.EAGER)
    private User user;
 
-   @Type(type = "yes_no")
+   //@Type(type = "yes_no")
    @Column(name = "Submitted", nullable = false)
    private boolean submitted;
 
-   @Type(type = "yes_no")
+   //@Type(type = "yes_no")
    @Column(name = "Approved", nullable = false)
    private boolean approved;
 
