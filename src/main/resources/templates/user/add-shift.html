@@ -74,7 +74,7 @@
 	<section class="section">
 		<div class="container">
 			<table class="table is-striped is-hoverable is-fullwidth">
-				<form th:object="${timesheet}" th:action="@{/add-shift/saveTimesheet}" method="post">
+				<form th:object="${timesheet}" th:action="@{/add-shift/saveTimesheet/} + ${timesheet.timesheetId}" method="post">
 				<thead>
 					<tr>
 						<th>Date</th>
@@ -90,7 +90,7 @@
 					<tr th:each="shift,i : ${timesheet.shifts}">
 						<td>
 							<div class="control">
-								<input th:field="${shift.shiftDate}" class="input" type="date" placeholder="dd/MM/YY">
+								<input th:field="${shift.shiftDate}" class="input" type="date" min="2019-03-18" max="2025-12-31">
 							</div>
 						</td>
 						<td th:text="${shift.shiftId}"></td>
@@ -101,7 +101,7 @@
 							th:if="${shift.shiftId == 5}">Friday</span></td>
 						<td>
 							<div class="control">
-								<input th:field="${shift.startTime}" class="input" type="text" placeholder="09:00 AM">
+								<input th:field="${shift.startTime}" class="input" type="time" step="60" value="09:00">
 							</div>
 						</td>
 						<td>
@@ -116,7 +116,7 @@
 						</td>
 						<td>
 							<div class="control">
-								<input th:field="${shift.endTime}" class="input" type="text" placeholder="5:00 PM">
+								<input th:field="${shift.endTime}" class="input" type="time" value="17:00" placeholder="5:00 PM">
 							</div>
 						</td>
 					</tr>
@@ -125,8 +125,7 @@
 			<td>
 				<div class="control">
 				   <!-- input class="button is-success" type="submit" value="Submit Timesheet" style="float: right;"-->
-				   <input class="button is-primary is-link" type="submit" value="Save Timesheet" style="float: right;">
-					
+				   <input class="button is-primary is-link" type="submit" value="Save Timesheet" style="float: right;">			
 				</div>
 				<div>
 					
