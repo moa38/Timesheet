@@ -12,7 +12,7 @@ import org.junit.Test;
 
 import springData.domain.User;
 import springData.domain.Organization;
-import springData.domain.Position;
+import springData.domain.Role;
 import springData.domain.Shift;
 import springData.domain.Timesheet;
 
@@ -40,12 +40,12 @@ public class UserTest {
    }
 
    @Test
-   public void userHasPosition() {
-      //Checks that user has position and it is correct
-      Position pos = new Position(002, "Admin");
-      user.setPosition(pos);
-      assertThat(user.getPosition(), Matchers.equalTo(pos));
-      assertThat(user.getPosition(), Matchers.instanceOf(Position.class));
+   public void userHasRole() {
+      //Checks that user has role and it is correct
+      Role pos = new Role(002, "Admin");
+      user.setRole(pos);
+      assertThat(user.getRole(), Matchers.equalTo(pos));
+      assertThat(user.getRole(), Matchers.instanceOf(Role.class));
    }
 
    @Test
