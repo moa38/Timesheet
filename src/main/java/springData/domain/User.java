@@ -2,25 +2,29 @@ package springData.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 /**
+ * User class representing a user of the application. Has List<Timesheets>
+ *
  * @author CO2015 Group-17
  */
 @Entity
+@Table(name = "user", uniqueConstraints = { @UniqueConstraint(name = "USER_UK", columnNames = "username") })
 public class User {
 
-   @Column(unique = true, updatable = false, nullable = false)
+   @Column(updatable = false, nullable = false)
    @Id
-   @GeneratedValue(strategy = GenerationType.AUTO)
-   @NotNull
+   @GeneratedValue
    private int userId;
 
    @Column
@@ -29,14 +33,17 @@ public class User {
    @Column
    private String lastName;
 
-   @Column(nullable = false)
-   @NotNull(message = "Password can not be empty")
-   private String password;
+   @Column
+   private boolean enabled = true;
 
-   @ManyToOne
-   private Position position;
-   
-   private String login;
+   /*@Column//(nullable = false)
+   //@NotNull(message = "Password can not be empty")
+   private String password;*/
+
+   @ManyToOne(cascade = CascadeType.PERSIST)
+   private Role role;
+
+   private String username;
 
    @ManyToOne
    private Organization organization;
@@ -44,13 +51,16 @@ public class User {
    @OneToMany(mappedBy = "user")
    private List<Timesheet> timesheets;
 
+   @Column(name = "Encrypted_Password", length = 128, nullable = false)
+   private String encryptedPassword;
+
    public User() {
    }
 
    public User(String firstName, String lastName, String password) {
       this.firstName = firstName;
       this.lastName = lastName;
-      this.password = password;
+      //this.password = password;
    }
 
    public int getUserId() {
@@ -77,20 +87,28 @@ public class User {
       this.lastName = lastName;
    }
 
-   public String getPassword() {
+   public String getEncryptedPassword() {
+      return encryptedPassword;
+   }
+
+   public void setEncryptedPassword(String encryptedPassword) {
+      this.encryptedPassword = encryptedPassword;
+   }
+
+   /*public String getPassword() {
       return this.password;
    }
 
    public void setPassword(String password) {
       this.password = password;
+   }*/
+
+   public Role getRole() {
+      return this.role;
    }
 
-   public Position getPosition() {
-      return this.position;
-   }
-
-   public void setPosition(Position position) {
-      this.position = position;
+   public void setRole(Role role) {
+      this.role = role;
    }
 
    public Organization getOrganization() {
@@ -122,12 +140,12 @@ public class User {
       timesheet.setUser(null);
    }
 
-   public String getLogin() {
-      return login;
+   public String getUsername() {
+      return username;
    }
 
-   public void setLogin(String login) {
-      this.login = login;
+   public void setUsername(String username) {
+      this.username = username;
    }
 }
 
