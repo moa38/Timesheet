@@ -1,14 +1,11 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <title>FDM | Template</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" />
 </head>
-
 <!-- HEADER -->
-
 <body>
     <section class="hero is-dark">
         <div class="hero-head">
@@ -62,7 +59,6 @@
             </div>
         </div>
     </section>
-
     <!-- <div class="hero-foot">
         <nav class="tabs is-boxed is-fullwidth">
             <div class="container">
@@ -90,9 +86,7 @@
         </nav>
     </div>
     </section> -->
-
     <!-- END OF HEADER -->
-
     <!-- BODY -->
     <section class="section">
         <div class="container">
@@ -105,32 +99,35 @@
                 <table class="table is-striped is-hoverable is-fullwidth">
                         <thead>
                                 <tr>
+                                    
+                                    <th>Timesheet Id</th>
+                                    <th>User Id</th>
                                     <th>Date</th>
+                                    <th>Submittted</th>
                                 </tr>
                         </thead>
                         <tbody>
                                 
                                     <tr th:each="Timesheet: ${timesheets}">
-                                            <td th:text="${timesheet.timesheetId}" />
+                                            <td th:text="${timesheet.timesheetId}">
+                                            <!--td th:text="${timesheet.user}"-->
+                                            <td th:text="${timesheet.submitted}">
+                                            <td>
+                                                <div class="control">
+                                                    <input class="button is-success" type="submit" value="Submit Timesheet" style="float: right;">
+                                                </div>
+                                        </td>
+                                            
                                         
                                          
                                     </tr>
-                                    <td>
-                                        <div class="control">
-                                            <button class="button is-primary">Submit</button>
-                                        </div>
-                                </td>
-
+                                    
                         </tbody>
-
                 </table>
             </div>
     </section>
-
     <!-- END OF BODY -->
-
     <!-- FOOTER -->
-
     <section class=section>
         <footer class="footer">
             <div class="content has-text-centered">
@@ -148,5 +145,4 @@
         </footer>
     </section>
 </body>
-
 </html>
