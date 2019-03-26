@@ -20,7 +20,7 @@ public interface ShiftRepository extends JpaRepository<Shift, Integer> {
    Shift findByDate(@Param("date") Date d);
 
    List<Shift> findAll();
-   
+
    @SuppressWarnings("unchecked")
    Shift save(Shift shift);
 }

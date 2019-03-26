@@ -9,8 +9,8 @@ import springData.domain.User;
 public interface UserRepository extends JpaRepository<User, Integer> {
    User findById(int id);
 
-   User findByLogin(String login);
-   
+   User findByUsername(String username);
+
    @SuppressWarnings("unchecked")
    User save(User user);
 }

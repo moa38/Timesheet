@@ -12,8 +12,6 @@ import springData.domain.User;
 
 @Repository
 public interface TimesheetRepository extends JpaRepository<Timesheet, Integer> {
-   //List<Timesheet> findById(int id);
-   //List<Timesheet> findByUser(User o);
 
    @Query("Select s from Timesheet s where s.timesheetId= :id")
    Timesheet findById(@Param("id") int id);
@@ -22,7 +20,7 @@ public interface TimesheetRepository extends JpaRepository<Timesheet, Integer> {
    List<Timesheet> findByUser(@Param("user") User u);
 
    List<Timesheet> findAll();
-   
+
    @SuppressWarnings("unchecked")
    Timesheet save(Timesheet timesheet);
 }
