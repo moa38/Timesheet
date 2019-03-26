@@ -37,47 +37,60 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
    }
 }
 
-//@EnableWebSecurity
-//@Configuration
-//public class SecurityConfig extends WebSecurityConfigurerAdapter {
-//    protected void configure(HttpSecurity http) throws Exception {
-//    	http
-//
+
+//  @EnableWebSecurity
+//  @Configuration
+//  public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+//    @Override
+//     protected void configure(HttpSecurity http) throws Exception {
+//     	http
+
 //SECURE COMMUNICATION
-//
-//	    .requiresChannel()
-//	    		.anyRequest()
-//	    		.requiresSecure()
-//
+//     	 .requiresChannel()
+// 	    		.anyRequest()
+// 	    		.requiresSecure()
+
 //AUTHENTICATION
-//	    	.and()
-//		    .formLogin()
-//				.loginPage("/login") 
-//				.loginProcessingUrl("/login")
-//				.defaultSuccessUrl("/add-shift",true) // the second parameter is for enforcing this url always
-//				.failureUrl("/error-login")
-//				.permitAll()
-//		.and()
-//			.logout()
-//				.invalidateHttpSession(true)
-//				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-//				.logoutSuccessUrl("/login")
-//				.permitAll()
-//
+// 	    	.and()
+// 		    .formLogin()
+// 		    	.loginPage("/login") 
+// 				.loginProcessingUrl("/login")
+// 				.defaultSuccessUrl("/add-shift",true) // the second parameter is for enforcing this url always
+// 				.failureUrl("/login")
+// 				.permitAll()
+// 		.and()
+// 			.logout()
+// 				.invalidateHttpSession(true)
+// 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+// 				.logoutSuccessUrl("/add-shift")
+// 				.permitAll()
+      
 //AUTHORIZATION
-//		.and()
-//			.authorizeRequests()
-//				.antMatchers("/product/**").hasRole("USER")  
-//				.antMatchers("/test2/**").hasAnyRole("USER")
-//				.anyRequest().authenticated() 
-//
-//
-//		.and()
-//			   to redirect the user when trying to access a resource to which access is not granted
-//	        .exceptionHandling().accessDeniedPage("/access-denied");
-//    }
-//
+// 		.and()
+// 			.authorizeRequests()
+// 				.antMatchers("/login/**").hasRole("USER")  
+// 				.anyRequest().authenticated() 
+// 		.and()
+			
+// 	        .exceptionHandling().accessDeniedPage("/access-denied");
+//     }
+
 // 	@Autowired 
 // 	private UserDetailsService userDetailsService; 	
-//
+
 // }
+
+
+
+
+
+
+
+    
+
+   
+
+
+
+
