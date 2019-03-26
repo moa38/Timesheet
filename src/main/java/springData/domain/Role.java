@@ -1,77 +1,68 @@
 package springData.domain;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 /**
- * Position class representing a position held by a user. Has List<appUsers>
+ * Role class representing a role held by a user. Has List<Users>
  *
  * @author CO2015 Group-17
  */
 @Entity
-public class Position {
+@Table(name = "role", uniqueConstraints = { @UniqueConstraint(name = "ROLE_UK", columnNames = "role") })
+public class Role {
 
-   @Column(unique = true, updatable = false, nullable = false)
    @Id
-   @GeneratedValue(strategy = GenerationType.AUTO)
-   private int positionId;
+   @Column(name = "id")
+   private int id;
 
-   @Column
-   private String positionName;
+   @Column(name = "role")
+   private String role;
 
-   @OneToMany(mappedBy = "position")
-   private List<User> users;
+   @OneToMany(mappedBy = "role")
+   private Set<User> userRoles;
 
-   public Position(int positionId, String positionName) {
-      this.positionId = positionId;
-      this.positionName = positionName;
+   public Role() {
+
    }
 
-   public Position() {
+   public Role(int id, String roleName) {
+      this.id = id;
+      this.role = roleName;
    }
 
-   public int getPositionId() {
-      return this.positionId;
+   public int getId() {
+      return id;
    }
 
-   public void setPositionId(int positionId) {
-      this.positionId = positionId;
+   public void setId(int id) {
+      this.id = id;
    }
 
-   public String getPositionName() {
-      return this.positionName;
+   public String getRole() {
+      return role;
    }
 
-   public void setPositionName(String positionName) {
-      this.positionName = positionName;
+   public void setRole(String role) {
+      this.role = role;
    }
 
-   public List<User> getUsers() {
-      if (users == null) {
-         users = new ArrayList<>();
+   public Set<User> getUserRoles() {
+      if (userRoles == null) {
+         userRoles = new HashSet<User>();
       }
-      return this.users;
+      return userRoles;
    }
 
-   public void setUsers(List<User> users) {
-      this.users = users;
-   }
-
-   public void addUser(User user) {
-      getUsers().add(user);
-      user.setPosition(this);
-   }
-
-   public void removeUser(User user) {
-      getUsers().remove(user);
-      user.setPosition(null);
+   public void setUserRoles(Set<User> userRoles) {
+      this.userRoles = userRoles;
    }
 
 }
-
