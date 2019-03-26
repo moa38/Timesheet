@@ -33,30 +33,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
    public UserDetailsService userDetailsService() {
       UserDetails user = User.withDefaultPasswordEncoder().username("user").password("password").roles("USER").build();
 
-      return new InMemoryUserDetailsManager(user);
-   }
+     return new InMemoryUserDetailsManager(user);
+  }
 }
 
-
-//  @EnableWebSecurity
-//  @Configuration
-//  public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
-//    @Override
-//     protected void configure(HttpSecurity http) throws Exception {
+//      protected void configure(HttpSecurity http) throws Exception {
 //     	http
-
-//SECURE COMMUNICATION
 //     	 .requiresChannel()
 // 	    		.anyRequest()
 // 	    		.requiresSecure()
-
-//AUTHENTICATION
 // 	    	.and()
 // 		    .formLogin()
 // 		    	.loginPage("/login") 
 // 				.loginProcessingUrl("/login")
-// 				.defaultSuccessUrl("/add-shift",true) // the second parameter is for enforcing this url always
+// 				.defaultSuccessUrl("/add-shift",true)
 // 				.failureUrl("/login")
 // 				.permitAll()
 // 		.and()
@@ -65,8 +55,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 // 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 // 				.logoutSuccessUrl("/add-shift")
 // 				.permitAll()
-      
-//AUTHORIZATION
 // 		.and()
 // 			.authorizeRequests()
 // 				.antMatchers("/login/**").hasRole("USER")  
@@ -80,7 +68,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 // 	private UserDetailsService userDetailsService; 	
 
 // }
-
 
 
 
