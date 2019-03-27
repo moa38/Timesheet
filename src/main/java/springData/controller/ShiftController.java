@@ -123,9 +123,6 @@ public class ShiftController {
    @RequestMapping("/edit-shift")
    public String editShift(Model model) {
       List<Timesheet> timesheets = (List<Timesheet>) timesheetRepo.findAll();
-      if (timesheets == null) {
-         System.out.print("No timesheets created");
-      }
       model.addAttribute("timesheets", timesheets);
 
       return "user/edit-shift";
