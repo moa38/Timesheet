@@ -11,13 +11,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import springData.domain.Shift;
 import springData.domain.Timesheet;
 import springData.domain.User;
 import springData.repository.ShiftRepository;
 import springData.repository.TimesheetRepository;
 import springData.repository.UserRepository;
-//import springData.repository.ShiftRepository;
+import springData.repository.ShiftRepository;
 
 @Controller
 public class ShiftController {
@@ -50,14 +52,18 @@ public class ShiftController {
       shifts.add(wed);
       shifts.add(thu);
       shifts.add(fri);
+      
+      
+      
       ts.getShifts().addAll(shifts);
       //DO NOT ALTER THESE
       //ts.setTimesheetId(timesheet.getTimesheetId());
       //model.addAttribute("Monday", mon);
       //model.addAttribute("Tuesday", tue);
       //model.addAttribute("shift", wed);
-      //model.addAttribute("shift", thu);
-      model.addAttribute("shift", new Shift());
+      model.addAttribute("shift", thu);
+      //model.addAllAttributes(shifts);
+      //model.addAttribute("shift", new Shift());
       //model.addAttribute("shifts", shifts);
       model.addAttribute("timesheet", ts);
       //model.addAttribute("timesheet", (List<Timesheet>)timesheetRepo.findAll());
@@ -104,19 +110,25 @@ public class ShiftController {
    @PostMapping("/add-shift/saveTimesheet/{timesheetId}")
    public String saveTimesheet(@PathVariable int timesheetId, @ModelAttribute("timesheet") Timesheet timesheet,
            Model model, Principal principal) {
-      //List<Timesheet> timesheets = new ArrayList<Timesheet>();
+
       User user = userRepo.findByUsername(principal.getName());
       timesheet.setUser(user);
       timesheetRepo.save(timesheet);
 
       //model.addAttribute("timesheet", timesheets);
 
-      return "user/edit-shift";
+      return "user/dashboard";
    }
 
-   @GetMapping(value = "/edit-shift")
-   public String editShift(@ModelAttribute ("timesheet") Timesheet timesheet, Model model, Principal principal) {
-      model.addAttribute("timesheet", (List<Timesheet>) timesheetRepo.findAll());
+   //@GetMapping(value = "/edit-shift")
+   //public String editShift(@ModelAttribute ("timesheet") Timesheet timesheet, Model model, Principal principal) {
+   @RequestMapping("/edit-shift")
+   public String editShift(Model model) {
+      List<Timesheet> timesheets = (List<Timesheet>) timesheetRepo.findAll();
+      if(timesheets == null) {
+         System.out.print("No timesheets created");
+      }
+      model.addAttribute("timesheets", timesheets);
 
       return "user/edit-shift";
    }
