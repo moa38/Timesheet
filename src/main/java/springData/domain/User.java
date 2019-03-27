@@ -2,47 +2,65 @@ package springData.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.Basic;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
+/**
+ * User class representing a user of the application. Has List<Timesheets>
+ *
+ * @author CO2015 Group-17
+ */
 @Entity
+@Table(name = "user", uniqueConstraints = { @UniqueConstraint(name = "USER_UK", columnNames = "username") })
 public class User {
 
-   @Column(unique = true, updatable = false, nullable = false)
+   @Column(updatable = false, nullable = false)
    @Id
-   @GeneratedValue(strategy = GenerationType.AUTO)
+   @GeneratedValue
    private int userId;
 
-   @Basic
+   @Column
    private String firstName;
 
-   @Basic
+   @Column
    private String lastName;
 
-   @Column(nullable = false)
-   @Basic(optional = false)
-   @NotNull(message = "Password can not be empty")
-   private String password;
+   @Column
+   private boolean enabled = true;
 
-   @OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
-   public List<Shift> shifts;
+   /*@Column//(nullable = false)
+   //@NotNull(message = "Password can not be empty")
+   private String password;*/
+
+   @ManyToOne(cascade = CascadeType.PERSIST)
+   private Role role;
+
+   private String username;
+
+   @ManyToOne
+   private Organization organization;
+
+   @OneToMany(mappedBy = "user")
+   private List<Timesheet> timesheets;
+
+   @Column(name = "Encrypted_Password", length = 128, nullable = false)
+   private String encryptedPassword;
 
    public User() {
    }
 
-   public User(int userId, String firstName, String lastName, String password) {
-      this.userId = userId;
+   public User(String firstName, String lastName, String password) {
       this.firstName = firstName;
       this.lastName = lastName;
-      this.password = password;
+      //this.password = password;
    }
 
    public int getUserId() {
@@ -69,31 +87,65 @@ public class User {
       this.lastName = lastName;
    }
 
-   public String getPassword() {
+   public String getEncryptedPassword() {
+      return encryptedPassword;
+   }
+
+   public void setEncryptedPassword(String encryptedPassword) {
+      this.encryptedPassword = encryptedPassword;
+   }
+
+   /*public String getPassword() {
       return this.password;
    }
 
    public void setPassword(String password) {
       this.password = password;
+   }*/
+
+   public Role getRole() {
+      return this.role;
    }
 
-   public List<Shift> getShifts() {
-      if (shifts == null) {
-         shifts = new ArrayList<>();
+   public void setRole(Role role) {
+      this.role = role;
+   }
+
+   public Organization getOrganization() {
+      return this.organization;
+   }
+
+   public void setOrganization(Organization organization) {
+      this.organization = organization;
+   }
+
+   public List<Timesheet> getTimesheets() {
+      if (timesheets == null) {
+         timesheets = new ArrayList<>();
       }
-      return this.shifts;
+      return this.timesheets;
    }
 
-   public void setShifts(List<Shift> shifts) {
-      this.shifts = shifts;
+   public void setTimesheets(List<Timesheet> timesheets) {
+      this.timesheets = timesheets;
    }
 
-   public void addShift(Shift shift) {
-      getShifts().add(shift);
+   public void addTimesheet(Timesheet timesheet) {
+      getTimesheets().add(timesheet);
+      timesheet.setUser(this);
    }
 
-   public void removeShift(Shift shift) {
-      getShifts().remove(shift);
+   public void removeTimesheet(Timesheet timesheet) {
+      getTimesheets().remove(timesheet);
+      timesheet.setUser(null);
    }
 
+   public String getUsername() {
+      return username;
+   }
+
+   public void setUsername(String username) {
+      this.username = username;
+   }
 }
+

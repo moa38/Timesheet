@@ -2,128 +2,121 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>FDM | Template</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" />
+<title>FDM | Template</title>
+<link rel="stylesheet"
+   href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" />
+<link rel="stylesheet"
+   href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" />
 </head>
 
 <!-- HEADER -->
 
 <body>
-    <section class="hero is-dark">
-        <div class="hero-head">
-            <nav class="navbar">
-                <div class="container">
-                    <div class="navbar-brand">
-                        <a class="navbar-item" href="https://fdmgroup.com   ">
-                            <img src="https://www.fdmgroup.com/wp-content/uploads/fdm-logo-anim-h180px.gif" />
-                        </a>
-                        <span class="navbar-burger burger" data-target="navbarMenuHeroB">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </span>
-                    </div>
-                    <div id="navbarMenuHeroB" class="navbar-menu">
-                        <div class="navbar-end">
-                            <a class="navbar-item is-active" href="/dashboard">
-                                <span class="icon"><i class="fas fa-home"></i></span>
-                                <span>Dashboard</span>
-                            </a>
-                            <a class="navbar-item" href="/account">
-                                <span class="icon"><i class="fas fa-user-circle"></i></span>
-                                <span>Account</span>
-                            </a>
-                            <a class="navbar-item" href="/help">
-                                <span class="icon"><i class="fas fa-question-circle"></i></span>
-                                <span>Help</span>
-                            </a>
-                            <span class="navbar-item">
-                                <a class="button is-info is-inverted" href="/login?logout">
-                                    <span class="icon">
-                                        <i class="fas fa-sign-out-alt"></i>
-                                    </span>
-                                    <span>Sign out</span>
-                                </a>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-        </div>
-        <div class="hero-body">
-            <div class="container has-text-centered">
-                <p class="title">
-                    Timesheet App
-                </p>
-                <p class="subtitle">
-                    View. Edit. Submit.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- <div class="hero-foot">
-        <nav class="tabs is-boxed is-fullwidth">
+   <section class="hero is-dark">
+      <div class="hero-head">
+         <nav class="navbar">
             <div class="container">
-                <ul>
-                    <li class="is-active">
-                        <a>Tab 1</a>
-                    </li>
-                    <li>
-                        <a>Tab 2</a>
-                    </li>
-                    <li>
-                        <a>Tab 3</a>
-                    </li>
-                    <li>
-                        <a>Tab 4</a>
-                    </li>
-                    <li>
-                        <a>Tab 5</a>
-                    </li>
-                    <li>
-                        <a>Tab 6</a>
-                    </li>
-                </ul>
+               <div class="navbar-brand">
+                  <a class="navbar-item" href="https://fdmgroup.com   "> <img
+                     src="https://www.fdmgroup.com/wp-content/uploads/fdm-logo-anim-h180px.gif" />
+                  </a> <span class="navbar-burger burger" data-target="navbarMenuHeroB">
+                     <span></span> <span></span> <span></span>
+                  </span>
+               </div>
+               <div id="navbarMenuHeroB" class="navbar-menu">
+                  <div class="navbar-end">
+                     <a class="navbar-item is-active" href="/dashboard"> <span
+                        class="icon"><i class="fas fa-home"></i></span> <span>Dashboard</span>
+                     </a> <a class="navbar-item" href="/account"> <span class="icon"><i
+                           class="fas fa-user-circle"></i></span> <span>Account</span>
+                     </a> <a class="navbar-item" href="/help"> <span class="icon"><i
+                           class="fas fa-question-circle"></i></span> <span>Help</span>
+                     </a> <span class="navbar-item"> <a
+                        class="button is-info is-inverted" href="/login?logout"> <span
+                           class="icon"> <i class="fas fa-sign-out-alt"></i>
+                        </span> <span>Sign out</span>
+                     </a>
+                     </span>
+                  </div>
+               </div>
             </div>
-        </nav>
-    </div>
-    </section> -->
+         </nav>
+      </div>
+      <div class="hero-body">
+         <div class="container has-text-centered">
+            <p class="title">Timesheet App</p>
+            <p class="subtitle">Create. Edit. Submit.</p>
+         </div>
+      </div>
+   </section>
 
-    <!-- END OF HEADER -->
+   <!-- END OF HEADER -->
 
-    <!-- BODY -->
+   <!-- BODY -->
+   <section class="section">
+      <div class="container">
+         <h1 class="title">Edit your Timesheets</h1>
 
-    <section class="section">
-        <div class="container">
-            <h1 class="title">Body heading</h1>
-            <h2 class="subtitle">
-                Body subheading
-            </h2>
-        </div>
-    </section>
+      </div>
+   </section>
+   <section class="section">
+      <div class="container">
+         <table class="table is-striped is-hoverable is-fullwidth">
+            <thead>
+               <tr>
+                  <th>TimesheetId</th>
+                  <th>Submitted</th>
+                  <th>Approved</th>
+                  <th><i class="fas fa-check-square"></i></th>         
+               </tr>
+            </thead>
+            <tbody>
+               <tr th:each="timesheet: ${timesheets}">
+                  <td th:text="${timesheet.timesheetId}">               
+                  <td>
+                     <span th:if="${timesheet.submitted == true}"> yes</span> 
+                     <span th:if="${timesheet.submitted == false}"> no </span>
+                  </td>
+                  <td>
+                     <span th:if="${timesheet.approved == true}"> yes</span> 
+                     <span th:if="${timesheet.approved == false}"> no </span>
+                  </td>
+                  <td>
+                     <div class="control">
+                        <button class="button is-primary">Edit</button>
+                     </div>
+                  </td>
+               </tr>
+            </tbody>
 
-    <!-- END OF BODY -->
+         </table>
+      </div>
+   </section>
 
-    <!-- FOOTER -->
+   <!-- END OF BODY -->
 
-    <section class=section>
-        <footer class="footer">
-            <div class="content has-text-centered">
-                <p>
-                    Built with <i class="fas fa-heart"></i> by <strong>CO2015 Group 17</strong>.
-                </p>
-                <br>
-                <p><i class="far fa-copyright"></i> 2019 Vinny Barden (<a href="https://github.com/vjba">vjba</a>),
-                    Mohammed Ahmed (<a href="https://github.com/moa38">moa38</a>), Joe Hopkinson (<a
-                        href="https://github.com/Magnum3">Magnum3</a>), Dan King (<a
-                        href="https://github.com/dk969">dk969</a>), Dan Low (<a
-                        href="https://github.com/dl255">dl255</a>).</p>
-                <p>All product names, logos, and brands are property of their respective owners.</p>
-            </div>
-        </footer>
-    </section>
+   <!-- FOOTER -->
+
+   <section class=section>
+      <footer class="footer">
+         <div class="content has-text-centered">
+            <p>
+               Built with <i class="fas fa-heart"></i> by <strong>CO2015
+                  Group 17</strong>.
+            </p>
+            <br>
+            <p>
+               <i class="far fa-copyright"></i> 2019 Vinny Barden (<a href="https://github.com/vjba">vjba</a>), 
+               Mohammed Ahmed (<a href="https://github.com/moa38">moa38</a>),
+               Joe Hopkinson (<a href="https://github.com/Magnum3">Magnum3</a>), 
+               Dan King (<a href="https://github.com/dk969">dk969</a>), 
+               Dan Low (<a href="https://github.com/dl255">dl255</a>).
+            </p>
+            <p>All product names, logos, and brands are property of their
+               respective owners.</p>
+         </div>
+      </footer>
+   </section>
 </body>
 
 </html>

@@ -8,8 +8,8 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
-import java.time.LocalDateTime;
-import java.time.Month;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 import springData.domain.Shift;
 
@@ -18,31 +18,39 @@ public class ShiftTest {
 
    @Before
    public void setUpShift() {
-      LocalDateTime startTime = LocalDateTime.now();
-      LocalDateTime endTime = LocalDateTime.now();
-      shift = new Shift(5465, startTime, endTime, 5, true, false);
+      //Create new Shift to be tested
+      LocalDate date = LocalDate.of(2015, 06, 13);
+      LocalTime startTime = LocalTime.now();
+      LocalTime endTime = LocalTime.now();
+      //New shift
+      shift = new Shift(date, startTime, endTime, 5, true, false);
    }
 
    @Test
    public void shiftHasId() {
       //Checks that shift has shiftId property
+      shift.setShiftId(5465);
       assertThat(shift, Matchers.hasProperty("shiftId", Matchers.equalTo(5465)));
    }
 
    @Test
    public void shiftHaStartTime() {
       //Checks that shift has startTime property and it is correct
-      LocalDateTime specificTime = LocalDateTime.of(2019, Month.FEBRUARY, 1, 10, 34);
+      LocalTime specificTime = LocalTime.of(10, 00);
       shift.setStartTime(specificTime);
-      assertThat(shift, Matchers.hasProperty("startTime", Matchers.equalTo(specificTime)));
+      assertThat(shift, Matchers.hasProperty("startTime", Matchers.equalTo(LocalTime.of(10, 00))));
+      //Change time and check
+      specificTime = LocalTime.of(21, 56);
+      shift.setStartTime(specificTime);
+      assertThat(shift, Matchers.hasProperty("startTime", Matchers.equalTo(LocalTime.of(21, 56))));
    }
 
    @Test
    public void shiftHasEndTime() {
       //Checks that shift has endTime property and it is correct
-      LocalDateTime specificTime = LocalDateTime.of(2019, Month.JANUARY, 4, 10, 54);
+      LocalTime specificTime = LocalTime.of(17, 30);
       shift.setStartTime(specificTime);
-      assertThat(shift, Matchers.hasProperty("startTime", Matchers.equalTo(specificTime)));
+      assertThat(shift, Matchers.hasProperty("startTime", Matchers.equalTo(LocalTime.of(17, 30))));
    }
 
    @Test
@@ -70,3 +78,4 @@ public class ShiftTest {
    }
 
 }
+

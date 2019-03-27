@@ -1,33 +1,26 @@
 package springData;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import springData.domain.Organization;
-import springData.domain.Position;
-import springData.domain.Shift;
-import springData.domain.User;
-
+import springData.repository.TimesheetRepository;
 import springData.repository.UserRepository;
-import springData.repository.OrganizationRepository;
-import springData.repository.ShiftRepository;
-import springData.repository.PositionRepository;
+import springData.domain.Role;
+import springData.domain.Shift;
+import springData.domain.Timesheet;
+import springData.domain.User;
 
 @SpringBootApplication
 public class WebApp implements CommandLineRunner {
 
-   @Autowired
-   private UserRepository userRepo;
-   @Autowired
-   private OrganizationRepository orgRepo;
-   @Autowired
-   private ShiftRepository shiftRepo;
-   @Autowired
-   private PositionRepository positionRepo;
+   @Autowired UserRepository userRepo;
+   @Autowired TimesheetRepository timesheetRepo;
 
    public static void main(String[] args) {
       SpringApplication.run(WebApp.class, args);
@@ -35,43 +28,48 @@ public class WebApp implements CommandLineRunner {
 
    @Override
    public void run(String... args) throws Exception {
-      User vinny = new User();
-      vinny.setFirstName("Vinny");
-      vinny.setLastName("Barden");
-      vinny.setPassword("password");
-      vinny.setUserId(001);
-      userRepo.save(vinny);
+      // TODO Auto-generated method stub
+      BCryptPasswordEncoder pe = new  BCryptPasswordEncoder();
 
-      User bob = new User();
-      bob.setFirstName("Bob");
-      bob.setLastName("Ross");
-      bob.setPassword("password");
-      bob.setUserId(002);
-      userRepo.save(bob);
+      Role role = new Role(1, "ROLE_USER");
 
-      Position examplePosition = new Position();
-      examplePosition.setPositionId(001);
-      examplePosition.setPositionName("student");
-      examplePosition.addUser(vinny);
-      examplePosition.addUser(bob);
-      positionRepo.save(examplePosition);
+      User user = new User();
+      user.setFirstName("Bob");
+      user.setLastName("Bobson");
+      user.setUsername("bob@bobmail.com");
+      user.setEncryptedPassword(pe.encode("password"));
+      user.setRole(role);
 
-      LocalDateTime now;
-      now = LocalDateTime.now();
+      User user2 = new User();
+      user2.setFirstName("John");
+      user2.setLastName("Smith");
+      user2.setUsername("smithy@mail.com");
+      user2.setEncryptedPassword(pe.encode("password2"));
 
-      Shift exampleShift = new Shift();
-      exampleShift.setStartTime(now);
-      exampleShift.setEndTime(now.plusHours(9));
-      exampleShift.setShiftId(001);
-      shiftRepo.save(exampleShift);
+      Timesheet t = new Timesheet();
 
-      Organization exampleOrganization = new Organization();
-      exampleOrganization.setOrganizationId(001);
-      exampleOrganization.setName("UoL");
-      exampleOrganization.setContactNumber("01161234567");
-      exampleOrganization.setAddress("University Road, Leicester");
-      exampleOrganization.addUser(vinny);
-      exampleOrganization.addUser(bob);
-      orgRepo.save(exampleOrganization);
+      Shift s1 = new Shift();
+      Shift s2 = new Shift();
+      Shift s3 = new Shift();
+      s1.setShiftDate(LocalDate.of(2018, 8, 8));
+      s1.setTimesheet(t);
+      s2.setTimesheet(t);
+      s3.setTimesheet(t);
+
+      s1.setStartTime(LocalTime.NOON);
+      s1.setEndTime(LocalTime.MIDNIGHT);
+      //Doesn't save user correctly
+      t.setUser(user);
+      t.getShifts().add(s1);
+      t.getShifts().add(s2);
+      t.getShifts().add(s3);
+
+      user.getTimesheets().add(t);
+      //Cause of ghost user
+      //timesheetRepo.save(t);
+
+      userRepo.save(user);
+      userRepo.save(user2);
    }
+
 }

@@ -17,7 +17,7 @@ public class OrganizationTest {
 
    @Before
    public void setUpOrganization() {
-      organization = new Organization(78931, "organizationName", "organizationAddress", "4479");
+      organization = new Organization("organizationName", "organizationAddress", "4479");
    }
 
    @Test
@@ -49,6 +49,7 @@ public class OrganizationTest {
    @Test
    public void organizationHasId() {
       //Checks that organization has given ID
+      organization.setOrganizationId(78931);
       assertThat(organization, Matchers.hasProperty("organizationId", Matchers.equalTo(78931)));
    }
 
@@ -78,3 +79,4 @@ public class OrganizationTest {
       assertThat(organization.getUsers(), Matchers.not(Matchers.hasSize(0)));
    }
 }
+

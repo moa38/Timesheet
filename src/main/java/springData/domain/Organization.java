@@ -2,16 +2,18 @@ package springData.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+/**
+ * Organization class representing the Organization appUsers work for. Has List<appUsers>
+ *
+ * @author CO2015 Group-17
+ */
 @Entity
 public class Organization {
 
@@ -20,20 +22,19 @@ public class Organization {
    @GeneratedValue(strategy = GenerationType.AUTO)
    private int organizationId;
 
-   @Basic
+   @Column
    private String name;
 
-   @Basic
+   @Column
    private String address;
 
-   @Basic
+   @Column
    private String contactNumber;
 
-   @OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY)
+   @OneToMany(mappedBy = "organization")
    private List<User> users;
 
-   public Organization(int organizationId, String name, String address, String contactNumber) {
-      this.organizationId = organizationId;
+   public Organization(String name, String address, String contactNumber) {
       this.name = name;
       this.address = address;
       this.contactNumber = contactNumber;
@@ -87,10 +88,11 @@ public class Organization {
 
    public void addUser(User user) {
       getUsers().add(user);
+      user.setOrganization(this);
    }
 
    public void removeUser(User user) {
       getUsers().remove(user);
+      user.setOrganization(null);
    }
-
 }

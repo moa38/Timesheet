@@ -2,8 +2,8 @@ package springData;
 
 import static org.junit.Assert.assertThat;
 
-import java.time.LocalDateTime;
-import java.time.Month;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 import org.hamcrest.Matchers;
@@ -11,19 +11,24 @@ import org.junit.Before;
 import org.junit.Test;
 
 import springData.domain.User;
+import springData.domain.Organization;
+import springData.domain.Role;
 import springData.domain.Shift;
+import springData.domain.Timesheet;
 
 public class UserTest {
    User user;
 
    @Before
    public void setUpUser() {
-      user = new User(003, "John", "Smith", "abcde");
+      //Create new AppUser to be tested
+      user = new User("John", "Smith", "abcde");
    }
 
    @Test
    public void userHasId() {
       //Checks that user has userId property
+      user.setUserId(003);
       assertThat(user, Matchers.hasProperty("userId", Matchers.equalTo(003)));
    }
 
@@ -35,26 +40,33 @@ public class UserTest {
    }
 
    @Test
-   public void positionHasUserList() {
-      //Checks that user has a populated list of shifts
-      //Create list and shifts
-      LocalDateTime startTime = LocalDateTime.of(2019, Month.JANUARY, 4, 2, 44);
-      LocalDateTime endTime = LocalDateTime.now();
-      ArrayList<Shift> shifts = new ArrayList<Shift>();
-      Shift s1 = new Shift(5465, startTime, endTime, 3, false, false);
-      Shift s2 = new Shift();
-
-      //Populate list with shifts
-      user.setShifts(shifts);
-      user.addShift(s1);
-      user.addShift(s2);
-
-      //Check that first shift has the correct startTime
-      assertThat(user.shifts.get(0), Matchers.hasProperty("startTime", Matchers.equalTo(startTime)));
-
-      //Remove s1 and check if list has correct size(1)
-      user.removeShift(s1);
-      assertThat(user.getShifts(), Matchers.hasSize(1));
+   public void userHasRole() {
+      //Checks that user has role and it is correct
+      Role pos = new Role(002, "Admin");
+      user.setRole(pos);
+      assertThat(user.getRole(), Matchers.equalTo(pos));
+      assertThat(user.getRole(), Matchers.instanceOf(Role.class));
    }
 
+   @Test
+   public void userHasOrganization() {
+      //Checks that user has organization property and it is correct
+      Organization org = new Organization("Test LLC", "123 Test Street", "0768375617");
+      user.setOrganization(org);
+      assertThat(user.getOrganization().getAddress(), Matchers.equalTo("123 Test Street"));
+   }
+
+   @Test
+   public void userHasTimesheets() {
+      //Checks that user has timesheets
+      Shift s1 = new Shift(LocalDate.of(2018, 10, 10), LocalTime.MIDNIGHT, LocalTime.NOON, 5, true, false);
+      Timesheet timesheet = new Timesheet();
+
+      timesheet.setTimesheetId(345);
+      timesheet.setUser(user);
+      timesheet.getShifts().add(s1);
+      user.getTimesheets().add(timesheet);
+      assertThat(user.getTimesheets(), Matchers.instanceOf(ArrayList.class));
+   }
 }
+
