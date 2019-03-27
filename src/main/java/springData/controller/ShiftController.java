@@ -19,7 +19,7 @@ import springData.domain.User;
 import springData.repository.ShiftRepository;
 import springData.repository.TimesheetRepository;
 import springData.repository.UserRepository;
-import springData.repository.ShiftRepository;
+//import springData.repository.ShiftRepository;
 
 @Controller
 public class ShiftController {
@@ -52,9 +52,7 @@ public class ShiftController {
       shifts.add(wed);
       shifts.add(thu);
       shifts.add(fri);
-      
-      
-      
+
       ts.getShifts().addAll(shifts);
       //DO NOT ALTER THESE
       //ts.setTimesheetId(timesheet.getTimesheetId());
@@ -125,7 +123,7 @@ public class ShiftController {
    @RequestMapping("/edit-shift")
    public String editShift(Model model) {
       List<Timesheet> timesheets = (List<Timesheet>) timesheetRepo.findAll();
-      if(timesheets == null) {
+      if (timesheets == null) {
          System.out.print("No timesheets created");
       }
       model.addAttribute("timesheets", timesheets);

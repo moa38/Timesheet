@@ -14,6 +14,8 @@ import javax.persistence.IdClass;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.Type;
+
 /**
  * Timesheet class contatining 7 shifts representing the days of the week.
  *
@@ -32,11 +34,11 @@ public class Timesheet {
    @ManyToOne(fetch = FetchType.EAGER)
    private User user;
 
-   //@Type(type = "yes_no")
+   @Type(type = "yes_no")
    @Column(name = "Submitted", nullable = false)
    private boolean submitted;
 
-   //@Type(type = "yes_no")
+   @Type(type = "yes_no")
    @Column(name = "Approved", nullable = false)
    private boolean approved;
 
