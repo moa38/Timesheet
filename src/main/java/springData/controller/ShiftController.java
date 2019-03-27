@@ -72,7 +72,6 @@ public class ShiftController {
    /*DO NOT ALTER THESE METHODS, I WILL GET BACK TO THEM AFTER THE VIEWS ARE UPDATED
    @PostMapping("/add-shift/saveShift")
    public String saveShift(@ModelAttribute("shift") Shift shift, Model model) {
-
       //Shift s = new Shift();
       shift.setShiftDate(LocalDate.of(2018, 03, 20));
       //s.setShiftDate(shift.getShiftDate());
@@ -80,15 +79,12 @@ public class ShiftController {
       //s.setEndTime(shift.getEndTime());
       //s.setTimesheet(timesheet.getTimesheetId());
       shiftRepo.save(shift);
-
       model.addAttribute("startTime", shift.getStartTime());
       model.addAttribute("endTime", shift.getEndTime());
       return "user/add-shift";
    }
-
    @PostMapping("/add-shift/saveShift/{shiftId}")
    public String saveShiftId(@PathVariable int shiftId, @ModelAttribute("shift") Shift shift, Model model) {
-
       Shift p = shiftRepo.findById(shiftId);
       if (p != null) shiftRepo.delete(shift);
       shift.setShiftId(shiftId);
@@ -99,7 +95,6 @@ public class ShiftController {
       //s.setEndTime(shift.getEndTime());
       //s.setTimesheet(timesheet.getTimesheetId());
       shiftRepo.save(shift);
-
       model.addAttribute("startTime", shift.getStartTime());
       model.addAttribute("endTime", shift.getEndTime());
       return "user/dashboard";

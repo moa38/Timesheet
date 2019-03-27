@@ -81,8 +81,8 @@
 						<th>ShiftId</th>
 						<th>Day</th>
 						<th>Day Start Time</th>
-						<th>Lunch Start Time</th>
-						<th>Lunch End Time</th>
+						<!--th>Lunch Start Time</th>
+						<th>Lunch End Time</th -->
 						<th>Day End Time</th>
 					</tr>
 				</thead>
@@ -104,7 +104,7 @@
 								<input th:field="${shift.startTime}" class="input" type="time" step="60" value="09:00">
 							</div>
 						</td>
-						<td>
+						<!--td>
 							<div class="control">
 								<input class="input" type="text" placeholder="1:00 PM">
 							</div>
@@ -113,7 +113,7 @@
 							<div class="control">
 								<input class="input" type="text" placeholder="2:00 PM">
 							</div>
-						</td>
+						</td -->
 						<td>
 							<div class="control">
 								<input th:field="${shift.endTime}" class="input" type="time" value="17:00" placeholder="5:00 PM">
