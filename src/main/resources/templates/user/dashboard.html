@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <title>FDM | Dashboard</title>
@@ -70,7 +71,9 @@
 
     <section class="section">
         <div class="container">
-            <h1 class="title">Hi, User.</h1>
+            <h1 class="title">Hi, 
+               <td th:text="${name}"></td>
+            </h1>
             <h2 class="subtitle">
                 This is your dashboard.
             </h2>
