@@ -26,8 +26,7 @@ apply plugin: "groovy"
 apply plugin: "eclipse"
 apply plugin: "idea"
 
-group = "CO2015-Group-17"
-version = "sprint-2"
+version = "1.0"
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -85,8 +84,8 @@ jacocoTestReport {
 // }
 
 bootJar {
-    baseName = "co2015-1819-group-17"
-    version = "sprint-3"
+    baseName = "Timesheet-App"
+    version = "1.0"
 }
 
 tasks.withType(com.github.spotbugs.SpotBugsTask) {
