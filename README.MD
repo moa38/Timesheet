@@ -1,12 +1,12 @@
 
-# Timesheet App Project
+# Timesheet App
 
 ## CI status
 
 | Branch    | CI Status                                                                                                                                                             |
 | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `master`  | [![Build Status](https://travis-ci.com/UOL-CS/co2015-1819-group-17.svg?token=g3URpAP48DaXad1Duz45&branch=master)](https://travis-ci.com/UOL-CS/co2015-1819-group-17)  |
-| `develop` | [![Build Status](https://travis-ci.com/UOL-CS/co2015-1819-group-17.svg?token=g3URpAP48DaXad1Duz45&branch=develop)](https://travis-ci.com/UOL-CS/co2015-1819-group-17) |
+| `master`  | [![Build Status](https://travis-ci.com/moa38/Timesheet-App.svg?token=Wvq1gJxzi2Ju4qdjqBTA&branch=master)](https://travis-ci.com/moa38/Timesheet-App)  |
+| `develop` | [![Build Status](https://travis-ci.com/moa38/Timesheet-App.svg?token=Wvq1gJxzi2Ju4qdjqBTA&branch=develop)](https://travis-ci.com/moa38/Timesheet-App) |
 
 ## Dependacy Documentation
 
