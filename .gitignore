@@ -129,5 +129,8 @@ gradle-app.setting
 ### Gradle Patch ###
 **/build/
 
+### IntelliJ idea dir ###
+.idea
+
 # End of https://www.gitignore.io/api/gradle,eclipse,visualstudiocode,java
 /.nb-gradle/
