@@ -3,6 +3,7 @@ package springData.controller;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
+import static java.time.temporal.ChronoUnit.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,13 +14,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import springData.DTO.ShiftsDTO;
 import springData.domain.Shift;
 import springData.domain.Timesheet;
 import springData.domain.User;
 import springData.repository.ShiftRepository;
 import springData.repository.TimesheetRepository;
 import springData.repository.UserRepository;
-//import springData.repository.ShiftRepository;
 
 @Controller
 public class ShiftController {
@@ -28,99 +29,126 @@ public class ShiftController {
    @Autowired TimesheetRepository timesheetRepo;
    @Autowired UserRepository userRepo;
 
-   @GetMapping(value = "/add-shift")
-   public String addShift(Model model) {
-      //User user = userRepo.findByUsername(principal.getUsername());
+   @GetMapping(value = "/add-timesheet")
+   public String addTimesheet(Model model) {
 
-      Timesheet ts = new Timesheet();
-      List<Shift> shifts = new ArrayList<Shift>();
-
-      Shift mon = new Shift();
-      Shift tue = new Shift();
-      Shift wed = new Shift();
-      Shift thu = new Shift();
-      Shift fri = new Shift();
-
-      mon.setShiftId(01);
-      tue.setShiftId(02);
-      wed.setShiftId(03);
-      thu.setShiftId(04);
-      fri.setShiftId(05);
-
-      shifts.add(mon);
-      shifts.add(tue);
-      shifts.add(wed);
-      shifts.add(thu);
-      shifts.add(fri);
-
-      ts.getShifts().addAll(shifts);
-      //DO NOT ALTER THESE
-      //ts.setTimesheetId(timesheet.getTimesheetId());
-      //model.addAttribute("Monday", mon);
-      //model.addAttribute("Tuesday", tue);
-      //model.addAttribute("shift", wed);
-      model.addAttribute("shift", thu);
-      //model.addAllAttributes(shifts);
-      //model.addAttribute("shift", new Shift());
-      //model.addAttribute("shifts", shifts);
-      model.addAttribute("timesheet", ts);
-      //model.addAttribute("timesheet", (List<Timesheet>)timesheetRepo.findAll());
-
-      return "user/add-shift";
+      ShiftsDTO shifts = new ShiftsDTO();
+      
+      for (int i = 0; i < 5; i++) {
+         shifts.addShift(new Shift());
+         System.out.println("Added " + i + " shift!!!");
+      }
+      model.addAttribute("shifts", shifts);
+      
+      return "user/add-timesheet";
    }
 
-   /*DO NOT ALTER THESE METHODS, I WILL GET BACK TO THEM AFTER THE VIEWS ARE UPDATED
-   @PostMapping("/add-shift/saveShift")
-   public String saveShift(@ModelAttribute("shift") Shift shift, Model model) {
-      //Shift s = new Shift();
-      shift.setShiftDate(LocalDate.of(2018, 03, 20));
-      //s.setShiftDate(shift.getShiftDate());
-      //s.setStartTime(shift.getStartTime());
-      //s.setEndTime(shift.getEndTime());
-      //s.setTimesheet(timesheet.getTimesheetId());
-      shiftRepo.save(shift);
-      model.addAttribute("startTime", shift.getStartTime());
-      model.addAttribute("endTime", shift.getEndTime());
-      return "user/add-shift";
-   }
-   @PostMapping("/add-shift/saveShift/{shiftId}")
-   public String saveShiftId(@PathVariable int shiftId, @ModelAttribute("shift") Shift shift, Model model) {
-      Shift p = shiftRepo.findById(shiftId);
-      if (p != null) shiftRepo.delete(shift);
-      shift.setShiftId(shiftId);
-      //Shift s = new Shift();
-      shift.setShiftDate(LocalDate.of(2018, 03, 20));
-      //s.setShiftDate(shift.getShiftDate());
-      //s.setStartTime(shift.getStartTime());
-      //s.setEndTime(shift.getEndTime());
-      //s.setTimesheet(timesheet.getTimesheetId());
-      shiftRepo.save(shift);
-      model.addAttribute("startTime", shift.getStartTime());
-      model.addAttribute("endTime", shift.getEndTime());
-      return "user/dashboard";
-   }*/
+   @PostMapping("/add-timesheet/saveTimesheet")
+   public String saveTimesheet(@ModelAttribute("shifts") ShiftsDTO shifts, Model model, Principal principal) {
 
-   @PostMapping("/add-shift/saveTimesheet/{timesheetId}")
-   public String saveTimesheet(@PathVariable int timesheetId, @ModelAttribute("timesheet") Timesheet timesheet,
-           Model model, Principal principal) {
-
-      User user = userRepo.findByUsername(principal.getName());
-      timesheet.setUser(user);
+      Timesheet timesheet = new Timesheet();
+      timesheet.setUser(userRepo.findByUsername(principal.getName()));
+   
+      //Bind Each Shift to Timesheet
+      for(int i = 0; i < 5; i++) {
+         shifts.getShifts().get(i).setTimesheet(timesheet);
+         /*Shift s = shifts.getShifts().get(i);
+         System.out.println(s.getStartTime().until(s.getEndTime(), MINUTES));
+         System.out.println("Minutes "+MINUTES.between(s.getStartTime(), s.getEndTime()));
+         System.out.println("Hours " + HOURS.between(s.getStartTime(), s.getEndTime()));*/
+      }
+      //Persist Timesheet & Shifts
+      shifts.setTimesheetId(timesheet.getTimesheetId());
       timesheetRepo.save(timesheet);
-
-      //model.addAttribute("timesheet", timesheets);
-
-      return "user/dashboard";
+      shiftRepo.saveAll(shifts.getShifts());
+      
+      return "redirect:/dashboard";
    }
 
-   //@GetMapping(value = "/edit-shift")
-   //public String editShift(@ModelAttribute ("timesheet") Timesheet timesheet, Model model, Principal principal) {
-   @RequestMapping("/edit-shift")
-   public String editShift(Model model) {
-      List<Timesheet> timesheets = (List<Timesheet>) timesheetRepo.findAll();
+   @RequestMapping("/view-timesheets")
+   public String viewTimesheets(Model model, Principal principal) {
+      
+      List<Timesheet> timesheets = (List<Timesheet>) timesheetRepo.findAllByUser(userRepo.findByUsername(principal.getName()));
       model.addAttribute("timesheets", timesheets);
-
-      return "user/edit-shift";
+      
+      return "user/view-timesheets";
    }
 
+   @GetMapping("/edit-timesheet/{timesheetId}")
+   public String editTimesheet(@PathVariable int timesheetId, Model model) {
+      Timesheet timesheet = timesheetRepo.findById(timesheetId);
+      ShiftsDTO shifts = new ShiftsDTO(shiftRepo.findByTimesheetId(timesheet));
+      
+      model.addAttribute("shifts", shifts);
+      
+      return "user/edit-timesheet";
+   }
+   
+   //TODO make it so timesheetId is reclaimed for reuse in the DB
+   @GetMapping("/delete-timesheet/{timesheetId}")
+   public String deleteTimesheet(@PathVariable int timesheetId, Model model) {
+      Timesheet timesheet = timesheetRepo.findById(timesheetId);
+      List<Shift> shifts = shiftRepo.findByTimesheetId(timesheetRepo.findById(timesheetId));
+      
+      //Drop entities from database
+      shiftRepo.deleteAll(shifts);
+      timesheetRepo.delete(timesheet);
+      
+      return "redirect:/view-timesheets";
+   }
+   
+   //TODO duplicate add-timesheet controller 
+   @PostMapping("/updateTimesheet")
+   public String updateTimesheet(@ModelAttribute("shifts") ShiftsDTO shifts, Model model, Principal principal) {
+      ShiftsDTO newShifts = new ShiftsDTO(shifts.getShifts());
+      
+      //Timesheet timesheet = timesheetRepo.findById(timesheetId); //new Timesheet();
+      System.out.println("THe sixesdf  is"+shifts.getShifts().get(0).getTimesheet().getTimesheetId());
+      Timesheet timesheet = shifts.getShifts().get(0).getTimesheet();
+      Shift fish = shiftRepo.findShiftByTimesheetId(timesheet);
+      System.out.println("THe list mm is "+ fish.getStartTime());
+      //timesheet.setUser(userRepo.findByUsername(principal.getName()));
+      System.out.println("THe fish  is"+shifts.getShifts().size());
+      List<Shift> mm = shiftRepo.findByTimesheetId(timesheet);
+      System.out.println("THe list mm is "+mm.size());
+      
+      ShiftsDTO currentShifts = new ShiftsDTO(mm);
+      System.out.println("THe flying fish  is "+currentShifts.getShifts().size());
+      
+      //Update Shifts
+      for(int i = 0; i < 5; i++) {
+         System.out.println("THe start  is"+shifts.getShifts().size());
+         //Update Date
+         newShifts.getShifts().get(i).getShiftDate();
+         System.out.println("THe potatoe  is"+ newShifts.getShifts().size());
+         currentShifts.getShifts().get(i).getShiftDate();
+         
+         currentShifts.getShifts().get(i).setShiftDate(newShifts.getShifts().get(i).getShiftDate());
+         System.out.println("THe first  is"+shifts.getShifts().size());
+         
+         //Update Start Time
+         currentShifts.getShifts().get(i).setStartTime(shifts.getShifts().get(i).getStartTime());
+         System.out.println("THe second  is"+shifts.getShifts().size());
+         
+         //Update End Time
+         currentShifts.getShifts().get(i).setEndTime(shifts.getShifts().get(i).getEndTime());
+         
+         
+         System.out.println("THe finsih  is"+shifts.getShifts().size());
+         shiftRepo.save(currentShifts.getShifts().get(i));
+         System.out.println("THe save  is"+shifts.getShifts().size());
+         //shifts.getShifts().get(i).setTimesheet(timesheet);
+         
+         /*Shift s = shifts.getShifts().get(i);
+         System.out.println(s.getStartTime().until(s.getEndTime(), MINUTES));
+         System.out.println("Minutes "+MINUTES.between(s.getStartTime(), s.getEndTime()));
+         System.out.println("Hours " + HOURS.between(s.getStartTime(), s.getEndTime()));*/
+      }
+      //shifts.getShifts().get(0).setOvertimeHours(66);
+      //shiftRepo.saveAll(currentShifts.getShifts());
+      
+      return "redirect:/dashboard";
+   }
+   
 }
+//ShiftController
