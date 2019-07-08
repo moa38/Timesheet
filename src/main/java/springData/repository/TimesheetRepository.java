@@ -20,6 +20,11 @@ public interface TimesheetRepository extends JpaRepository<Timesheet, Integer> {
    List<Timesheet> findByUser(@Param("user") User u);
 
    List<Timesheet> findAll();
+   
+   //DELETE FROM Child c WHERE c.mother <the condition>
+   
+   @Query("Select e from Timesheet e where e.user= :user")
+   List<Timesheet> findAllByUser(@Param("user") User user);
 
    @SuppressWarnings("unchecked")
    Timesheet save(Timesheet timesheet);
