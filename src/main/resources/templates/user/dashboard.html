@@ -3,7 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-    <title>FDM | Dashboard</title>
+    <title>Timesheet | Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
@@ -17,9 +17,6 @@
             <nav class="navbar">
                 <div class="container">
                     <div class="navbar-brand">
-                        <a class="navbar-item" href="https://fdmgroup.com   ">
-                            <img src="https://www.fdmgroup.com/wp-content/uploads/fdm-logo-anim-h180px.gif" />
-                        </a>
                         <span class="navbar-burger burger" data-target="navbarMenuHeroB">
                             <span></span>
                             <span></span>
@@ -71,20 +68,18 @@
 
     <section class="section">
         <div class="container">
-            <h1 class="title">Hi, 
-               <td th:text="${name}"></td>
-            </h1>
+            <h3 class="title">Hi, <td th:text="${name}"></td>! </h3>
             <h2 class="subtitle">
                 This is your dashboard.
             </h2>
             <div class="tile is-ancestor has-text-centered ">
                 <div class="tile is-parent">
                     <article class="tile is-child box">
-                        <p class="title">Add Timesheet</p>
-                        <p class="subtitle">Get a new timesheet started</p>
+                        <p class="title">Create Timesheet</p>
+                        <p class="subtitle">Make a new timesheet</p>
                         <div class="content">
                             <figure>
-                                <a href="/add-shift" class="image has-text-info">
+                                <a href="/add-timesheet" class="image has-text-info">
                                     <i class="far fa-plus-square fa-10x"></i>
                                 </a>
                             </figure>
@@ -93,11 +88,11 @@
                 </div>
                 <div class="tile is-parent">
                     <article class="tile is-child box">
-                        <p class="title">Edit Timesheet</p>
-                        <p class="subtitle">Pick up where you left off</p>
+                        <p class="title">View Timesheets</p>
+                        <p class="subtitle">Pick up where you left</p>
                         <div class="content">
                             <figure>
-                                <a href="/edit-shift" class="image has-text-warning">
+                                <a href="/view-timesheets" class="image has-text-warning">
                                     <i class="far fa-edit fa-10x"></i>
                                 </a>
                             </figure>
@@ -135,9 +130,9 @@
                         labels: ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"],
                         datasets: [
                             {
-                                label: "Hours",
+                                label: "Hours", 
                                 backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#f49542", "#c45850", "#ffdb2b", "#dfe72b"],
-                                data: [8, 7, 6, 10, 8, 9, 10]
+                                data: [8, 7, 6, 10, 8, 3, 0]
                             }
                         ]
                     },
@@ -159,15 +154,8 @@
         <footer class="footer">
             <div class="content has-text-centered">
                 <p>
-                    Built with <i class="fas fa-heart"></i> by <strong>CO2015 Group 17</strong>.
+                    Built with <i class="fas fa-heart"></i> by <strong> <a href="https://github.com/moa38">moa38</a> </strong>.
                 </p>
-                <br>
-                <p><i class="far fa-copyright"></i> 2019 Vinny Barden (<a href="https://github.com/vjba">vjba</a>),
-                    Mohammed Ahmed (<a href="https://github.com/moa38">moa38</a>), Joe Hopkinson (<a
-                        href="https://github.com/Magnum3">Magnum3</a>), Dan King (<a
-                        href="https://github.com/dk969">dk969</a>), Dan Low (<a
-                        href="https://github.com/dl255">dl255</a>).</p>
-                <p>All product names, logos, and brands are property of their respective owners.</p>
             </div>
         </footer>
     </section>
