@@ -13,16 +13,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-/**
- * User class representing a user of the application. Has List<Timesheets>
- *
- * @author CO2015 Group-17
- */
 @Entity
 @Table(name = "user", uniqueConstraints = { @UniqueConstraint(name = "USER_UK", columnNames = "username") })
 public class User {
 
-   @Column(updatable = false, nullable = false)
+   @Column(name="USER_ID", updatable = false, nullable = false)
    @Id
    @GeneratedValue
    private int userId;
@@ -36,13 +31,10 @@ public class User {
    @Column
    private boolean enabled = true;
 
-   /*@Column//(nullable = false)
-   //@NotNull(message = "Password can not be empty")
-   private String password;*/
-
    @ManyToOne(cascade = CascadeType.PERSIST)
    private Role role;
 
+   @Column
    private String username;
 
    @ManyToOne
@@ -57,10 +49,9 @@ public class User {
    public User() {
    }
 
-   public User(String firstName, String lastName, String password) {
+   public User(String firstName, String lastName) {
       this.firstName = firstName;
       this.lastName = lastName;
-      //this.password = password;
    }
 
    public int getUserId() {
@@ -94,14 +85,6 @@ public class User {
    public void setEncryptedPassword(String encryptedPassword) {
       this.encryptedPassword = encryptedPassword;
    }
-
-   /*public String getPassword() {
-      return this.password;
-   }
-
-   public void setPassword(String password) {
-      this.password = password;
-   }*/
 
    public Role getRole() {
       return this.role;
