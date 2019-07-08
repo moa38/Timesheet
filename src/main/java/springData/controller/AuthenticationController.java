@@ -1,14 +1,16 @@
 package springData.controller;
 
-import java.security.Principal;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import springData.domain.User;
 import springData.repository.UserRepository;
+
+import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class AuthenticationController {
@@ -21,7 +23,8 @@ public class AuthenticationController {
 
    @RequestMapping (value = "/dashboard", method = RequestMethod.GET)
    public String dashboard(Model model, Principal principal) {
-      model.addAttribute("name", principal.getName());
+      User user = userRepo.findByUsername(principal.getName());
+      model.addAttribute("name", user.getFirstName());
       return "/user/dashboard";
    }
 
