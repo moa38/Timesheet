@@ -38,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
          .loginProcessingUrl("/j_spring_security_check")
          .loginPage("/login")
          .usernameParameter("username").passwordParameter("password")
-         .defaultSuccessUrl("/add-shift", true)
+         .defaultSuccessUrl("/add-timesheet", true)
          .permitAll()
          .and()
       .logout()

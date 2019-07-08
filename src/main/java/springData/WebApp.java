@@ -45,6 +45,7 @@ public class WebApp implements CommandLineRunner {
       user2.setLastName("Smith");
       user2.setUsername("smithy@mail.com");
       user2.setEncryptedPassword(pe.encode("password2"));
+      //user2.setRole(role);
 
       Timesheet t = new Timesheet();
 
@@ -58,11 +59,12 @@ public class WebApp implements CommandLineRunner {
 
       s1.setStartTime(LocalTime.NOON);
       s1.setEndTime(LocalTime.MIDNIGHT);
+
       //Doesn't save user correctly
-      t.setUser(user);
+      /*t.setUser(user);
       t.getShifts().add(s1);
       t.getShifts().add(s2);
-      t.getShifts().add(s3);
+      t.getShifts().add(s3);*/
 
       user.getTimesheets().add(t);
       //Cause of ghost user
