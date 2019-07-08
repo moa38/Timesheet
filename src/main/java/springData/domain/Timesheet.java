@@ -1,37 +1,26 @@
 package springData.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Type;
 
-/**
- * Timesheet class contatining 7 shifts representing the days of the week.
- *
- * @author CO2015 Group-17
- */
 @Entity
-@IdClass(TimesheetPK.class)
 public class Timesheet {
 
-   @Column(name = "Timesheet_ID", unique = true, updatable = false, nullable = false)
    @Id
-   @GeneratedValue(strategy = GenerationType.AUTO)
+   @Column(name = "Timesheet_ID", unique = true, updatable = false, nullable = false)
+   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "timesheet_generator")
    private int timesheetId;
 
-   @Id
-   @ManyToOne(fetch = FetchType.EAGER)
+   @ManyToOne(fetch = FetchType.LAZY)
+   @JoinColumn(name="USER_ID")
    private User user;
 
    @Type(type = "yes_no")
@@ -41,9 +30,6 @@ public class Timesheet {
    @Type(type = "yes_no")
    @Column(name = "Approved", nullable = false)
    private boolean approved;
-
-   @OneToMany(mappedBy = "timesheet", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-   private List<Shift> shifts;
 
    public int getTimesheetId() {
       return this.timesheetId;
@@ -77,31 +63,10 @@ public class Timesheet {
       this.user = user;
    }
 
-   public List<Shift> getShifts() {
-      if (shifts == null) {
-         shifts = new ArrayList<>();
-      }
-      return this.shifts;
-   }
-
-   public void setShifts(List<Shift> shifts) {
-      this.shifts = shifts;
-   }
-
-   public void addShift(Shift shift) {
-      getShifts().add(shift);
-      shift.setTimesheet(this);
-   }
-
-   public void removeShift(Shift shift) {
-      getShifts().remove(shift);
-      shift.setTimesheet(null);
-   }
-
    @Override
    public String toString() {
       return "Timesheet [timesheetId=" + timesheetId + ", user=" + user + ", submitted=" + submitted
-            + ", approved=" + approved + ", shifts=" + shifts + "]";
+            + ", approved=" + approved + "]";
    }
 
 }
