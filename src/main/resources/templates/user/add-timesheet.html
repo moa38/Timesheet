@@ -65,7 +65,7 @@
 
 	<!-- END OF HEADER -->
 
-	<!-- BODY + ${timesheet.timesheetId}-->
+	<!-- BODY -->
 
 	<section class="section">
 		<div class="container">
@@ -77,7 +77,8 @@
 	<section class="section">
 		<div class="container">
 			<table class="table is-striped is-hoverable is-fullwidth">
-				<form th:object="${shifts}" th:action="@{/add-timesheet/saveTimesheet}" method="post">
+			   <!-- FORM -->
+				<form action="#" th:object="${shifts}" th:action="@{/add-timesheet/saveTimesheet}" method="post">
 				<thead>
 					<tr>
 						<th>Day</th>
@@ -97,34 +98,37 @@
 						   <span th:if="${i.index == 4}">Friday</span>
 						</td>			
 						<td>
-							<div class="control">
-								<input th:field="*{shifts[__${i.index}__].shiftDate}" class="input" type="date" value="2019-05-15" min="2018-03-18" max="2025-12-31" placeholder="2020-01-01">
-							</div>
+						   <input type="date" class="input" th:field="*{shifts[__${i.index}__].shiftDate}" min="2018-03-18" max="2025-12-31">
+						   <span class="error has-text-white has-background-grey" th:if="${#fields.hasErrors('shifts[__${i.index}__].shiftDate')}" th:errors="*{shifts[__${i.index}__].shiftDate}"></span>
 						</td>
 						<td th:text="${i.index}"></td>
 						<td>
 							<div class="control">
-								<input th:field="*{shifts[__${i.index}__].startTime}" class="input" type="time" step="60" value="09:00" placeholder="5:00 PM">
+								<input type="time" class="input" th:field="*{shifts[__${i.index}__].startTime}" step="60">
+								<span th:if="${#fields.hasErrors('shifts[__${i.index}__].startTime')}" th:errors="*{shifts[__${i.index}__].startTime}"></span>
 							</div>
 						</td>
 						<td>
 							<div class="control">
-								<input th:field="*{shifts[__${i.index}__].endTime}" class="input" type="time" step="60" value="17:00" placeholder="5:00 PM">
+								<input type="time" class="input" th:field="*{shifts[__${i.index}__].endTime}" step="60">
+								<span th:if="${#fields.hasErrors('shifts[__${i.index}__].endTime')}" th:errors="*{shifts[__${i.index}__].endTime}"></span>
 							</div>
 						</td>
 					</tr>
 				</tbody>
 			</table>
 			<td>
-				<div class="control">
-				   <!-- input class="button is-success" type="submit" value="Submit Timesheet" style="float: right;"-->
-				   <input class="button is-primary is-link" type="submit" value="Save Timesheet" style="float: right;">			
-				</div>
-				<div>
-					
+				<div class="field has-addons" style="float: right;">
+				  <p class="control">
+                 <button class="button is-primary is-link" type="submit" name="action" value="save">Save for Later</button>
+              </p>
+              <p class="control">
+				     <button class="button is-success" type="submit" name="action" value="submit">Submit</button>
+				  </p>
 				</div>
 			</td>
 			</form>
+			<!-- END OF FORM -->
 		</div>
 	</section>
 

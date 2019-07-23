@@ -98,30 +98,34 @@
                   </td>       
                   <td>
                      <div class="control">
-                        <input th:field="*{shifts[__${i.index}__].shiftDate}" class="input" type="date" min="2018-03-18" max="2025-12-31" th:value="${shift.shiftDate}">
+                        <input class="input" type="date" th:field="*{shifts[__${i.index}__].shiftDate}" min="2018-03-18" max="2025-12-31">
+                        <span th:if="${#fields.hasErrors('shifts[__${i.index}__].shiftDate')}" th:errors="*{shifts[__${i.index}__].shiftDate}"></span>
                      </div>
                   </td>
                   <td th:text="${i.index}"></td>
                   <td>
                      <div class="control">
-                        <input th:field="*{shifts[__${i.index}__].startTime}" class="input" type="time" step="60" th:value="${shift.startTime}">
+                        <input type="time" class="input" th:field="*{shifts[__${i.index}__].startTime}" step="60">
+                        <span th:if="${#fields.hasErrors('shifts[__${i.index}__].startTime')}" th:errors="*{shifts[__${i.index}__].startTime}"></span>
                      </div>
                   </td>
                   <td>
                      <div class="control">
-                        <input th:field="*{shifts[__${i.index}__].endTime}" class="input" type="time" step="60" th:value="${shift.endTime}">
+                        <input type="time" class="input" th:field="*{shifts[__${i.index}__].endTime}" step="60">
+                        <span th:if="${#fields.hasErrors('shifts[__${i.index}__].endTime')}" th:errors="*{shifts[__${i.index}__].endTime}"></span>
                      </div>
                   </td>
                </tr>
             </tbody>
          </table>
          <td>
-            <div class="control">
-               <!-- input class="button is-success" type="submit" value="Submit Timesheet" style="float: right;"-->
-               <input class="button is-primary is-link" type="submit" value="Update Timesheet" style="float: right;">        
-            </div>
-            <div>
-               
+            <div class="field has-addons" style="float: right;">
+               <p class="control">
+                  <button class="button is-link" type="submit" name="action" value="update">Save changes</button>
+               </p>
+               <p class="control">
+                  <button class="button is-success" type="submit" name="action" value="submit">Submit</button>
+               </p>
             </div>
          </td>
          </form>
