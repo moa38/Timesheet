@@ -3,16 +3,15 @@ package springData.domain;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.Type;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
@@ -24,7 +23,8 @@ public class Shift {
    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "shift_generator")
    private int shiftId;
 
-   @Column
+  
+   @Column(nullable = false)
    @DateTimeFormat(iso = ISO.DATE)
    private LocalDate shiftDate;
 
@@ -39,24 +39,22 @@ public class Shift {
    @Column
    private int overtimeHours = 0;
 
+   @Type(type = "yes_no")
    @Column
    private boolean bankHoliday = false;
 
+   //@Type(type = "yes_no")
    @Column
    private boolean holiday = false;
 
-   @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
-   @JoinColumn(name="Timesheet_ID")
+   @ManyToOne//(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+   @JoinColumn(name="Timesheet")
    private Timesheet timesheetId;
 
-   public Shift(LocalDate shiftDate, LocalTime startTime, LocalTime endTime, int overtimeHours, boolean bankHoliday,
-           boolean holiday) {
+   public Shift(LocalDate shiftDate, LocalTime startTime, LocalTime endTime) {
       this.shiftDate = shiftDate;
       this.startTime = startTime;
       this.endTime = endTime;
-      this.overtimeHours = overtimeHours;
-      this.bankHoliday = bankHoliday;
-      this.holiday = holiday;
    }
 
    public Shift() {
