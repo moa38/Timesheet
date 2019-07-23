@@ -29,7 +29,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
       springData.domain.User appUser = this.appUserDAO.findUserAccount(userName);
 
       if (appUser == null) {
-         System.out.println("User not found! " + userName);
+         System.out.println("User not found in Database! : " + userName);
          throw new UsernameNotFoundException("User " + userName + " was not found in the database");
       }
 

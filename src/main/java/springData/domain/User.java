@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "user", uniqueConstraints = { @UniqueConstraint(name = "USER_UK", columnNames = "username") })
@@ -34,13 +35,14 @@ public class User {
    @ManyToOne(cascade = CascadeType.PERSIST)
    private Role role;
 
-   @Column
+   @Column(unique = true)
+   @Pattern(regexp="^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
    private String username;
 
    @ManyToOne
    private Organization organization;
 
-   @OneToMany(mappedBy = "user")
+   @OneToMany(mappedBy = "user")//, cascade = {CascadeType.ALL})
    private List<Timesheet> timesheets;
 
    @Column(name = "Encrypted_Password", length = 128, nullable = false)
@@ -130,5 +132,6 @@ public class User {
    public void setUsername(String username) {
       this.username = username;
    }
+   
 }
 
