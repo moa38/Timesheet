@@ -15,7 +15,7 @@ public class ShiftsDTO {
    public ShiftsDTO() {
       shifts = new ArrayList<Shift>();
    }
-   
+
    public ShiftsDTO(List<Shift> shifts) {
       this.shifts = shifts;
    }
@@ -41,5 +41,5 @@ public class ShiftsDTO {
       this.timesheetId = timesheetId;
    }
    // getter and setter
-   
+
 }

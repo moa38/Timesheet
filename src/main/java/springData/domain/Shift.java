@@ -23,7 +23,6 @@ public class Shift {
    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "shift_generator")
    private int shiftId;
 
-  
    @Column(nullable = false)
    @DateTimeFormat(iso = ISO.DATE)
    private LocalDate shiftDate;
@@ -48,7 +47,7 @@ public class Shift {
    private boolean holiday = false;
 
    @ManyToOne//(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
-   @JoinColumn(name="Timesheet")
+   @JoinColumn(name = "Timesheet")
    private Timesheet timesheetId;
 
    public Shift(LocalDate shiftDate, LocalTime startTime, LocalTime endTime) {

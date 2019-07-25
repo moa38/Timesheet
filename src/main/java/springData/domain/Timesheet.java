@@ -28,18 +28,18 @@ public class Timesheet {
    private int timesheetId;
 
    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-   @JoinColumn(name="USER_ID")
+   @JoinColumn(name = "USER_ID")
    private User user;
-   
-   @Column(nullable=false)
+
+   @Column(nullable = false)
    @DateTimeFormat(iso = ISO.DATE)
    private LocalDate startDate;
-   
+
    @Column
    @DateTimeFormat(iso = ISO.DATE)
    private LocalDate dateSubmitted;
 
-   @OneToMany(mappedBy="timesheetId", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+   @OneToMany(mappedBy = "timesheetId", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
    private List<Shift> shifts = new ArrayList<Shift>();
 
    @Type(type = "yes_no")
@@ -81,7 +81,7 @@ public class Timesheet {
    public void setUser(User user) {
       this.user = user;
    }
-   
+
    public List<Shift> getShifts() {
       return shifts;
    }
@@ -97,7 +97,7 @@ public class Timesheet {
    public void setStartDate(LocalDate startDate) {
       this.startDate = startDate;
    }
-   
+
    public LocalDate getDateSubmitted() {
       return dateSubmitted;
    }

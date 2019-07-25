@@ -6,8 +6,6 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import static java.time.temporal.ChronoUnit.*;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,20 +52,19 @@ public class TimesheetController {
       return "user/add-timesheet";
    }
 
-   @PostMapping(value="/add-timesheet/saveTimesheet")
+   @PostMapping(value = "/add-timesheet/saveTimesheet")
    public String saveTimesheet(@Valid @ModelAttribute("shifts") ShiftsDTO shifts, BindingResult result, Model model,
-         Principal principal, @RequestParam(value="action", required=true) String action) {
-      
+           Principal principal, @RequestParam(value = "action", required = true) String action) {
+
       if (result.hasErrors()) {
          return "user/add-timesheet";
-      }
-      else {
+      } else {
          Timesheet timesheet = new Timesheet();
          timesheet.setUser(userRepo.findByUsername(principal.getName()));
          timesheet.setShifts(shifts.getShifts());
 
          //Bind Each Shift to Timesheet
-         for(int i = 0; i < 5; i++) {
+         for (int i = 0; i < 5; i++) {
             shifts.getShifts().get(i).setTimesheet(timesheet);
             /*Shift s = shifts.getShifts().get(i);
             System.out.println(s.getStartTime().until(s.getEndTime(), MINUTES));
@@ -89,10 +86,10 @@ public class TimesheetController {
    }
 
    @RequestMapping("/view-all-timesheets")
-   public String viewAllTimesheets(Model model, Principal principal) {  
+   public String viewAllTimesheets(Model model, Principal principal) {
       //List of User's Timesheets
       List<Timesheet> timesheets = (List<Timesheet>) timesheetRepo.findAllByUser(
-            userRepo.findByUsername(principal.getName()));
+                userRepo.findByUsername(principal.getName()));
 
       model.addAttribute("timesheets", timesheets);
 
@@ -100,10 +97,10 @@ public class TimesheetController {
    }
 
    @RequestMapping("/submitted-timesheets")
-   public String submittedTimesheets(Model model, Principal principal) {  
+   public String submittedTimesheets(Model model, Principal principal) {
       //List of User's Timesheets
       List<Timesheet> timesheets = (List<Timesheet>) timesheetRepo.findAllSubmittedByUser(
-            userRepo.findByUsername(principal.getName()));
+              userRepo.findByUsername(principal.getName()));
 
       model.addAttribute("timesheets", timesheets);
 
@@ -126,38 +123,37 @@ public class TimesheetController {
 
    @PostMapping("/updateTimesheet")// {timesheetId}
    public String updateTimesheet(@Valid @ModelAttribute("shifts") ShiftsDTO shifts, BindingResult result, Model model,
-         Principal principal, @RequestParam(value="action", required=true) String action) {
-      
+           Principal principal, @RequestParam(value = "action", required = true) String action) {
+
       if (result.hasErrors()) {
          return "user/edit-timesheet";
       }
-      
+
       Timesheet timesheet;
 
       //Get shifts from ShiftsDTO
       List<Shift> newShifts = shifts.getShifts();
 
       //Update Timesheet
-      if(timesheetRepo.findByStartDate(shifts.getShifts().get(0).getShiftDate()) != null) {
+      if (timesheetRepo.findByStartDate(shifts.getShifts().get(0).getShiftDate()) != null) {
          timesheet = timesheetRepo.findByStartDate(shifts.getShifts().get(0).getShiftDate());
          List<Shift> existingShifts = timesheet.getShifts();
 
          //Update existing shifts with new details
-         for(int i = 0; i < existingShifts.size(); i++) {
+         for (int i = 0; i < existingShifts.size(); i++) {
             existingShifts.get(i).setShiftDate(newShifts.get(i).getShiftDate());
             existingShifts.get(i).setStartTime(newShifts.get(i).getStartTime());
             existingShifts.get(i).setEndTime(newShifts.get(i).getEndTime());
          }
-      }
-      //StartDate is changed -> Create new Timesheet
-      else {
+      } else {
+         //StartDate is changed -> Create new Timesheet
          timesheet = new Timesheet();
          timesheet.setUser(userRepo.findByUsername(principal.getName()));
          timesheet.setStartDate(newShifts.get(0).getShiftDate());
          timesheet.setShifts(newShifts);
 
          //Bind Each Shift to Timesheet
-         for(int i = 0; i < 5; i++) {
+         for (int i = 0; i < 5; i++) {
             shifts.getShifts().get(i).setTimesheet(timesheet);
          }
       }
@@ -193,7 +189,7 @@ public class TimesheetController {
    //TODO make it so timesheetId is reclaimed for reuse in the DB
    @GetMapping("/delete-timesheet/{timesheetId}")
    public String deleteTimesheet(@PathVariable int timesheetId) {
-      //Find Timesheet by @PathVariable 
+      //Find Timesheet by @PathVariable
       Timesheet timesheet = timesheetRepo.findById(timesheetId);
 
       //Drop Timesheet & Shifts from database

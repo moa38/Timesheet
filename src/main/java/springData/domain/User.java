@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -18,7 +19,7 @@ import javax.validation.constraints.Pattern;
 @Table(name = "user", uniqueConstraints = { @UniqueConstraint(name = "USER_UK", columnNames = "username") })
 public class User {
 
-   @Column(name="USER_ID", updatable = false, nullable = false)
+   @Column(name = "USER_ID", updatable = false, nullable = false)
    @Id
    @GeneratedValue
    private int userId;
@@ -32,11 +33,11 @@ public class User {
    @Column
    private boolean enabled = true;
 
-   @ManyToOne(cascade = CascadeType.PERSIST)
+   @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
    private Role role;
 
    @Column(unique = true)
-   @Pattern(regexp="^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
+   @Pattern(regexp = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
    private String username;
 
    @ManyToOne
@@ -45,8 +46,8 @@ public class User {
    @OneToMany(mappedBy = "user")//, cascade = {CascadeType.ALL})
    private List<Timesheet> timesheets;
 
-   @Column(name = "Encrypted_Password", length = 128, nullable = false)
-   private String encryptedPassword;
+   @Column(name = "password", length = 128, nullable = false)
+   private String password;
 
    public User() {
    }
@@ -80,12 +81,12 @@ public class User {
       this.lastName = lastName;
    }
 
-   public String getEncryptedPassword() {
-      return encryptedPassword;
+   public String getPassword() {
+      return password;
    }
 
-   public void setEncryptedPassword(String encryptedPassword) {
-      this.encryptedPassword = encryptedPassword;
+   public void setPassword(String encryptedPassword) {
+      this.password = encryptedPassword;
    }
 
    public Role getRole() {
@@ -132,6 +133,6 @@ public class User {
    public void setUsername(String username) {
       this.username = username;
    }
-   
+
 }
 

@@ -17,7 +17,7 @@ public class ShiftsDTOValidator implements Validator {
       ShiftsDTO dto = (ShiftsDTO) target;
 
       //Validate each Shift
-      for(int i = 0; i < dto.getShifts().size(); i++) {
+      for (int i = 0; i < dto.getShifts().size(); i++) {
          //Get Shift from DTO
          Shift shift = dto.getShifts().get(i);
 
@@ -32,7 +32,7 @@ public class ShiftsDTOValidator implements Validator {
          //Ensure StartTime field !=null
          if (shift.getStartTime() == null) {
             errors.rejectValue("shifts[" + i + "].startTime", "", "Start time must be entered");
-         } 
+         }
          //Ensure EndTime field !=null
          if (shift.getEndTime() == null) {
             errors.rejectValue("shifts[" + i + "].endTime", "", "End time must be entered");
