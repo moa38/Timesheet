@@ -38,7 +38,7 @@ public class TimesheetController {
       binder.addValidators(new ShiftsDTOValidator());
    }
 
-   @GetMapping(value = "/add-timesheet")
+   @GetMapping(value = "/user/add-timesheet")
    public String addTimesheet(Model model) {
       //Add DTO to form
       ShiftsDTO shifts = new ShiftsDTO();
@@ -52,7 +52,7 @@ public class TimesheetController {
       return "user/add-timesheet";
    }
 
-   @PostMapping(value = "/add-timesheet/saveTimesheet")
+   @PostMapping(value = "/user/add-timesheet/saveTimesheet")
    public String saveTimesheet(@Valid @ModelAttribute("shifts") ShiftsDTO shifts, BindingResult result, Model model,
            Principal principal, @RequestParam(value = "action", required = true) String action) {
 
@@ -85,7 +85,7 @@ public class TimesheetController {
       }
    }
 
-   @RequestMapping("/view-all-timesheets")
+   @RequestMapping("/user/view-all-timesheets")
    public String viewAllTimesheets(Model model, Principal principal) {
       //List of User's Timesheets
       List<Timesheet> timesheets = (List<Timesheet>) timesheetRepo.findAllByUser(
@@ -96,7 +96,7 @@ public class TimesheetController {
       return "user/view-all-timesheets";
    }
 
-   @RequestMapping("/submitted-timesheets")
+   @RequestMapping("/user/submitted-timesheets")
    public String submittedTimesheets(Model model, Principal principal) {
       //List of User's Timesheets
       List<Timesheet> timesheets = (List<Timesheet>) timesheetRepo.findAllSubmittedByUser(
@@ -107,7 +107,7 @@ public class TimesheetController {
       return "user/submitted-timesheets";
    }
 
-   @GetMapping("/edit-timesheet/{timesheetId}")
+   @GetMapping("/user/edit-timesheet/{timesheetId}")
    public String editTimesheet(@PathVariable int timesheetId, Model model) {
       //Find Timesheet by ID
       Timesheet timesheet = timesheetRepo.findById(timesheetId);
@@ -121,7 +121,7 @@ public class TimesheetController {
       return "user/edit-timesheet";
    }
 
-   @PostMapping("/updateTimesheet")// {timesheetId}
+   @PostMapping("/user/updateTimesheet")// {timesheetId}
    public String updateTimesheet(@Valid @ModelAttribute("shifts") ShiftsDTO shifts, BindingResult result, Model model,
            Principal principal, @RequestParam(value = "action", required = true) String action) {
 
@@ -168,7 +168,7 @@ public class TimesheetController {
       return "redirect:/dashboard";
    }
 
-   @GetMapping("/view-timesheet/{timesheetId}")
+   @GetMapping("/user/view-timesheet/{timesheetId}")
    public String viewTimesheet(@PathVariable int timesheetId, Model model) {
       //Find Timesheet by ID
       Timesheet timesheet = timesheetRepo.findById(timesheetId);
@@ -181,13 +181,13 @@ public class TimesheetController {
       return "user/view-timesheet";
    }
 
-   @RequestMapping("/view-timesheet/back")
+   @RequestMapping("/user/view-timesheet/back")
    public String viewTimesheetBack() {
-      return "redirect:/submitted-timesheets";
+      return "redirect:/user/submitted-timesheets";
    }
 
    //TODO make it so timesheetId is reclaimed for reuse in the DB
-   @GetMapping("/delete-timesheet/{timesheetId}")
+   @GetMapping("/user/delete-timesheet/{timesheetId}")
    public String deleteTimesheet(@PathVariable int timesheetId) {
       //Find Timesheet by @PathVariable
       Timesheet timesheet = timesheetRepo.findById(timesheetId);
@@ -195,7 +195,7 @@ public class TimesheetController {
       //Drop Timesheet & Shifts from database
       timesheetRepo.delete(timesheet);
 
-      return "redirect:/view-all-timesheets";
+      return "redirect:/user/view-all-timesheets";
    }
 
 }

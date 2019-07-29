@@ -10,7 +10,6 @@ import springData.domain.User;
 import springData.repository.UserRepository;
 
 import java.security.Principal;
-import java.util.List;
 
 @Controller
 public class AuthenticationController {
@@ -21,10 +20,40 @@ public class AuthenticationController {
       return "login";
    }
 
+   @RequestMapping(value = "/success-login", method = RequestMethod.GET)
+   public String successLogin(Principal principal) {
+      //Get Logged in User
+      User user = userRepo.findByUsername(principal.getName());
+
+      String view;
+
+      //Get View for Role
+      switch (user.getRole().getRole()) {
+         case "ADMIN":
+            view = "redirect:/admin/create";
+            break;
+         case "MANAGER":
+            view = "redirect:/dashboard";
+            break;
+         default:
+            view = "redirect:/user/add-timesheet";
+            break;
+      }
+      return view;
+   }
+
    @RequestMapping (value = "/dashboard", method = RequestMethod.GET)
    public String dashboard(Model model, Principal principal) {
+      //Get Logged in User
       User user = userRepo.findByUsername(principal.getName());
+
       model.addAttribute("name", user.getFirstName());
+
+      //TODO Get latest timesheet by date and display on dashboard
+      //SELECT * FROM table ORDER BY date DESC LIMIT 5
+      if (user.getRole().getRole().equals("MANAGER")) {
+         return "manager/dashboard";
+      }
       return "/user/dashboard";
    }
 
