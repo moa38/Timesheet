@@ -37,7 +37,7 @@ public class User {
    private Role role;
 
    @Column(unique = true)
-   @Pattern(regexp = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
+   //@Pattern(regexp = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
    private String username;
 
    @ManyToOne

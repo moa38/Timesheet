@@ -23,7 +23,7 @@ public class ShiftTest {
       LocalTime startTime = LocalTime.now();
       LocalTime endTime = LocalTime.now();
       //New shift
-      shift = new Shift(date, startTime, endTime, 5, true, false);
+      shift = new Shift(date, startTime, endTime);
    }
 
    @Test
@@ -64,9 +64,9 @@ public class ShiftTest {
    @Test
    public void shiftHasBankHoliday() {
       //Checks that shift bank holiday is correct
-      assertTrue(shift.isBankHoliday());
-      shift.setBankHoliday(false);
       assertFalse(shift.isBankHoliday());
+      shift.setBankHoliday(true);
+      assertTrue(shift.isBankHoliday());
    }
 
    @Test
