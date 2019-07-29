@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<title>Timesheet | Pending Timesheets</title>
+<title>Timesheet | Approved Timesheets</title>
 <link rel="stylesheet"
    href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" />
 <link rel="stylesheet"
@@ -53,49 +53,41 @@
    <!-- BODY -->
    <section class="section">
       <div class="container">
-         <h1 class="title">Pending Timesheets</h1>
-         <h2 class="subtitle">Timesheets pending your approval.</h2>
+         <h1 class="title">Approved Timesheets</h1>
+         <h2 class="subtitle">Here are Timesheets you've approved.</h2>
       </div>
    </section>
    <section class="section">
       <div class="container" th:if="${#lists.isEmpty(timesheets)}">
-         <span><strong> No Timesheets need your attention.</strong></span>
+         <span><strong> No Timesheets approved </strong></span>
       </div>
       <div class="container" th:if="${not #lists.isEmpty(timesheets)}">
       
-         <!-- Display Submitted Timesheets -->
+         <!-- Display User's Timesheets -->
          <table class="table is-striped is-hoverable is-fullwidth">
             <thead>
                <tr>
                   <th>Start Date</th>
-                  <th>Date Submitted</th>
                   <th>TimesheetId</th>
-                  <th>Submitted</th>
-                  <th><i class="fas fa-lg fa-check-square"></i></th>
-                  <th><i class="fas fa-lg fa-ban"></i></th>         
+                  <th>Date Submitted</th>
+                  <th>Approved</th>
+                  <th><i class="fas fa-lg fa-info-circle"></i></th>     
                </tr>
             </thead>
             <tbody>
                <tr th:each="timesheet: ${timesheets}">
                   <td th:text="${timesheet.startDate}">
-                  <td th:text="${timesheet.startDate}">
                   <td th:text="${timesheet.timesheetId}">               
-                  <td th:text="${timesheet.submitted}">
-                  <div th:if="${timesheet.approved == false}">
-                     <td>
-                        <a class="button is-link" th:href="@{/manager/review-timesheet/} + ${timesheet.timesheetId}">
-                           <span> Review </span>
-                        </a>
-                     </td>
-                     <td>
-                        <a class="button is-danger is-outlined" th:href="@{/manager/reject-timesheet/} + ${timesheet.timesheetId}">
-                           <span> Reject </span>
-                           <span class="icon is-small">
-                              <i class="fas fa-times"></i>
-                           </span>
-                        </a>
-                     </td>
-                  </div>
+                  <td th:text="${timesheet.dateSubmitted}">
+                  <td>
+                     <span th:if="${timesheet.approved == true}"> Yes</span> 
+                     <span th:if="${timesheet.approved == false}"> No </span>
+                  </td>
+                  <td>
+                     <a class="button is-info" th:href="@{/manager/review-timesheet/} + ${timesheet.timesheetId}">
+                        <span> View </span>
+                     </a>
+                  </td>
                </tr>
             </tbody>
 
