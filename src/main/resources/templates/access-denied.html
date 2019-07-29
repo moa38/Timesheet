@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Timesheet App | Oops</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" />
+</head>
+
+<!-- HEADER -->
+
+<body>
+    <section class="hero is-danger">
+        <div class="hero-head">
+            <nav class="navbar">
+                <div class="container">
+                    <div class="navbar-brand">
+                        <span class="navbar-burger burger" data-target="navbarMenuHeroB">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </span>
+                    </div>
+                    <div id="navbarMenuHeroB" class="navbar-menu">
+                        <div class="navbar-end">
+                            <a class="navbar-item is-active" href="/dashboard">
+                                <span class="icon"><i class="fas fa-home"></i></span>
+                                <span>Dashboard</span>
+                            </a>
+                            <a class="navbar-item" href="/account">
+                                <span class="icon"><i class="fas fa-user-circle"></i></span>
+                                <span>Account</span>
+                            </a>
+                            <a class="navbar-item" href="/help">
+                                <span class="icon"><i class="fas fa-question-circle"></i></span>
+                                <span>Help</span>
+                            </a>
+                            <span class="navbar-item">
+                                <a class="button is-danger is-inverted" disabled>
+                                    <span class="icon">
+                                        <i class="fas fa-sign-out-alt"></i>
+                                    </span>
+                                    <span>Sign out</span>
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <p class="title">
+                    Timesheet App
+                </p>
+                <p class="subtitle">
+                    Create. Edit. Submit.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- END OF HEADER -->
+
+    <!-- BODY -->
+
+    <section class="section">
+        <div class="container">
+            <h1 class="title">ACCESS DENIED</h1>
+            <h2 class="subtitle">
+                Oops. You do not have access to this page.
+            </h2>
+            <div class="content">
+                <ol type="1">
+                    <li><strong>Check View Resolvers / Mappings</strong>: <p class="is-family-code">
+                            src/main/java/springData/WebConfig.java</p>
+                    </li>
+                    <li><strong>Check Auth Permissions</strong>: <p class="is-family-code">
+                            src/main/java/springData/SecurityConfig.java</p>
+                    </li>
+                    <li><strong>Check Controllers</strong>: <p class="is-family-code">
+                            src/main/java/springData/controllers/*.java</p>
+                    </li>
+                    <li>
+                        Visit our help page <a href="/help">here</a>, or optionally email us at <a
+                            href="mailto:example@example.org">example@example.org</a>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <!-- END OF BODY -->
+
+    <!-- FOOTER -->
+
+    <section class=section>
+        <footer class="footer">
+            <div class="content has-text-centered">
+                <p>
+                    Built with <i class="fas fa-heart"></i> by <strong> <a href="https://github.com/moa38">moa38</a> </strong>.
+                </p>
+            </div>
+        </footer>
+    </section>
+</body>
+
+</html>
