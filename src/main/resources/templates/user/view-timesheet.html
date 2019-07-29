@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+<!-- html xmlns:sec="http://www.thymeleaf.org/extras/spring-security"-->
 
 <head>
 <title>Timesheet | View Timesheet</title>
@@ -101,8 +102,8 @@
 					</tr>
 				</tbody>
 			</table>
-			<td>
-			   <a class="button is-danger" th:href="@{/view-timesheet/back}" style="float: right;">
+			<td><!-- sec:authorize="hasRole('ROLE_USER')"-->
+			   <a class="button is-danger" th:href="@{/user/view-timesheet/back}" style="float: right;">
                <span> Back </span>
             </a>
          </td>

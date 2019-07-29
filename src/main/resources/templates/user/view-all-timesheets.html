@@ -89,12 +89,12 @@
                   </td>
                   <div th:if="${timesheet.submitted == false}">
                      <td>
-                        <a class="button is-primary" th:href="@{/edit-timesheet/} + ${timesheet.timesheetId}">
+                        <a class="button is-primary" th:href="@{/user/edit-timesheet/} + ${timesheet.timesheetId}">
                            <span> Edit </span>
                         </a>
                      </td>
                      <td>
-                        <a class="button is-danger is-outlined" th:href="@{/delete-timesheet/} + ${timesheet.timesheetId}">
+                        <a class="button is-danger is-outlined" th:href="@{/user/delete-timesheet/} + ${timesheet.timesheetId}">
                            <span> Delete </span>
                            <span class="icon is-small">
                               <i class="fas fa-times"></i>
