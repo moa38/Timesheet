@@ -16,7 +16,7 @@ public class UserTest {
    @Before
    public void setUpUser() {
       //Create new AppUser to be tested
-      user = new User("John", "Smith");
+      user = new User("John", "Smith", "bob@mail.com");
    }
 
    @Test

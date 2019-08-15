@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import javax.validation.Valid;
+
 import static java.time.temporal.ChronoUnit.MINUTES;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,7 +66,7 @@ public class TimesheetController {
          timesheet.setShifts(shifts.getShifts());
 
          double hours = calcTotalHours(shifts.getShifts());
-         System.out.printf("Hours 2 decimal %.1f \n", hours);
+         System.out.printf("Hours 2 decimal %.1f %n", hours);
          System.out.println("Hours only " + hours);
 
          //Bind Each Shift to Timesheet

@@ -68,7 +68,7 @@ public class AdminController {
          newUser.setFirstName(userDTO.getFirstName());
          newUser.setLastName(userDTO.getLastName());
          newUser.setUsername(userDTO.getUsername());
-         //newUser.setPassword(pe.encode(userDTO.getPassword()));
+         newUser.setPassword(pe.encode(userDTO.getPassword()));
          newUser.setRole(roleRepo.findByRoleName(userDTO.getRoleName()));
 
          //Save User
