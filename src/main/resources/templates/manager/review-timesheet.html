@@ -3,6 +3,7 @@
 
 <head>
 <title>Timesheet | Review Timesheet</title>
+<!--link rel="stylesheet" type="text/css" href="myStyles.css" /-->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" />
 <link rel="stylesheet"
@@ -70,7 +71,8 @@
 	<section class="section">
 		<div class="container">
 			<h1 class="title">Review Timesheet</h1>
-			<h2 class="subtitle">See the details of the submitted Timesheet.</h2>
+			<h2 th:if="${timesheet.approved == false}" class="subtitle">Review details of the submitted Timesheet.</h2>
+			<h2 th:if="${timesheet.approved == true}" class="subtitle">View details of approved Timesheet.</h2>
 		</div>
 	</section>
 
@@ -101,18 +103,16 @@
 					</tr>
 				</tbody>
 			</table>
-			<div class="field has-addons" th:if="${timesheet.approved == false}" style="float: right;">
-			   <td>
-			      <a class="button is-info" th:href="@{/manager/approve-timesheet/} + ${timesheet.timesheetId}">
-                  <span> Approve</span>
-               </a>
-            </td>
-            <td>
-               <a class="button is-danger" th:href="@{/manager/reject-timesheet/} + ${timesheet.timesheetId}">
-                  <span> Reject</span>
-               </a>
-            </td>
-			</div>
+         <td>            
+			   <div class="field has-addons" th:if="${timesheet.approved == false}" style="float: right;">
+			      <p class="control" th:href="@{/manager/approve-timesheet/} + ${timesheet.timesheetId}">
+			         <button class="button is-info">Approve</button>
+			      </p>
+			      <p class="control" th:href="@{/manager/reject-timesheet/} + ${timesheet.timesheetId}">
+                  <button class="button is-danger">Reject</button>
+               </p>   
+			   </div>
+			</td>
 			<td th:if="${timesheet.approved == true}">
 			   <a class="button is-danger" th:href="@{/manager/review-timesheet/back}" style="float: right;">
                <span> Back </span>
@@ -125,16 +125,17 @@
 	<!-- END OF BODY -->
 
 	<!-- FOOTER -->
-
-	<section class=section>
-		<footer class="footer">
-			<div class="content has-text-centered">
-				<p>
-					Built with <i class="fas fa-heart"></i> by <strong> <a href="https://github.com/moa38">moa38</a> </strong>.
-				</p>
-			</div>
-		</footer>
-	</section>
+   
+    <section class="section">
+        <footer class="myfooter">
+            <div class="content has-text-centered">
+                <p>
+                    Built with <i class="fas fa-heart"></i> by 
+                    <strong> <a href="https://github.com/moa38">moa38</a> </strong>.
+                </p>
+            </div>
+        </footer>
+    </section>
 
 </body>
 

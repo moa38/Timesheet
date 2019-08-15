@@ -3,6 +3,7 @@
 
 <head>
 <title>Timesheet | Add Timesheet</title>
+<link rel="stylesheet" type="text/css" href="myStyles.css" />
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" />
 <link rel="stylesheet"
@@ -98,19 +99,22 @@
 						   <span th:if="${i.index == 4}">Friday</span>
 						</td>			
 						<td>
-						   <input type="date" class="input" th:field="*{shifts[__${i.index}__].shiftDate}" min="2018-03-18" max="2025-12-31">
-						   <span class="error has-text-white has-background-grey" th:if="${#fields.hasErrors('shifts[__${i.index}__].shiftDate')}" th:errors="*{shifts[__${i.index}__].shiftDate}"></span>
+						   <input type="date" class="input" th:field="*{shifts[__${i.index}__].shiftDate}" 
+						      min="2018-03-18" max="2025-12-31" style="width:8.5em;">
+						   <span class="error has-text-white has-background-grey" th:if="${#fields.hasErrors('shifts[__${i.index}__].shiftDate')}" 
+						      th:errors="*{shifts[__${i.index}__].shiftDate}"></span>
+						   <!-- p class="help is-danger">This email is invalid</p-->
 						</td>
 						<td th:text="${i.index}"></td>
 						<td>
 							<div class="control">
-								<input type="time" class="input" th:field="*{shifts[__${i.index}__].startTime}" step="60">
+								<input type="time" class="input" th:field="*{shifts[__${i.index}__].startTime}" step="60" style="width:6em;">
 								<span th:if="${#fields.hasErrors('shifts[__${i.index}__].startTime')}" th:errors="*{shifts[__${i.index}__].startTime}"></span>
 							</div>
 						</td>
 						<td>
 							<div class="control">
-								<input type="time" class="input" th:field="*{shifts[__${i.index}__].endTime}" step="60">
+								<input type="time" class="input" th:field="*{shifts[__${i.index}__].endTime}" step="60" style="width:6em;">
 								<span th:if="${#fields.hasErrors('shifts[__${i.index}__].endTime')}" th:errors="*{shifts[__${i.index}__].endTime}"></span>
 							</div>
 						</td>
@@ -136,16 +140,17 @@
 	<!-- END OF BODY -->
 
 	<!-- FOOTER -->
-
-	<section class=section>
-		<footer class="footer">
-			<div class="content has-text-centered">
-				<p>
-					Built with <i class="fas fa-heart"></i> by <strong> <a href="https://github.com/moa38">moa38</a> </strong>.
-				</p>
-			</div>
-		</footer>
-	</section>
+   
+    <section class="section">
+        <footer class="myfooter">
+            <div class="content has-text-centered">
+                <p>
+                    Built with <i class="fas fa-heart"></i> by 
+                    <strong> <a href="https://github.com/moa38">moa38</a> </strong>.
+                </p>
+            </div>
+        </footer>
+    </section>
 
 </body>
 

@@ -32,16 +32,16 @@ public class WebApp implements CommandLineRunner {
       BCryptPasswordEncoder pe = new  BCryptPasswordEncoder();
 
       Role role = new Role(1, "USER");
-      //Role admin = new Role(2, "ADMIN");
+      Role admin = new Role(2, "ADMIN");
       Role manager = new Role(3, "MANAGER");
-      //roleRepo.save(manager);
+      roleRepo.save(role);
 
       User user = new User();
       user.setFirstName("Bob");
       user.setLastName("Bobson");
       user.setUsername("bob@bobmail.com");
       user.setPassword(pe.encode("password"));
-      user.setRole(role);
+      user.setRole(admin);
 
       User user2 = new User();
       user2.setFirstName("John");
