@@ -43,7 +43,7 @@ public class RoleTest {
       //Checks that role has a set of users
 
       //Create users
-      User u1 = new User("John", "Smith", "john@mail.com");
+      User u1 = new User("John", "Smith");
       User u2 = new User();
 
       //Populate set with users
