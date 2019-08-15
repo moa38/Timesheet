@@ -17,7 +17,7 @@ public class TimesheetTest {
    public void setUpTimesheet() {
       //Create new Timesheet to be tested
       timesheet = new Timesheet();
-      User user = new User("John", "Smith");
+      User user = new User("John", "Smith", "smith@mail.com");
       timesheet.setTimesheetId(3464567);
       timesheet.setUser(user);
    }
@@ -38,7 +38,7 @@ public class TimesheetTest {
       assertThat(timesheet.getUser(), Matchers.instanceOf(User.class));
 
       //Check that setAppUser() works as intended
-      User user2 = new User("Bob", "Bobson");
+      User user2 = new User("Bob", "Bobson", "bob@mail.com");
       timesheet.setUser(user2);
       assertThat(timesheet.getUser(), Matchers.equalTo(user2));
       assertThat(timesheet.getUser().getFirstName(), Matchers.equalTo("Bob"));
