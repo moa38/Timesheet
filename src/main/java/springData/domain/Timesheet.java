@@ -39,6 +39,10 @@ public class Timesheet {
    @DateTimeFormat(iso = ISO.DATE)
    private LocalDate dateSubmitted;
 
+   @Column
+   @DateTimeFormat(iso = ISO.DATE)
+   private LocalDate dateApproved;
+
    @OneToMany(mappedBy = "timesheetId", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
    private List<Shift> shifts = new ArrayList<Shift>();
 
@@ -49,6 +53,19 @@ public class Timesheet {
    @Type(type = "yes_no")
    @Column(name = "Approved", nullable = false)
    private boolean approved;
+
+   @Column(name = "Hours")
+   private double totalHours = 0;
+
+   //Getters & Setters
+
+   public double getTotalHours() {
+      return totalHours;
+   }
+
+   public void setTotalHours(double totalHours) {
+      this.totalHours = totalHours;
+   }
 
    public int getTimesheetId() {
       return this.timesheetId;
@@ -96,6 +113,14 @@ public class Timesheet {
 
    public void setStartDate(LocalDate startDate) {
       this.startDate = startDate;
+   }
+
+   public LocalDate getDateApproved() {
+      return dateApproved;
+   }
+
+   public void setDateApproved(LocalDate dateApproved) {
+      this.dateApproved = dateApproved;
    }
 
    public LocalDate getDateSubmitted() {

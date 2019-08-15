@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import javax.validation.Valid;
+import static java.time.temporal.ChronoUnit.MINUTES;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -63,13 +64,13 @@ public class TimesheetController {
          timesheet.setUser(userRepo.findByUsername(principal.getName()));
          timesheet.setShifts(shifts.getShifts());
 
+         double hours = calcTotalHours(shifts.getShifts());
+         System.out.printf("Hours 2 decimal %.1f \n", hours);
+         System.out.println("Hours only " + hours);
+
          //Bind Each Shift to Timesheet
          for (int i = 0; i < 5; i++) {
             shifts.getShifts().get(i).setTimesheet(timesheet);
-            /*Shift s = shifts.getShifts().get(i);
-            System.out.println(s.getStartTime().until(s.getEndTime(), MINUTES));
-            System.out.println("Minutes "+MINUTES.between(s.getStartTime(), s.getEndTime()));
-            System.out.println("Hours " + HOURS.between(s.getStartTime(), s.getEndTime()));*/
          }
          //Submit button action
          if (action.equals("submit")) {
@@ -77,8 +78,11 @@ public class TimesheetController {
             timesheet.setDateSubmitted(LocalDate.now());
          }
 
-         //Persist Timesheet & Shifts
+         //Set startDate & totalHours
          timesheet.setStartDate(shifts.getShifts().get(0).getShiftDate());
+         timesheet.setTotalHours(calcTotalHours(shifts.getShifts()));
+
+         //Save Timesheet
          timesheetRepo.save(timesheet);
 
          return "redirect:/dashboard";
@@ -89,7 +93,7 @@ public class TimesheetController {
    public String viewAllTimesheets(Model model, Principal principal) {
       //List of User's Timesheets
       List<Timesheet> timesheets = (List<Timesheet>) timesheetRepo.findAllByUser(
-                userRepo.findByUsername(principal.getName()));
+              userRepo.findByUsername(principal.getName()));
 
       model.addAttribute("timesheets", timesheets);
 
@@ -162,6 +166,9 @@ public class TimesheetController {
          timesheet.setSubmitted(true);
          timesheet.setDateSubmitted(LocalDate.now());
       }
+      //Update totalHours
+      timesheet.setTotalHours(calcTotalHours(timesheet.getShifts()));
+
       //Save Timesheet
       timesheetRepo.save(timesheet);
 
@@ -198,5 +205,14 @@ public class TimesheetController {
       return "redirect:/user/view-all-timesheets";
    }
 
+   //Function returning totalHours worked for Timesheet
+   public double calcTotalHours(List<Shift> shifts) {
+      double hours = 0;
+      for (int i = 0; i < shifts.size(); i++) {
+         hours = hours + MINUTES.between(shifts.get(i).getStartTime(), shifts.get(i).getEndTime());
+      }
+      return (hours / 60);
+   }
+
 }
-//ShiftController
+//TimesheetController

@@ -30,7 +30,7 @@ public class AuthenticationController {
       //Get View for Role
       switch (user.getRole().getRole()) {
          case "ADMIN":
-            view = "redirect:/admin/create";
+            view = "redirect:/admin/createUser";
             break;
          case "MANAGER":
             view = "redirect:/dashboard";
@@ -54,6 +54,9 @@ public class AuthenticationController {
       if (user.getRole().getRole().equals("MANAGER")) {
          return "manager/dashboard";
       }
+      if (user.getRole().getRole().equals("ADMIN")) {
+         return "admin/dashboard";
+      }
       return "/user/dashboard";
    }
 
@@ -65,3 +68,4 @@ public class AuthenticationController {
    public ModelAndView cancel() {}
     */
 }
+//AuthenticationController

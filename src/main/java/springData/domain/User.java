@@ -13,10 +13,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-import javax.validation.constraints.Pattern;
+//import javax.validation.constraints.Pattern;
 
 @Entity
-@Table(name = "user", uniqueConstraints = { @UniqueConstraint(name = "USER_UK", columnNames = "username") })
+@Table(name = "users", uniqueConstraints = { @UniqueConstraint(name = "USER_UK", columnNames = "username") })
 public class User {
 
    @Column(name = "USER_ID", updatable = false, nullable = false)
@@ -52,9 +52,10 @@ public class User {
    public User() {
    }
 
-   public User(String firstName, String lastName) {
+   public User(String firstName, String lastName, String username) {
       this.firstName = firstName;
       this.lastName = lastName;
+      this.username = username;
    }
 
    public int getUserId() {
@@ -87,6 +88,14 @@ public class User {
 
    public void setPassword(String encryptedPassword) {
       this.password = encryptedPassword;
+   }
+
+   public boolean isEnabled() {
+      return enabled;
+   }
+
+   public void setEnabled(boolean enabled) {
+      this.enabled = enabled;
    }
 
    public Role getRole() {

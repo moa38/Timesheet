@@ -32,7 +32,6 @@ public class ShiftsDTO {
       this.shifts = shifts;
    }
 
-
    public int getTimesheetId() {
       return timesheetId;
    }
@@ -40,6 +39,5 @@ public class ShiftsDTO {
    public void setTimesheetId(int timesheetId) {
       this.timesheetId = timesheetId;
    }
-   // getter and setter
 
 }

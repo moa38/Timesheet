@@ -1,6 +1,7 @@
 package springData.controller;
 
 import java.security.Principal;
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -52,6 +53,7 @@ public class ManagerController {
 
       //Approve Timesheet
       timesheet.setApproved(true);
+      timesheet.setDateApproved(LocalDate.now());
 
       //Save Timesheet
       timesheetRepo.save(timesheet);
