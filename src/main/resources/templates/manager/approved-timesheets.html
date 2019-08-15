@@ -3,6 +3,7 @@
 
 <head>
 <title>Timesheet | Approved Timesheets</title>
+<link rel="stylesheet" type="text/css" href="myStyles.css" />
 <link rel="stylesheet"
    href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" />
 <link rel="stylesheet"
@@ -68,8 +69,9 @@
             <thead>
                <tr>
                   <th>Start Date</th>
-                  <th>TimesheetId</th>
                   <th>Date Submitted</th>
+                  <th>TimesheetId</th>
+                  <th>Hours</th>
                   <th>Approved</th>
                   <th><i class="fas fa-lg fa-info-circle"></i></th>     
                </tr>
@@ -77,8 +79,9 @@
             <tbody>
                <tr th:each="timesheet: ${timesheets}">
                   <td th:text="${timesheet.startDate}">
-                  <td th:text="${timesheet.timesheetId}">               
                   <td th:text="${timesheet.dateSubmitted}">
+                  <td th:text="${timesheet.timesheetId}">               
+                  <td th:text="${#numbers.formatDecimal(timesheet.totalHours,1,1,'POINT')}">
                   <td>
                      <span th:if="${timesheet.approved == true}"> Yes</span> 
                      <span th:if="${timesheet.approved == false}"> No </span>
@@ -98,16 +101,18 @@
    <!-- END OF BODY -->
 
    <!-- FOOTER -->
+   
+    <section class="section">
+        <footer class="myfooter">
+            <div class="content has-text-centered">
+                <p>
+                    Built with <i class="fas fa-heart"></i> by 
+                    <strong> <a href="https://github.com/moa38">moa38</a> </strong>.
+                </p>
+            </div>
+        </footer>
+    </section>
 
-   <section class=section>
-      <footer class="footer">
-         <div class="content has-text-centered">
-            <p>
-               Built with <i class="fas fa-heart"></i> by <strong> <a href="https://github.com/moa38">moa38</a> </strong>.
-            </p>
-         </div>
-      </footer>
-   </section>
 </body>
 
 </html>
