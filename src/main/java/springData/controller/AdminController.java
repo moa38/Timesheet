@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import springData.DTO.PasswordDTO;
 import springData.DTO.UserDTO;
 import springData.domain.Role;
 import springData.domain.User;
@@ -35,9 +36,14 @@ public class AdminController {
    @Autowired RoleRepository roleRepo;
    @Autowired TimesheetRepository timesheetRepo;
 
-   @InitBinder
-   protected void initBinder(WebDataBinder binder) {
-      binder.addValidators(new UserDTOValidator());
+   @InitBinder("userDTO")
+   protected void initUserDTOBinder(WebDataBinder binder) {
+      binder.addValidators(new UserDTOValidator(userRepo));
+   }
+
+   @InitBinder("passwordDTO")
+   protected void initPasswordDTOBinder(WebDataBinder binder) {
+      binder.addValidators(new PasswordDTOValidator());
    }
 
    @RequestMapping("/createUser")
@@ -57,7 +63,7 @@ public class AdminController {
            Principal principal) {
 
       if (result.hasErrors()) {
-       //List of Roles
+         //List of Roles
          List<Role> roles = (List<Role>) roleRepo.findAll();
          model.addAttribute("roles", roles);
 
@@ -113,7 +119,6 @@ public class AdminController {
          return "admin/edit-user";
       } else {
          //Create new User using UserDTO details
-
          User user = userRepo.findById(userId);
          user.setFirstName(userDTO.getFirstName());
          user.setLastName(userDTO.getLastName());
@@ -124,13 +129,42 @@ public class AdminController {
          //Save User
          userRepo.save(user);
 
-         return "redirect:/dashboard";
+         return "redirect:/admin/view-all-users";
+      }
+   }
+
+   @RequestMapping("/reset-password/{userId}")
+   public String resetPassword(@PathVariable int userId, Model model, Principal principal) {
+      PasswordDTO passwordDTO = new PasswordDTO();
+
+      model.addAttribute("userId", userId);
+      model.addAttribute("passwordDTO", passwordDTO);
+
+      return "admin/reset-password";
+   }
+
+   @PostMapping(value = "/reset-password/submit/{userId}")
+   public String resetPassword(@Valid @ModelAttribute("passwordDTO") PasswordDTO passwordDTO, BindingResult result,
+           @PathVariable int userId, Model model, Principal principal) {
+
+      if (result.hasErrors()) {
+         System.out.println("asdfasgfwsgerhe");
+         return "admin/reset-password";
+      } else {
+         //Create new User using UserDTO details
+         User user = userRepo.findById(userId);
+         user.setPassword(pe.encode(passwordDTO.getPassword()));
+
+         //Save User
+         userRepo.save(user);
+
+         return "redirect:/admin/view-all-users";
       }
    }
 
    @RequestMapping("/view-all-users")
    public String viewAllUsers(Model model, Principal principal) {
-      //List of User's Timesheets
+      //List of Users
       List<User> users = (List<User>) userRepo.findAll();
 
       model.addAttribute("users", users);

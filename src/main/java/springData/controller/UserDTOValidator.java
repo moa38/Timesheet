@@ -5,11 +5,18 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import springData.DTO.UserDTO;
+import springData.repository.UserRepository;
 
 public class UserDTOValidator implements Validator {
 
    public boolean supports(Class<?> clazz) {
       return UserDTO.class.equals(clazz);
+   }
+
+   private UserRepository userRepo;
+
+   public UserDTOValidator(UserRepository userRepo) {
+      this.userRepo = userRepo;
    }
 
    @Override
@@ -28,6 +35,10 @@ public class UserDTOValidator implements Validator {
       //Ensure Last Name is valid
       if ((dto.getLastName() != null) && (dto.getLastName().length() > 0) && (dto.getLastName().length() < 2)) {
          errors.rejectValue("lastName", "", "Last name has less than 2 characters.");
+      }
+      //Ensure Username is not in use
+      if (userRepo.findByUsername(dto.getUsername()) != null) {
+         errors.rejectValue("username", "", "Username is unavailable.");
       }
       //Ensure Username is valid
       if ((dto.getUsername() != null) && (dto.getUsername().length() > 0) && (dto.getUsername().length() < 4)) {
