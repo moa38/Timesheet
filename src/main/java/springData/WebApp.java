@@ -55,7 +55,7 @@ public class WebApp implements CommandLineRunner {
 
       Timesheet t = new Timesheet();
       t.setUser(user);
-      t.setStartDate(LocalDate.of(2018, 8, 8));
+      t.setStartDate(LocalDate.of(2012, 8, 8));
 
       Shift s1 = new Shift();
       Shift s2 = new Shift();
@@ -80,6 +80,7 @@ public class WebApp implements CommandLineRunner {
       t.getShifts().add(s3);
       t.getShifts().add(s4);
       t.getShifts().add(s5);
+      t.setDateSubmitted(LocalDate.now());
       t.setSubmitted(true);
       t.setApproved(true);
 

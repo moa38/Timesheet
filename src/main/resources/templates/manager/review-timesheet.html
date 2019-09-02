@@ -46,7 +46,7 @@
 							  <span class="icon"><i class="fas fa-question-circle"></i></span> 
 							  <span>Help</span>
 							</a> <span class="navbar-item"> 
-							<a class="button is-info is-inverted" href="/login?logout"> 
+							<a class="button is-info is-inverted" href="#" th:href="@{/logout}"> 
 							  <span class="icon"> <i class="fas fa-sign-out-alt"></i> </span> 
 							  <span>Sign out</span>
 							</a>
@@ -105,12 +105,12 @@
 			</table>
          <td>            
 			   <div class="field has-addons" th:if="${timesheet.approved == false}" style="float: right;">
-			      <p class="control" th:href="@{/manager/approve-timesheet/} + ${timesheet.timesheetId}">
+			      <a class="control" th:href="@{/manager/approve-timesheet/} + ${timesheet.timesheetId}">
 			         <button class="button is-info">Approve</button>
-			      </p>
-			      <p class="control" th:href="@{/manager/reject-timesheet/} + ${timesheet.timesheetId}">
+			      </a>
+			      <a class="control" th:href="@{/manager/reject-timesheet/} + ${timesheet.timesheetId}">
                   <button class="button is-danger">Reject</button>
-               </p>   
+               </a>   
 			   </div>
 			</td>
 			<td th:if="${timesheet.approved == true}">

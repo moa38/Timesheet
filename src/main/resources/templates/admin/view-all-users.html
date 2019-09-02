@@ -31,7 +31,7 @@
                      </a> <a class="navbar-item" href="/help"> <span class="icon"><i
                            class="fas fa-question-circle"></i></span> <span>Help</span>
                      </a> <span class="navbar-item"> <a
-                        class="button is-info is-inverted" href="/logout"> <span
+                        class="button is-info is-inverted" href="#" th:href="@{/logout}"> <span
                            class="icon"> <i class="fas fa-sign-out-alt"></i>
                         </span> <span>Sign out</span>
                      </a>
@@ -54,8 +54,8 @@
    <!-- BODY -->
    <section class="section">
       <div class="container">
-         <h1 class="title">View Users</h1>
-         <h2 class="subtitle">See all Users.</h2>
+         <h1 class="title">User Management</h1>
+         <h2 class="subtitle">Manage all User accounts.</h2>
       </div>
    </section>
    <section class="section">
@@ -74,7 +74,8 @@
                   <th>Last Name</th>
                   <th>Role</th>
                   <th>Organization</th>
-                  <th><i class="fas fa-lg fa-check-square"></i></th>
+                  <th><i class="fas fa-lg fa-info-circle"></i></th>
+                  <th><i class="fas fa-lg fa-exclamation-triangle"></i></th>
                   <th><i class="fas fa-lg fa-ban"></i></th>         
                </tr>
             </thead>
@@ -89,6 +90,11 @@
                   <td>
                      <a class="button is-primary" th:href="@{/admin/edit-user/} + ${user.userId}">
                         <span> Edit </span>
+                     </a>
+                  </td>
+                  <td>
+                     <a class="button is-info" th:href="@{/admin/reset-password/} + ${user.userId}">
+                        <span>Reset password</span>
                      </a>
                   </td>
                   <td>
