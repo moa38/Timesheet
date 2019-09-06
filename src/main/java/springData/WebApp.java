@@ -8,9 +8,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import springData.repository.OrganizationRepository;
 import springData.repository.RoleRepository;
 import springData.repository.TimesheetRepository;
 import springData.repository.UserRepository;
+import springData.domain.Organization;
 import springData.domain.Role;
 import springData.domain.Shift;
 import springData.domain.Timesheet;
@@ -22,6 +24,7 @@ public class WebApp implements CommandLineRunner {
    @Autowired UserRepository userRepo;
    @Autowired RoleRepository roleRepo;
    @Autowired TimesheetRepository timesheetRepo;
+   @Autowired OrganizationRepository organizationRepo;
 
    public static void main(String[] args) {
       SpringApplication.run(WebApp.class, args);
@@ -86,6 +89,10 @@ public class WebApp implements CommandLineRunner {
 
       timesheetRepo.save(t);
 
+      Organization org = new Organization("Money Company", "123 Business Lane, City", "078232435363");
+      user.setOrganization(org);
+      user2.setOrganization(org);
+      organizationRepo.save(org);
       userRepo.save(user);
       userRepo.save(user2);
    }

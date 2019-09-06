@@ -86,7 +86,7 @@
                   <td th:text="${user.firstName}">
                   <td th:text="${user.lastName}">
                   <td th:text="${user.role.role}">
-                  <td th:text="${user.organization}">
+                  <td th:text="${user.organization.name}">
                   <td>
                      <a class="button is-primary" th:href="@{/admin/edit-user/} + ${user.userId}">
                         <span> Edit </span>

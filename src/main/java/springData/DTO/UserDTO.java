@@ -12,6 +12,8 @@ public class UserDTO {
 
    private String roleName;
 
+   private String organizationName;
+
    // default and parameterized constructors
    public UserDTO() {
    }
@@ -55,6 +57,14 @@ public class UserDTO {
 
    public void setRoleName(String role) {
       this.roleName = role;
+   }
+
+   public String getOrganizationName() {
+      return organizationName;
+   }
+
+   public void setOrganizationName(String organizationName) {
+      this.organizationName = organizationName;
    }
 
 }

@@ -99,36 +99,6 @@
             </div>
         </div>
     </section>
-    <section class="section">
-        <div class="container">
-            <h1 class="title">This week's timesheet</h1>
-            <h2 class="subtitle">
-                A handy graph to visualise your work patterns.
-            </h2>
-            <canvas id="bar-chart" width="800" height="450"></canvas>
-            <script>
-                // Bar chart
-                new Chart(document.getElementById("bar-chart"), {
-                    type: 'bar',
-                    data: {
-                        labels: ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"],
-                        datasets: [
-                            {
-                                label: "Hours", 
-                                backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#f49542", "#c45850", "#ffdb2b", "#dfe72b"],
-                                data: [8, 7, 6, 10, 8, 3, 0]
-                            }
-                        ]
-                    },
-                    options: {
-                        legend: { display: false },
-                        title: {
-                            display: false
-                        }
-                    }
-                });
-            </script>
-    </section>
 
     <!-- END OF BODY -->
 

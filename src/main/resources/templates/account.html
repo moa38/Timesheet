@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<title>Timesheet | Edit Timesheet</title>
+<title>Timesheet | Account</title>
 <link rel="stylesheet" type="text/css" href="myStyles.css" />
 <link rel="stylesheet"
    href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" />
@@ -15,9 +15,6 @@
 <script
    src="https://uicdn.toast.com/tui-calendar/latest/tui-calendar.js"></script>
 
-<!-- TUI GRID
-    <link rel="stylesheet" href="https://uicdn.toast.com/tui-grid/latest/tui-grid.css" />
-    <script src="https://uicdn.toast.com/tui-grid/latest/tui-grid.js"></script> -->
 </head>
 
 <!-- HEADER -->
@@ -70,74 +67,69 @@
 
    <section class="section">
       <div class="container">
-         <h1 class="title">Edit Timesheet</h1>
-         <h2 class="subtitle">Update your selected Timesheet.</h2>
+         <h1 class="title">Account Details</h1>
+         <h2 class="subtitle">Your accounts details.</h2>
       </div>
    </section>
 
    <section class="section">
-      <div class="container">
-         <table class="table is-striped is-hoverable is-fullwidth">
-            <form th:object="${shifts}" th:action="@{/user/updateTimesheet}" method="post">
-            <thead>
-               <tr>
-                  <th>Day</th>
-                  <th>Date</th>
-                  <th>ShiftId</th>
-                  <th>Day Start Time</th>
-                  <th>Day End Time</th>
-               </tr>
-            </thead>
-            <tbody>
-               <tr th:each="shift,i : *{shifts}">
-                  <td>
-                     <span th:if="${i.index == 0}">Monday</span>
-                     <span th:if="${i.index == 1}">Tuesday</span>
-                     <span th:if="${i.index == 2}">Wednesday</span>
-                     <span th:if="${i.index == 3}">Thursday</span>
-                     <span th:if="${i.index == 4}">Friday</span>
-                  </td>       
-                  <td>
-                     <div class="control">
-                        <input class="input" type="date" th:field="*{shifts[__${i.index}__].shiftDate}" min="2018-03-18" max="2025-12-31">
-                        <span th:if="${#fields.hasErrors('shifts[__${i.index}__].shiftDate')}" th:errors="*{shifts[__${i.index}__].shiftDate}"></span>
-                     </div>
-                  </td>
-                  <td th:text="${i.index}"></td>
-                  <td>
-                     <div class="control">
-                        <input type="time" class="input" th:field="*{shifts[__${i.index}__].startTime}" step="60">
-                        <span th:if="${#fields.hasErrors('shifts[__${i.index}__].startTime')}" th:errors="*{shifts[__${i.index}__].startTime}"></span>
-                     </div>
-                  </td>
-                  <td>
-                     <div class="control">
-                        <input type="time" class="input" th:field="*{shifts[__${i.index}__].endTime}" step="60">
-                        <span th:if="${#fields.hasErrors('shifts[__${i.index}__].endTime')}" th:errors="*{shifts[__${i.index}__].endTime}"></span>
-                     </div>
-                  </td>
-               </tr>
-            </tbody>
-         </table>
-         <td>
-            <div class="field has-addons" style="float: right;">
-               <p class="control">
-                  <button class="button is-link" type="submit" name="action" value="update">Update</button>
-               </p>
-               <p class="control">
-                  <button class="button is-success" type="submit" name="action" value="submit">Submit</button>
-               </p>
+      <div class="container" style="width:33em;">
+         <!-- User Details -->
+         
+         <div class="control">
+            <div class="control">
+               <label class="label">First Name</label>
             </div>
-         </td>
-         </form>
+            <div class="control">
+            <!--th:value="${user?.username}"-->
+               <span> First Name</span>
+            </div>
+         </div>
+         
+         <div class="field">
+            <label class="label">Last Name</label>
+            <div class="control">
+               <spa> Last Name</span>
+            </div>
+         </div>
+               
+         <div class="field">
+            <label class="label">Username</label>
+            <div class="control has-icons-left has-icons-right">
+               <span> Username</span>
+            </div>
+         </div>
+               
+         <div class="field">
+            <label class="label">Role</label>
+            <div>
+               <!-- td th:text="${role.role}" th:value="${role.role}">Role</td-->
+            </div>
+         </div>
+         
+         <div class="field">
+            <label class="label">Organization</label>
+            <div>
+               <!-- td th:text="${role.role}" th:value="${role.role}">Organization</td-->
+            </div>
+         </div>
+
+         <div class="field has-addons" style="float: right;">
+            <p class="control">
+               <button class="button is-link" type="submit" name="action" value="create">Reset Password</button>
+            </p>
+            <p class="control">
+               <button class="button is-danger" type="reset">Reset</button>
+            </p>
+         </div>
+
+         <!-- END OF FORM -->
       </div>
    </section>
-
 
    <!-- END OF BODY -->
 
    <!-- FOOTER -->
-   
     <section class="section">
         <footer class="myfooter">
             <div class="content has-text-centered">

@@ -21,8 +21,8 @@ public class WebConfig implements WebMvcConfigurer {
       registry.addViewController("/submit-shift").setViewName("user/submit-shift");
       registry.addViewController("/delete-shift").setViewName("user/delete-shift");
       registry.addViewController("/help").setViewName("help");
-      registry.addViewController("/account").setViewName("user/account");
-      registry.addViewController("/sign-up").setViewName("/sign-up");
+      //registry.addViewController("/account").setViewName("account/account");
+      //registry.addViewController("/sign-up").setViewName("/sign-up");
    }
 
    // Handles HTTP GET requests for /resources/** by efficiently serving up static
