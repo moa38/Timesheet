@@ -1,9 +1,7 @@
 package springData.controller;
 
-import java.security.Principal;
 import java.time.LocalDate;
 import java.util.List;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import springData.domain.Shift;
 import springData.domain.Timesheet;
-import springData.repository.ShiftRepository;
 import springData.repository.TimesheetRepository;
 import springData.repository.UserRepository;
 
@@ -23,11 +20,10 @@ import springData.repository.UserRepository;
 public class ManagerController {
 
    @Autowired UserRepository userRepo;
-   @Autowired ShiftRepository shiftRepo;
    @Autowired TimesheetRepository timesheetRepo;
 
    @RequestMapping("/pending-timesheets")
-   public String pendingTimesheets(Model model, Principal principal) {
+   public String pendingTimesheets(Model model) {
       //List of Submitted Timesheets
       List<Timesheet> timesheets = (List<Timesheet>) timesheetRepo.findAllSubmitted();
 
@@ -37,7 +33,7 @@ public class ManagerController {
    }
 
    @RequestMapping("/approved-timesheets")
-   public String approvedTimesheets(Model model, Principal principal) {
+   public String approvedTimesheets(Model model) {
       //List of Approved Timesheets
       List<Timesheet> timesheets = (List<Timesheet>) timesheetRepo.findAllApproved();
 

@@ -59,8 +59,7 @@ public class AdminController {
    }
 
    @PostMapping(value = "/createUser/create")
-   public String createUser(@Valid @ModelAttribute("userDTO") UserDTO userDTO, BindingResult result, Model model,
-           Principal principal) {
+   public String createUser(@Valid @ModelAttribute("userDTO") UserDTO userDTO, BindingResult result, Model model) {
 
       if (result.hasErrors()) {
          //List of Roles
@@ -109,7 +108,7 @@ public class AdminController {
 
    @PostMapping(value = "/update-user/{userId}")
    public String updateUser(@Valid @ModelAttribute("userDTO") UserDTO userDTO, BindingResult result,
-           @PathVariable int userId, Model model, Principal principal) {
+           @PathVariable int userId, Model model) {
 
       if (result.hasErrors()) {
          //List of Roles
@@ -134,7 +133,7 @@ public class AdminController {
    }
 
    @RequestMapping("/reset-password/{userId}")
-   public String resetPassword(@PathVariable int userId, Model model, Principal principal) {
+   public String resetPassword(@PathVariable int userId, Model model) {
       PasswordDTO passwordDTO = new PasswordDTO();
 
       model.addAttribute("userId", userId);
@@ -145,10 +144,9 @@ public class AdminController {
 
    @PostMapping(value = "/reset-password/submit/{userId}")
    public String resetPassword(@Valid @ModelAttribute("passwordDTO") PasswordDTO passwordDTO, BindingResult result,
-           @PathVariable int userId, Model model, Principal principal) {
+           @PathVariable int userId, Model model) {
 
       if (result.hasErrors()) {
-         System.out.println("asdfasgfwsgerhe");
          return "admin/reset-password";
       } else {
          //Create new User using UserDTO details
@@ -163,7 +161,7 @@ public class AdminController {
    }
 
    @RequestMapping("/view-all-users")
-   public String viewAllUsers(Model model, Principal principal) {
+   public String viewAllUsers(Model model) {
       //List of Users
       List<User> users = (List<User>) userRepo.findAll();
 
