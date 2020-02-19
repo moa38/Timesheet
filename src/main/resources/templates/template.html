@@ -2,7 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>FDM | Template</title>
+    <title>Timesheet | Template</title>
+    <link rel="stylesheet" type="text/css" href="myStyles.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" />
 </head>
@@ -15,9 +16,6 @@
             <nav class="navbar">
                 <div class="container">
                     <div class="navbar-brand">
-                        <a class="navbar-item" href="https://fdmgroup.com   ">
-                            <img src="https://www.fdmgroup.com/wp-content/uploads/fdm-logo-anim-h180px.gif" />
-                        </a>
                         <span class="navbar-burger burger" data-target="navbarMenuHeroB">
                             <span></span>
                             <span></span>
@@ -39,7 +37,7 @@
                                 <span>Help</span>
                             </a>
                             <span class="navbar-item">
-                                <a class="button is-info is-inverted" href="/login?logout">
+                                <a class="button is-info is-inverted" href="#" th:href="@{/logout}">
                                     <span class="icon">
                                         <i class="fas fa-sign-out-alt"></i>
                                     </span>
@@ -57,7 +55,7 @@
                     Timesheet App
                 </p>
                 <p class="subtitle">
-                    View. Edit. Submit.
+                    Create. Edit. Submit.
                 </p>
             </div>
         </div>
@@ -107,23 +105,18 @@
     <!-- END OF BODY -->
 
     <!-- FOOTER -->
-
-    <section class=section>
-        <footer class="footer">
+   
+    <section class="section">
+        <footer class="myfooter">
             <div class="content has-text-centered">
                 <p>
-                    Built with <i class="fas fa-heart"></i> by <strong>CO2015 Group 17</strong>.
+                    Built with <i class="fas fa-heart"></i> by 
+                    <strong> <a href="https://github.com/moa38">moa38</a> </strong>.
                 </p>
-                <br>
-                <p><i class="far fa-copyright"></i> 2019 Vinny Barden (<a href="https://github.com/vjba">vjba</a>),
-                    Mohammed Ahmed (<a href="https://github.com/moa38">moa38</a>), Joe Hopkinson (<a
-                        href="https://github.com/Magnum3">Magnum3</a>), Dan King (<a
-                        href="https://github.com/dk969">dk969</a>), Dan Low (<a
-                        href="https://github.com/dl255">dl255</a>).</p>
-                <p>All product names, logos, and brands are property of their respective owners.</p>
             </div>
         </footer>
     </section>
+
 </body>
 
 </html>

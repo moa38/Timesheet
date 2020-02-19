@@ -1,6 +1,8 @@
 
 # Timesheet App
 
+Initially a group project for a critical university course, I decided to fork the repository and work on it post-submission.
+
 ## CI status
 
 | Branch    | CI Status                                                                                                                                                             |
@@ -34,17 +36,9 @@
 | Coding Standards Checked        | Automatic checking of coding standards is done via gradle and checkstyle. All code added for the story must adhere to the coding standards you choose.                                                                                                                    | Click on the “Build #??” for the passing build and paste the URL into a Pivotal comment. This must show the style being checked.              | [This must be set up in gradle - instructions are here - https://medium.com/@raveensr/how-to-add-checkstyle-and-findbugs-plugins-in-a-gradle-based-project-51759aa843be](https://medium.com/@raveensr/how-to-add-checkstyle-and-findbugs-plugins-in-a-gradle-based-project-51759aa843be)                    |
 |                                 |                                                                                                                                                                                                                                                                          |                       |                                                                                                                                                 |                                                                                                                                                                                                                                                                                                             |
 
-## Roles and Responsibilities
+## Initial Collaborators
 
-| Roles                  | Mohammed |
-| ---------------------- | -------- |
-| Software Developer     | x        |
-| Automated Test Writer  | x        |
-| Build Engineer         | x        |
-| Manual Tester          | x        |
-| Coding Standards Fixer | x        |
-| Scrum Master           | x        |
-| Product Owner          | x        |
-| Assessment Lead        | x        |
-| Tech Lead              | x        |
-| Configuration Manager  | x        |
+* [vjba](https://github.com/vjba)
+* [dl255](https://github.com/dl255)
+* [Magnum3](https://github.com/Magnum3)
+* [dk969](https://github.com/dk969)

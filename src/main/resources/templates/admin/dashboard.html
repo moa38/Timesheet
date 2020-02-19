@@ -1,17 +1,19 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-    <title>Timesheet | Oops.</title>
+    <title>Timesheet | ADMIN Dashboard</title>
     <link rel="stylesheet" type="text/css" href="myStyles.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
 </head>
 
 <!-- HEADER -->
 
 <body>
-    <section class="hero is-danger">
+    <section class="hero is-dark">
         <div class="hero-head">
             <nav class="navbar">
                 <div class="container">
@@ -37,7 +39,7 @@
                                 <span>Help</span>
                             </a>
                             <span class="navbar-item">
-                                <a class="button is-danger is-inverted" disabled>
+                                <a class="button is-info is-inverted" href="#" th:href="@{/logout}">
                                     <span class="icon">
                                         <i class="fas fa-sign-out-alt"></i>
                                     </span>
@@ -51,12 +53,8 @@
         </div>
         <div class="hero-body">
             <div class="container has-text-centered">
-                <p class="title">
-                    Timesheet App
-                </p>
-                <p class="subtitle">
-                    Create. Edit. Submit.
-                </p>
+                <p class="title"> Timesheet App Admin </p>
+                <p class="subtitle"> Create. Edit. Submit. </p>
             </div>
         </div>
     </section>
@@ -67,34 +65,37 @@
 
     <section class="section">
         <div class="container">
-            <h1 class="title">ERROR</h1>
+            <h3 class="title">Admin <td th:text="${name}"></td>. </h3>
             <h2 class="subtitle">
-                Oops. The hamsters stopped running.
+                This is the admin's dashboard.
             </h2>
-            <div class="content">
-                <ol type="1">
-                    <li><strong>Check View Resolvers / Mappings</strong>: <p class="is-family-code">
-                            src/main/java/springData/WebConfig.java</p>
-                    </li>
-                    <li><strong>Check Auth Permissions</strong>: <p class="is-family-code">
-                            src/main/java/springData/SecurityConfig.java</p>
-                    </li>
-                    <li><strong>Check Controllers</strong>: <p class="is-family-code">
-                            src/main/java/springData/controllers/*.java</p>
-                    </li>
-                    <li>
-                        <strong>Check view filenames</strong>: <p class="is-family-code">
-                            login.html<strong> NOT</strong> logn.html</p>
-                    </li>
-                    <li><strong>Ensure all views have Thymeleaf html tag</strong>: <p class="is-family-code">
-                            "html xmlns:th="http://www.thymeleaf.org""
-                        </p>
-                    </li>
-                    <li>
-                        Visit our help page <a href="/help">here</a>, or optionally email us at <a
-                            href="mailto:example@example.org">example@example.org</a>
-                    </li>
-                </ol>
+            <div class="tile is-ancestor has-text-centered ">
+                <div class="tile is-parent">
+                    <article class="tile is-child box">
+                        <p class="title">Create User</p>
+                        <p class="subtitle">Add a new User account</p>
+                        <div class="content">
+                            <figure>
+                                <a href="/admin/createUser" class="image has-text-warning">
+                                    <i class="far fa-edit fa-10x"></i>
+                                </a>
+                            </figure>
+                        </div>
+                    </article>
+                </div>
+                <div class="tile is-parent">
+                    <article class="tile is-child box">
+                        <p class="title">Manage Users</p>
+                        <p class="subtitle">Manage all User accounts</p>
+                        <div class="content">
+                            <figure>
+                                <a href="/admin/view-all-users" class="image has-text-success">
+                                    <i class="far fa-check-square fa-10x"></i>
+                                </a>
+                            </figure>
+                        </div>
+                    </article>
+                </div>
             </div>
         </div>
     </section>

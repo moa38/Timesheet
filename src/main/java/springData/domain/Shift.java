@@ -2,56 +2,58 @@ package springData.domain;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-/**
- * Shift class representing a single work day
- *
- * @author CO2015 Group-17
- */
+import org.hibernate.annotations.Type;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
 @Entity
 public class Shift {
 
-   //@Column(unique = true, updatable = false, nullable = false)
-   @Column(unique = true, nullable = false)
    @Id
-   @GeneratedValue(strategy = GenerationType.AUTO)
+   @Column(unique = true, nullable = false)
+   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "shift_generator")
    private int shiftId;
 
-   @Column
+   @Column(nullable = false)
+   @DateTimeFormat(iso = ISO.DATE)
    private LocalDate shiftDate;
 
    @Column
+   @DateTimeFormat(iso = ISO.TIME)
    private LocalTime startTime = LocalTime.of(9, 0);
 
    @Column
+   @DateTimeFormat(iso = ISO.TIME)
    private LocalTime endTime = LocalTime.of(17, 0);
 
    @Column
    private int overtimeHours = 0;
 
+   @Type(type = "yes_no")
    @Column
    private boolean bankHoliday = false;
 
+   //@Type(type = "yes_no")
    @Column
    private boolean holiday = false;
 
-   @ManyToOne
-   private Timesheet timesheet;
+   @ManyToOne//(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+   @JoinColumn(name = "Timesheet")
+   private Timesheet timesheetId;
 
-   public Shift(LocalDate shiftDate, LocalTime startTime, LocalTime endTime, int overtimeHours, boolean bankHoliday,
-           boolean holiday) {
+   public Shift(LocalDate shiftDate, LocalTime startTime, LocalTime endTime) {
       this.shiftDate = shiftDate;
       this.startTime = startTime;
       this.endTime = endTime;
-      this.overtimeHours = overtimeHours;
-      this.bankHoliday = bankHoliday;
-      this.holiday = holiday;
    }
 
    public Shift() {
@@ -114,18 +116,18 @@ public class Shift {
    }
 
    public Timesheet getTimesheet() {
-      return this.timesheet;
+      return this.timesheetId;
    }
 
    public void setTimesheet(Timesheet timesheet) {
-      this.timesheet = timesheet;
+      this.timesheetId = timesheet;
    }
 
    @Override
    public String toString() {
       return "Shift [shiftId=" + shiftId + ", shiftDate=" + shiftDate + ", startTime=" + startTime + ", endTime="
             + endTime + ", overtimeHours=" + overtimeHours + ", bankHoliday=" + bankHoliday + ", holiday=" + holiday
-            + ", timesheet=" + timesheet + "]";
+            + ", timesheet=" + timesheetId + "]";
    }
 
 }

@@ -2,10 +2,6 @@ package springData;
 
 import static org.junit.Assert.assertThat;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.ArrayList;
-
 import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,8 +9,6 @@ import org.junit.Test;
 import springData.domain.User;
 import springData.domain.Organization;
 import springData.domain.Role;
-import springData.domain.Shift;
-import springData.domain.Timesheet;
 
 public class UserTest {
    User user;
@@ -22,7 +16,7 @@ public class UserTest {
    @Before
    public void setUpUser() {
       //Create new AppUser to be tested
-      user = new User("John", "Smith", "abcde");
+      user = new User("John", "Smith", "bob@mail.com");
    }
 
    @Test
@@ -56,7 +50,7 @@ public class UserTest {
       assertThat(user.getOrganization().getAddress(), Matchers.equalTo("123 Test Street"));
    }
 
-   @Test
+   /*@Test
    public void userHasTimesheets() {
       //Checks that user has timesheets
       Shift s1 = new Shift(LocalDate.of(2018, 10, 10), LocalTime.MIDNIGHT, LocalTime.NOON, 5, true, false);
@@ -67,6 +61,6 @@ public class UserTest {
       timesheet.getShifts().add(s1);
       user.getTimesheets().add(timesheet);
       assertThat(user.getTimesheets(), Matchers.instanceOf(ArrayList.class));
-   }
+   }*/
 }
 

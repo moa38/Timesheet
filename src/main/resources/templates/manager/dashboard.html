@@ -3,8 +3,8 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-    <title>Timesheet | Dashboard</title>
-    <link rel="stylesheet" type="text/css" href="/resources/CSS/myStyles.css" />
+    <title>Timesheet | Manager Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="myStyles.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
@@ -26,7 +26,7 @@
                     </div>
                     <div id="navbarMenuHeroB" class="navbar-menu">
                         <div class="navbar-end">
-                            <a class="navbar-item is-active" href="/dashboard">
+                            <a class="navbar-item is-active" href="/manager/dashboard">
                                 <span class="icon"><i class="fas fa-home"></i></span>
                                 <span>Dashboard</span>
                             </a>
@@ -53,12 +53,8 @@
         </div>
         <div class="hero-body">
             <div class="container has-text-centered">
-                <p class="title">
-                    Timesheet App
-                </p>
-                <p class="subtitle">
-                    Create. Edit. Submit.
-                </p>
+                <p class="title"> Timesheet App Manager </p>
+                <p class="subtitle"> Create. Edit. Submit. </p>
             </div>
         </div>
     </section>
@@ -69,31 +65,18 @@
 
     <section class="section">
         <div class="container">
-            <h3 class="title">Hi, <td th:text="${name}"></td>! </h3>
+            <h3 class="title">Manager <td th:text="${name}"></td>! </h3>
             <h2 class="subtitle">
-                This is your dashboard.
+                This is the manager's dashboard.
             </h2>
             <div class="tile is-ancestor has-text-centered ">
                 <div class="tile is-parent">
                     <article class="tile is-child box">
-                        <p class="title">Create Timesheet</p>
-                        <p class="subtitle">Make a new timesheet</p>
+                        <p class="title">Pending Timesheets</p>
+                        <p class="subtitle">See Timesheets awaiting your approval</p>
                         <div class="content">
                             <figure>
-                                <a href="/user/add-timesheet" class="image has-text-info">
-                                    <i class="far fa-plus-square fa-10x"></i>
-                                </a>
-                            </figure>
-                        </div>
-                    </article>
-                </div>
-                <div class="tile is-parent">
-                    <article class="tile is-child box">
-                        <p class="title">View Timesheets</p>
-                        <p class="subtitle">View your created Timesheets</p>
-                        <div class="content">
-                            <figure>
-                                <a href="/user/view-all-timesheets" class="image has-text-warning">
+                                <a href="/manager/pending-timesheets" class="image has-text-warning">
                                     <i class="far fa-edit fa-10x"></i>
                                 </a>
                             </figure>
@@ -102,11 +85,11 @@
                 </div>
                 <div class="tile is-parent">
                     <article class="tile is-child box">
-                        <p class="title">Submitted Timesheets</p>
-                        <p class="subtitle">View Submitted Timesheets</p>
+                        <p class="title">Approved Timesheets</p>
+                        <p class="subtitle">View Timesheets you've approved</p>
                         <div class="content">
                             <figure>
-                                <a href="/user/submitted-timesheets" class="image has-text-success">
+                                <a href="/manager/approved-timesheets" class="image has-text-success">
                                     <i class="far fa-check-square fa-10x"></i>
                                 </a>
                             </figure>
@@ -150,7 +133,7 @@
     <!-- END OF BODY -->
 
     <!-- FOOTER -->
-
+   
     <section class="section">
         <footer class="myfooter">
             <div class="content has-text-centered">
@@ -161,7 +144,7 @@
             </div>
         </footer>
     </section>
-    
+
 </body>
 
 </html>

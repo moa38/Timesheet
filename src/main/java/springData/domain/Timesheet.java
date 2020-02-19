@@ -1,5 +1,6 @@
 package springData.domain;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,29 +11,40 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Type;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
-/**
- * Timesheet class contatining 7 shifts representing the days of the week.
- *
- * @author CO2015 Group-17
- */
 @Entity
-@IdClass(TimesheetPK.class)
 public class Timesheet {
 
-   @Column(name = "Timesheet_ID", unique = true, updatable = false, nullable = false)
    @Id
-   @GeneratedValue(strategy = GenerationType.AUTO)
+   @Column(name = "Timesheet_ID", unique = true, updatable = false, nullable = false)
+   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "timesheet_generator")
    private int timesheetId;
 
-   @Id
-   @ManyToOne(fetch = FetchType.EAGER)
+   @ManyToOne(optional = false, fetch = FetchType.LAZY)
+   @JoinColumn(name = "USER_ID")
    private User user;
+
+   @Column(nullable = false)
+   @DateTimeFormat(iso = ISO.DATE)
+   private LocalDate startDate;
+
+   @Column
+   @DateTimeFormat(iso = ISO.DATE)
+   private LocalDate dateSubmitted;
+
+   @Column
+   @DateTimeFormat(iso = ISO.DATE)
+   private LocalDate dateApproved;
+
+   @OneToMany(mappedBy = "timesheetId", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+   private List<Shift> shifts = new ArrayList<Shift>();
 
    @Type(type = "yes_no")
    @Column(name = "Submitted", nullable = false)
@@ -42,8 +54,18 @@ public class Timesheet {
    @Column(name = "Approved", nullable = false)
    private boolean approved;
 
-   @OneToMany(mappedBy = "timesheet", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-   private List<Shift> shifts;
+   @Column(name = "Hours")
+   private double totalHours = 0;
+
+   //Getters & Setters
+
+   public double getTotalHours() {
+      return totalHours;
+   }
+
+   public void setTotalHours(double totalHours) {
+      this.totalHours = totalHours;
+   }
 
    public int getTimesheetId() {
       return this.timesheetId;
@@ -78,30 +100,41 @@ public class Timesheet {
    }
 
    public List<Shift> getShifts() {
-      if (shifts == null) {
-         shifts = new ArrayList<>();
-      }
-      return this.shifts;
+      return shifts;
    }
 
    public void setShifts(List<Shift> shifts) {
       this.shifts = shifts;
    }
 
-   public void addShift(Shift shift) {
-      getShifts().add(shift);
-      shift.setTimesheet(this);
+   public LocalDate getStartDate() {
+      return startDate;
    }
 
-   public void removeShift(Shift shift) {
-      getShifts().remove(shift);
-      shift.setTimesheet(null);
+   public void setStartDate(LocalDate startDate) {
+      this.startDate = startDate;
+   }
+
+   public LocalDate getDateApproved() {
+      return dateApproved;
+   }
+
+   public void setDateApproved(LocalDate dateApproved) {
+      this.dateApproved = dateApproved;
+   }
+
+   public LocalDate getDateSubmitted() {
+      return dateSubmitted;
+   }
+
+   public void setDateSubmitted(LocalDate dateSubmitted) {
+      this.dateSubmitted = dateSubmitted;
    }
 
    @Override
    public String toString() {
       return "Timesheet [timesheetId=" + timesheetId + ", user=" + user + ", submitted=" + submitted
-            + ", approved=" + approved + ", shifts=" + shifts + "]";
+            + ", approved=" + approved + "]";
    }
 
 }

@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -30,32 +31,42 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
    @Override
    protected void configure(HttpSecurity http) throws Exception {
       http
+      //AUTHORIZATION
       .authorizeRequests()
-         .antMatchers("/", "/index").permitAll()
-         .anyRequest().authenticated()
+         //.antMatchers("/", "/index").permitAll()
+         .antMatchers("/account/**").permitAll()
+         .antMatchers("/user/**").hasRole("USER")
+         .antMatchers("/manager/**").hasRole("MANAGER")
+         .antMatchers("/admin/**").hasRole("ADMIN")
+         .anyRequest().authenticated() // all requests ABOVE this statement require authentication
+         .and() // to redirect the user when trying to access a resource to which access is not granted
+           .exceptionHandling().accessDeniedPage("/access-denied")
          .and()
       .formLogin()
-         .loginProcessingUrl("/j_spring_security_check")
          .loginPage("/login")
+         .loginProcessingUrl("/j_spring_security_check")
          .usernameParameter("username").passwordParameter("password")
-         .defaultSuccessUrl("/add-shift", true)
+         .defaultSuccessUrl("/success-login", true)
          .permitAll()
          .and()
       .logout()
+         .logoutSuccessUrl("/login")
+         .deleteCookies("JSESSIONID")
+         .invalidateHttpSession(true)
+         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
          .permitAll();
 
       http.authorizeRequests().and() //
-      .rememberMe().tokenRepository(this.persistentTokenRepository()) //
-      .tokenValiditySeconds(1 * 24 * 60 * 60); // 24h
+         .rememberMe().tokenRepository(this.persistentTokenRepository()) //
+         .tokenValiditySeconds(1 * 24 * 60); // * 60); // 24h
    }
 
    @Autowired
    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-
       // Setting Service to find User in the database.
       // And Setting PassswordEncoder
       auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-
+      //auth.jdbcAuthentication().dataSource(dataSource).passwordEncoder(passwordEncoder());
    }
 
    @Bean

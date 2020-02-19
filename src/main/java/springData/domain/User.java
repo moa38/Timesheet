@@ -6,23 +6,20 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+//import javax.validation.constraints.Pattern;
 
-/**
- * User class representing a user of the application. Has List<Timesheets>
- *
- * @author CO2015 Group-17
- */
 @Entity
-@Table(name = "user", uniqueConstraints = { @UniqueConstraint(name = "USER_UK", columnNames = "username") })
+@Table(name = "users", uniqueConstraints = { @UniqueConstraint(name = "USER_UK", columnNames = "username") })
 public class User {
 
-   @Column(updatable = false, nullable = false)
+   @Column(name = "USER_ID", updatable = false, nullable = false)
    @Id
    @GeneratedValue
    private int userId;
@@ -36,31 +33,29 @@ public class User {
    @Column
    private boolean enabled = true;
 
-   /*@Column//(nullable = false)
-   //@NotNull(message = "Password can not be empty")
-   private String password;*/
-
-   @ManyToOne(cascade = CascadeType.PERSIST)
+   @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
    private Role role;
 
+   @Column(unique = true)
+   //@Pattern(regexp = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
    private String username;
 
    @ManyToOne
    private Organization organization;
 
-   @OneToMany(mappedBy = "user")
+   @OneToMany(mappedBy = "user")//, cascade = {CascadeType.ALL})
    private List<Timesheet> timesheets;
 
-   @Column(name = "Encrypted_Password", length = 128, nullable = false)
-   private String encryptedPassword;
+   @Column(name = "password", length = 128, nullable = false)
+   private String password;
 
    public User() {
    }
 
-   public User(String firstName, String lastName, String password) {
+   public User(String firstName, String lastName, String username) {
       this.firstName = firstName;
       this.lastName = lastName;
-      //this.password = password;
+      this.username = username;
    }
 
    public int getUserId() {
@@ -87,21 +82,21 @@ public class User {
       this.lastName = lastName;
    }
 
-   public String getEncryptedPassword() {
-      return encryptedPassword;
+   public String getPassword() {
+      return password;
    }
 
-   public void setEncryptedPassword(String encryptedPassword) {
-      this.encryptedPassword = encryptedPassword;
+   public void setPassword(String encryptedPassword) {
+      this.password = encryptedPassword;
    }
 
-   /*public String getPassword() {
-      return this.password;
+   public boolean isEnabled() {
+      return enabled;
    }
 
-   public void setPassword(String password) {
-      this.password = password;
-   }*/
+   public void setEnabled(boolean enabled) {
+      this.enabled = enabled;
+   }
 
    public Role getRole() {
       return this.role;
@@ -147,5 +142,6 @@ public class User {
    public void setUsername(String username) {
       this.username = username;
    }
+
 }
 

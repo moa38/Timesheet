@@ -2,7 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<title>FDM | Template</title>
+<title>Timesheet | Approved Timesheets</title>
+<link rel="stylesheet" type="text/css" href="myStyles.css" />
 <link rel="stylesheet"
    href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" />
 <link rel="stylesheet"
@@ -17,9 +18,7 @@
          <nav class="navbar">
             <div class="container">
                <div class="navbar-brand">
-                  <a class="navbar-item" href="https://fdmgroup.com   "> <img
-                     src="https://www.fdmgroup.com/wp-content/uploads/fdm-logo-anim-h180px.gif" />
-                  </a> <span class="navbar-burger burger" data-target="navbarMenuHeroB">
+                  <span class="navbar-burger burger" data-target="navbarMenuHeroB">
                      <span></span> <span></span> <span></span>
                   </span>
                </div>
@@ -32,7 +31,7 @@
                      </a> <a class="navbar-item" href="/help"> <span class="icon"><i
                            class="fas fa-question-circle"></i></span> <span>Help</span>
                      </a> <span class="navbar-item"> <a
-                        class="button is-info is-inverted" href="/login?logout"> <span
+                        class="button is-info is-inverted" href="#" th:href="@{/logout}"> <span
                            class="icon"> <i class="fas fa-sign-out-alt"></i>
                         </span> <span>Sign out</span>
                      </a>
@@ -44,7 +43,7 @@
       </div>
       <div class="hero-body">
          <div class="container has-text-centered">
-            <p class="title">Timesheet App</p>
+            <p class="title">Timesheet App Manager</p>
             <p class="subtitle">Create. Edit. Submit.</p>
          </div>
       </div>
@@ -55,36 +54,42 @@
    <!-- BODY -->
    <section class="section">
       <div class="container">
-         <h1 class="title">Edit your Timesheets</h1>
-
+         <h1 class="title">Approved Timesheets</h1>
+         <h2 class="subtitle">Here are Timesheets you've approved.</h2>
       </div>
    </section>
    <section class="section">
-      <div class="container">
+      <div class="container" th:if="${#lists.isEmpty(timesheets)}">
+         <span><strong> No Timesheets approved </strong></span>
+      </div>
+      <div class="container" th:if="${not #lists.isEmpty(timesheets)}">
+      
+         <!-- Display User's Timesheets -->
          <table class="table is-striped is-hoverable is-fullwidth">
             <thead>
                <tr>
+                  <th>Start Date</th>
+                  <th>Date Submitted</th>
                   <th>TimesheetId</th>
-                  <th>Submitted</th>
+                  <th>Hours</th>
                   <th>Approved</th>
-                  <th><i class="fas fa-check-square"></i></th>         
+                  <th><i class="fas fa-lg fa-info-circle"></i></th>     
                </tr>
             </thead>
             <tbody>
                <tr th:each="timesheet: ${timesheets}">
+                  <td th:text="${timesheet.startDate}">
+                  <td th:text="${timesheet.dateSubmitted}">
                   <td th:text="${timesheet.timesheetId}">               
+                  <td th:text="${#numbers.formatDecimal(timesheet.totalHours,1,1,'POINT')}">
                   <td>
-                     <span th:if="${timesheet.submitted == true}"> yes</span> 
-                     <span th:if="${timesheet.submitted == false}"> no </span>
+                     <span th:if="${timesheet.approved == true}"> Yes</span> 
+                     <span th:if="${timesheet.approved == false}"> No </span>
                   </td>
                   <td>
-                     <span th:if="${timesheet.approved == true}"> yes</span> 
-                     <span th:if="${timesheet.approved == false}"> no </span>
-                  </td>
-                  <td>
-                     <div class="control">
-                        <button class="button is-primary">Edit</button>
-                     </div>
+                     <a class="button is-info" th:href="@{/manager/review-timesheet/} + ${timesheet.timesheetId}">
+                        <span> View </span>
+                     </a>
                   </td>
                </tr>
             </tbody>
@@ -96,27 +101,18 @@
    <!-- END OF BODY -->
 
    <!-- FOOTER -->
+   
+    <section class="section">
+        <footer class="myfooter">
+            <div class="content has-text-centered">
+                <p>
+                    Built with <i class="fas fa-heart"></i> by 
+                    <strong> <a href="https://github.com/moa38">moa38</a> </strong>.
+                </p>
+            </div>
+        </footer>
+    </section>
 
-   <section class=section>
-      <footer class="footer">
-         <div class="content has-text-centered">
-            <p>
-               Built with <i class="fas fa-heart"></i> by <strong>CO2015
-                  Group 17</strong>.
-            </p>
-            <br>
-            <p>
-               <i class="far fa-copyright"></i> 2019 Vinny Barden (<a href="https://github.com/vjba">vjba</a>), 
-               Mohammed Ahmed (<a href="https://github.com/moa38">moa38</a>),
-               Joe Hopkinson (<a href="https://github.com/Magnum3">Magnum3</a>), 
-               Dan King (<a href="https://github.com/dk969">dk969</a>), 
-               Dan Low (<a href="https://github.com/dl255">dl255</a>).
-            </p>
-            <p>All product names, logos, and brands are property of their
-               respective owners.</p>
-         </div>
-      </footer>
-   </section>
 </body>
 
 </html>

@@ -15,7 +15,7 @@ public class DbConfig {
    public DriverManagerDataSource dataSource() {
       DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
       driverManagerDataSource.setDriverClassName("com.mysql.jdbc.Driver");
-      driverManagerDataSource.setUrl("jdbc:mysql://34.76.31.234:3306/ma");
+      driverManagerDataSource.setUrl("jdbc:mysql://localhost:8081/timesheetapp");
       driverManagerDataSource.setUsername("root");
       driverManagerDataSource.setPassword("2NyKnc7nncu4hC3l");
       return driverManagerDataSource;

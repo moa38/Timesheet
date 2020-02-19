@@ -1,0 +1,168 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Timesheet | Edit User</title>
+<link rel="stylesheet" type="text/css" href="myStyles.css" />
+<link rel="stylesheet"
+   href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" />
+<link rel="stylesheet"
+   href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" />
+<link rel="stylesheet" type="text/css"
+   href="https://uicdn.toast.com/tui-calendar/latest/tui-calendar.css" />
+<script
+   src="https://uicdn.toast.com/tui.code-snippet/latest/tui-code-snippet.js"></script>
+<script
+   src="https://uicdn.toast.com/tui-calendar/latest/tui-calendar.js"></script>
+
+</head>
+
+<!-- HEADER -->
+
+<body>
+   <section class="hero is-dark">
+      <div class="hero-head">
+         <nav class="navbar">
+            <div class="container">
+               <div class="navbar-brand">
+                  <span class="navbar-burger burger" data-target="navbarMenuHeroB">
+                     <span></span> <span></span> <span></span>
+                  </span>
+               </div>
+               <div id="navbarMenuHeroB" class="navbar-menu">
+                  <div class="navbar-end">
+                     <a class="navbar-item is-active" href="/dashboard"> 
+                       <span class="icon"><i class="fas fa-home"></i></span> 
+                       <span>Dashboard</span>
+                     </a> 
+                     <a class="navbar-item" href="/account"> 
+                       <span class="icon"> <i class="fas fa-user-circle"></i></span> 
+                       <span>Account</span>
+                     </a> 
+                     <a class="navbar-item" href="/help"> 
+                       <span class="icon"><i class="fas fa-question-circle"></i></span> 
+                       <span>Help</span>
+                     </a> <span class="navbar-item"> 
+                     <a class="button is-info is-inverted" href="#" th:href="@{/logout}"> 
+                       <span class="icon"> <i class="fas fa-sign-out-alt"></i> </span> 
+                       <span>Sign out</span>
+                     </a>
+                     </span>
+                  </div>
+               </div>
+            </div>
+         </nav>
+      </div>
+      <div class="hero-body">
+         <div class="container has-text-centered">
+            <p class="title">Timesheet App Admin</p>
+            <p class="subtitle">Create. Edit. Submit.</p>
+         </div>
+      </div>
+   </section>
+
+   <!-- END OF HEADER -->
+
+   <!-- BODY -->
+
+   <section class="section">
+      <div class="container">
+         <h1 class="title">Edit User</h1>
+         <h2 class="subtitle">Update this User's details.</h2>
+      </div>
+   </section>
+
+   <section class="section">
+      <div class="container" style="width:33em;">
+         <!-- User FORM -->
+         
+         <form action="#" th:object="${userDTO}" th:action="@{/admin/update-user/} + ${userId}" method="post">  
+               <div class="field">
+                  <div class="field">
+                     <label class="label">First Name</label>
+                  </div>
+                  <div class="control">
+                     <input class="input" type="text" placeholder="First Name" id="firstName" th:field="*{firstName}">
+                     <span class="help is-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+                  </div>
+               </div>
+               <div class="field">
+                  <label class="label">Last Name</label>
+                  <div class="control">
+                     <input class="input" type="text" placeholder="Last Name" id="lastName" th:field="*{lastName}">
+                     <span class="help is-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+                  </div>
+               </div>
+               
+               <div class="field">
+                  <label class="label">Username</label>
+                  <div class="control has-icons-left has-icons-right">
+                     <input class="input" type="email" placeholder="e.g. alexsmith@mail.com" id="username" th:field="*{username}"> 
+                     <span class="icon is-small is-left">
+                        <i class="fas fa-envelope"></i>
+                     </span>
+                     <span class="icon is-small is-right" th:if="${#fields.hasErrors('username')}">
+                        <i class="fas fa-exclamation-triangle"></i>
+                     </span>
+                     <span class="help is-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+                  </div>
+                  <!--p class="help is-danger">This email is invalid</p>
+                  <p class="help is-success">This email is already in use available</p-->
+               </div>
+               
+               <div class="field">
+                  <label class="label">Role</label>
+                  <div class="select">
+                     <select id="roleName" th:field="*{roleName}">
+                        <option value="">Select Role</option>
+                        <option th:each="role : ${roles}" th:text="${role.role}" th:value="${role.role}"></option>
+                     </select>
+                     <span class="help is-danger" th:if="${#fields.hasErrors('roleName')}" th:errors="*{roleName}"></span>
+                  </div>
+               </div>
+               
+               <!-- div class="field">
+                  <label class="label">Organization</label>
+                  <div class="control">
+                     <div class="select">
+                        <select>
+                           <option>Select Organization</option>
+                           <option>option 1</option>
+                           <option>option 2</option>
+                           <option>option 3</option>
+                        </select>
+                     </div>
+                  </div>
+               </div-->
+              
+               <div class="field has-addons" style="float: right;">
+                  <p class="control">
+                     <button class="button is-info" type="submit">Update</button>
+                  </p>
+                  <p class="control">
+                     <button class="button is-danger" type="reset">Reset</button>
+                  </p>
+               </div>
+
+         </form>
+         <!-- END OF FORM -->
+      </div>
+   </section>
+
+   <!-- END OF BODY -->
+
+   <!-- FOOTER -->
+    <section class="section">
+        <footer class="myfooter">
+            <div class="content has-text-centered">
+                <p>
+                    Built with <i class="fas fa-heart"></i> by 
+                    <strong> <a href="https://github.com/moa38">moa38</a> </strong>.
+                </p>
+            </div>
+        </footer>
+    </section>
+
+</body>
+
+</html>

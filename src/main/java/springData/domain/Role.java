@@ -30,7 +30,6 @@ public class Role {
    private Set<User> userRoles;
 
    public Role() {
-
    }
 
    public Role(int id, String roleName) {

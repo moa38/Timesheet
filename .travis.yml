@@ -3,12 +3,12 @@ language: java
 # Matrix of JDKs
 matrix:
   include:
+    - env: JDK='Oracle JDK 8'
+       oraclejdk8
     - env: JDK='Open JDK 8'
        openjdk8
     - env: JDK='Oracle JDK 11'
        oraclejdk11
-    - env: JDK='Open JDK 11'
-       openjdk11
 
 # Cache gradle
 cache:
